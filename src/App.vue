@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <router-view>
-      
-    </router-view>
     <Header/>
     <router-view></router-view>
     <Footer/>
@@ -18,7 +15,7 @@ export default {
     Header,
     Footer
   },
-  name: 'App'
+    name: 'App'
 }
 </script>
 
