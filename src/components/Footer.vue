@@ -1,5 +1,5 @@
 <template>
     <div>
-        <h1>order Page</h1>
+        <h1>Footer</h1>
     </div>
 </template>
