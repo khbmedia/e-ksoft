@@ -1,16 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import ListItems from "./pages/ListItems.vue";
-import Home from "./pages/Home.vue"
+// import ListItems from "./pages/ListItems.vue";
+import Default from "./layouts/default.vue";
 Vue.use(VueRouter);
 
 export default new VueRouter({
     routes:[
         {
-            path:"/",component:ListItems,
-        },
-        {
-            path:"/home",component:Home
+            path:"/",component:Default,
         }
     ],
     mode:'history',
