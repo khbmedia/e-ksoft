@@ -1,35 +1,28 @@
 <template>
-    <div>check out page
-        <p v-for="(item,idx) in a" :key="idx">{{item}}</p>
+    <div v-if="items">
+        <p  v-for="(item,idx) in items" :key="idx"> </p>
     </div>
 </template>
 <script>
-
 import axios from "axios";
-export default({
+export default {
     data(){
         return{
-            a:[]
+            items:null
         }
     },
-    mouted(){
-        this.a="Hello";
-
-    },
-    methods:{
-        getData(){
-            axios.get().then(response=>{
-                console.log(response.data);
-            })
-        },
-        deleteData(){
-            this.getData();
-        }
+    mounted(){
+        axios.get("/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551").then(response=>{
+            this.items=response.data.result;
+            console.log(this.items);
+        });
     },
     watch:{
-        a(val){
-            console.log()
+        items(value){
+            if(value){
+                this.items=value;
+            }
         }
     }
-})
+}
 </script>
