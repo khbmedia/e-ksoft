@@ -4,62 +4,18 @@
             <div class="header header7">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="logo-header7">
-                                <a href="index.html"><img src="images/logo7.png" alt="" /></a>	
-                            </div>
-                            <div class="search-form7">
-                                <form>
-                                    <input type="text" onblur="if (this.value=='') this.value = this.defaultValue" onfocus="if (this.value==this.defaultValue) this.value = ''" value="Find amazing products" />
-                                    <input type="submit" value="">
-                                </form>
+                                <a href="/"><img src="images/logo7.png" alt="" /></a>	
                             </div>
                         </div>
-                        <div class="col-md-5 col-sm-8 col-xs-12">
-                            <div class="main-nav main-nav7">
-                                <ul class="main-menu">
-                                    <li class="menu-item-has-childrent current-menu-item">
-                                        <a href="index.html">Home</a>
-                                    </li>
-                                    <li class="menu-item-has-childrent">
-                                        <a href="detail.html">featureds</a>
-                                        <ul class="sub-menu sub-menu-col-2">
-                                            <li><a href="accordions.html">Accordions</a></li>
-                                            <li><a href="banners.html">Banners</a></li>
-                                            <li><a href="banner-slider.html">Banner Slider</a></li>
-                                            <li><a href="buttons.html">Buttons</a></li>
-                                            <li><a href="chart-processbar.html">Chart&Processbar</a></li>
-                                            <li><a href="feature-boxes.html">Featured Boxes</a></li>
-                                            <li><a href="message-boxes.html">Message Boxes</a></li>
-                                            <li><a href="post-slider.html">Post Slider</a></li>
-                                            <li><a href="tabs-toggle.html">Tabs&Toggle</a></li>
-                                            <li><a href="testimonial.html">Testimonial</a></li>
-                                            <li><a href="heading-separator.html">Heading & Separator</a></li>
-                                            <li><a href="teams.html">Teams</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-childrent">
-                                        <a href="grid.html">Shop categories </a>
-                                        <ul class="sub-menu">
-                                            <li><a href="list.html">List Full</a></li>
-                                            <li class="menu-item-has-childrent">
-                                                <a href="grid-mr.html">Grid Right</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="detail.html">Detail</a></li>
-                                                    <li><a href="detail-mr.html">Detail Left</a></li>
-                                                    <li><a href="detail-ml.html">Detail Right</a></li>
-                                                    <li><a href="list-ml.html">List Right</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="grid.html">Grid Full </a></li>
-                                            <li><a href="list-mr.html">List Right</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                </ul>
-                                <div class="mobile-menu">
-                                    <a href="#" class="show-menu"><span class="lnr lnr-indent-decrease"></span></a>
-                                    <a href="#" class="hide-menu"><span class="lnr lnr-indent-increase"></span></a>
+                        <div class="col-md-6 col-sm-8 col-xs-12">
+                            <div class="container h-100">
+                                <div class="d-flex justify-content-center h-100">
+                                    <div class="searchbar">
+                                    <input class="search_input" type="text" name="" placeholder="Search...">
+                                    <a href="#" class="search_icon" style="background: url(../images/icon-search.png) no-repeat center center;"></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -118,5 +74,55 @@
                 </div>
             </div>
         </div>
+        <div class="product-best-sale style2">
+			<div class="container">
+				<div class="title-product-best-sale">
+					<div class="row">
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<div class="nav-tabs-border">
+								<ul role="tablist" class="nav nav-tabs">
+									<li v-for="(item,idx) in items" :key="idx" class="active">
+                                        <a v-bind:href="'/category/'+ item.id">{{ item.name }} </a>
+                                    </li>
+								</ul>
+							</div>
+						</div>
+						<!-- <div class="col-md-3 col-sm-3 col-xs-12">
+							<div class="filter-product">
+								<a href="#" class="btn-filter style-border-left">Filter</a>
+							</div>
+						</div> -->
+					</div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  data(){
+        return{
+            items:null
+        }
+    },
+    mounted(){
+        axios.get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL").then(response=>{
+            this.items=response.data.result;
+            console.log(this.items);
+        });
+    },
+    watch:{
+        items(value){
+            if(value){
+                this.items=value;
+            }
+        }
+    },
+	methods:{
+		AddToCart(){
+			
+		}
+	}
+}
+</script>

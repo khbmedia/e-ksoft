@@ -1,6 +1,5 @@
 <template>
-    <!-- End Header -->
-	<div id="content">
+    <div id="content">
 		<div class="product-best-sale style2">
 			<div class="container">
 				<div class="tab-content">
@@ -13,7 +12,7 @@
 										<a href="#" class="product-quick-view">quick shop</a>
 									</div>
 									<div class="item-product-info">
-										<h3 class="title-product"><a href="#">{{item.name}}</a></h3>
+										<h3 class="title-product"><a href="#">{{item.Name}}</a></h3>
                                         <h3 class="title-product"><a href="#">{{item.type}}</a></h3>
 										<div class="info-price">
 											<span>{{item.price}}{{item.currency}}</span>
@@ -35,9 +34,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- End Content -->
 </template>
-
 <script>
 import axios from "axios";
 export default {
@@ -61,9 +58,8 @@ export default {
     },
 	methods:{
 		AddToCart(){
-			alert();
+			
 		}
 	}
 }
 </script>
-
