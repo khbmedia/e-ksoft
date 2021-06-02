@@ -74,51 +74,18 @@
                 </div>
             </div>
         </div>
-        <div class="product-best-sale style2">
-			<div class="container">
-				<div class="title-product-best-sale">
-					<div class="row">
-						<div class="col-md-9 col-sm-9 col-xs-12">
-							<div class="nav-tabs-border">
-								<ul role="tablist" class="nav nav-tabs">
-									<li v-for="(item,idx) in items" :key="idx" class="active">
-                                        <a v-bind:href="'/category/'+ item.id">{{ item.name }} </a>
-                                    </li>
-								</ul>
-							</div>
-						</div>
-						<!-- <div class="col-md-3 col-sm-3 col-xs-12">
-							<div class="filter-product">
-								<a href="#" class="btn-filter style-border-left">Filter</a>
-							</div>
-						</div> -->
-					</div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </template>
 <script>
-import axios from "axios";
+
 export default {
   data(){
         return{
             items:null
         }
     },
-    mounted(){
-        axios.get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL").then(response=>{
-            this.items=response.data.result;
-            console.log(this.items);
-        });
-    },
-    watch:{
-        items(value){
-            if(value){
-                this.items=value;
-            }
-        }
-    },
+    
 	methods:{
 		AddToCart(){
 			
