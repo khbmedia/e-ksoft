@@ -13,7 +13,7 @@
                             <div class="container h-100">
                                 <div class="d-flex justify-content-center h-100">
                                     <div class="searchbar">
-                                    <input class="search_input" type="text" name="" placeholder="Search...">
+                                    <input @keyup="searchProduct" class="search_input" type="text" name="" placeholder="Search...">
                                     <a href="#" class="search_icon" style="background: url(../images/icon-search.png) no-repeat center center;"></a>
                                     </div>
                                 </div>
@@ -22,7 +22,6 @@
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="register-box">
                                 <a href="#" class="link-login">Login</a>
-                                <a href="#" class="link-signin">Sign In</a>
                             </div>
                         </div>
                     </div>
@@ -87,6 +86,9 @@ export default {
     },
     
 	methods:{
+        searchProduct(event){
+            this.$parent.search=event.target.value;
+        },
 		AddToCart(){
 			
 		}

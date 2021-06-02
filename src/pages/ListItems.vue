@@ -68,14 +68,13 @@ export default {
             items:null,
 			display:null,
 			categories:null,
-			reRender:false
+			reRender:false,
+			search:''
         }
     },
     mounted(){
-        axios.get("/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551").then(response=>{
-            this.items=response.data.result;
-            this.display=this.items;
-        });
+        this.items=this.$parent.items;
+		this.display=this.items;
 		axios.get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL").then(response=>{
             this.categories=response.data.result;
             
@@ -86,9 +85,25 @@ export default {
             if(value){
                 this.items=value;
             }
-        }
+        },
+		search(value){
+			if (value != '') {
+				this.searchItem(value);
+			}else{
+				this.display=this.items;
+			}
+		}
     },
 	methods:{
+		searchItem(value){
+			this.reRender=true;
+			this.$nextTick(()=>{
+			this.display=[];
+				this.display=[...this.display,...this.items.filter(item => item.name.toLowerCase().indexOf(value)>-1)];
+				
+			this.reRender=false;
+			});
+		},
 		AddToCart(){
 			alert();
 		},
@@ -107,6 +122,15 @@ export default {
 			});
 			
 			// console.log(this.display);
+		},
+		searchProduct(value){
+			console.log(value);
+			// let a = ["foo","fool","cool","god"];
+			// let term = 'oo';
+			// let b = a.filter(item => item.toLowerCase().indexOf(term) > -1);
+			// console.log(b); // ["foo","fool","cool"]
+
+			
 		}
 	}
 }
