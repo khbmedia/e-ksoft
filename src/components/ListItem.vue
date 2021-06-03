@@ -3,7 +3,7 @@
 	<div id="content">
 		<div class="product-best-sale style2">
 			<div class="container">
-				<div class="title-product-best-sale">
+				<div class="title-product-best-sale" style="padding-top: 5%;">
 					<div class="row">
 						<div class="col-md-9 col-sm-9 col-xs-12">
 							<div class="nav-tabs-border">
@@ -90,6 +90,7 @@ export default {
             }
         },
 		search(value){
+			
 			if (value != '') {
 				this.searchItem(value);
 			}else{

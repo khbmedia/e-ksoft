@@ -15,11 +15,18 @@ export default {
        return{
            currentTabComponent:ListItem,
            items:null,
-           dataDetail:null
+           dataDetail:null,
+           search:null
        }
    },
    mounted(){
        this.items=this.$parent.items;
+   },
+   watch:{
+       search(value){
+       this.$children[0].search=value;
+           
+       }
    }
 }
 </script>

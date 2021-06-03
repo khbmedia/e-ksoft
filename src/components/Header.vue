@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-12 col-xs-12">
                             <div class="logo-header7">
-                                <a href="/"><img src="images/logo7.png" alt="" /></a>	
+                                <a href="/"><img src="images/logo-color.svg" width="100px" height="50px" alt="" /></a>	
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-8 col-xs-12">
@@ -20,8 +20,8 @@
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-4 col-xs-12">
-                            <div class="register-box">
-                                <a href="#myModal" class="link-login" data-toggle="modal">Login</a>
+                            <div class="">
+                                <a href="#myModal" class="myButton" data-toggle="modal">Login</a>
                             </div>
                             <!-- Modal HTML -->
                             <div id="myModal" class="modal fade">
@@ -35,14 +35,14 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/examples/actions/confirmation.php" method="post">
+                                            <!-- <form action="" method="post"> -->
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="username" placeholder="Username" required="required">		
+                                                    <input type="text" id="loginform" class="form-control" name="username" placeholder="Username" required="required">		
                                                 </div>    
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                                                    <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
                                                 </div>
-                                            </form>
+                                            <!-- </form> -->
                                         </div>
                                     </div>
                                 </div>
@@ -102,21 +102,30 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
   data(){
         return{
-            items:null
+            items:null,
+            userName:null
         }
     },
-    
+    mounted(){
+        
+    },
 	methods:{
         searchProduct(event){
             this.$parent.search=event.target.value;
         },
 		AddToCart(){
 			
-		}
+		},
+        user_name(){
+            var loginform=document.getElementById("loginform").value;
+            axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+loginform).then(response=>{
+                this.userName=response.data.result;
+            });
+        }
 	}
 }
 </script>

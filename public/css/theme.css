@@ -70,8 +70,32 @@ blockquote {
 }
 /*Header*/
 .header{
-	padding:20px 0;
+	padding:6px 0;
+    /* position: fixed;
+    z-index: 150;
+    width: 100vw; */
+    background-color: rebeccapurple;
 }
+.myButton {
+	background-color:#1997D4;
+	border-radius:22px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	font-weight:bold;
+	padding:16px 34px;
+	text-decoration:none;
+}
+/* .myButton:hover {
+    color: white;
+} */
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
 .logo.logo-header h1 {
     color: #1b1d1f;
     font-size: 36px;

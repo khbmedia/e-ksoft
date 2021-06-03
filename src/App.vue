@@ -26,7 +26,11 @@ export default {
   },
   watch:{
     search(value){
+      if(value){
+        this.$children.currentTabComponent = "ListItem";
+      }
       this.$children[2].search=value;
+      
     }
   },
   components:{
