@@ -32,7 +32,7 @@
 								<div class="item-product item-product-loadmore">
 									<div class="item-product-thumb">
 										<a href="#" class="product-thumb-link"><img v-bind:src="'data:image/jpeg;base64,'+item.picture"></a>
-										<a href="#" class="product-quick-view">quick shop</a>
+										<a href="javascript:void(0);" class="product-quick-view" @click="DetailItem(item)">quick shop</a>
 									</div>
 									<div class="item-product-info">
 										<h3 class="title-product"><a href="#">{{item.name}}</a></h3>
@@ -42,7 +42,7 @@
 										</div>
 										<div class="cart-wishlist-compare2">
 											<a href="#" class="product-compare"><span class="lnr lnr-sync"></span></a>
-											<a href="#" class="product-add-cart" @click="AddToCart">Add to cart</a>
+											<a href="#" class="product-add-cart" @click="AddToCart(item)">Add to cart</a>
 											<a href="#" class="product-wishlist"><span class="lnr lnr-heart"></span></a>
 										</div>
 									</div>
@@ -52,6 +52,7 @@
 						<button class="btn-link-default btn-link-loadmore" data-num="16">load more</button>
 					</div>
 					<!-- End Featured -->
+
 				</div>
 				<!-- End Product Best Sale -->
 			</div>
@@ -69,7 +70,8 @@ export default {
 			display:null,
 			categories:null,
 			reRender:false,
-			search:''
+			search:'',
+            cart:[]
         }
     },
     mounted(){
@@ -79,6 +81,7 @@ export default {
             this.categories=response.data.result;
             
         });
+		
     },
     watch:{
         items(value){
@@ -95,6 +98,10 @@ export default {
 		}
     },
 	methods:{
+        DetailItem(item){
+            this.$parent.currentTabComponent="DetailItem";
+            this.$parent.dataDetail=item;
+        },
 		searchItem(value){
 			this.reRender=true;
 			this.$nextTick(()=>{
@@ -105,7 +112,7 @@ export default {
 			});
 		},
 		AddToCart(){
-			alert();
+			
 		},
 		filterCategory(id){
 			this.reRender=true;
