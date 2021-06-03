@@ -71,11 +71,13 @@ export default {
 			categories:null,
 			reRender:false,
 			search:'',
-            cart:[]
+            cart:[],
+			
         }
     },
     mounted(){
         this.items=this.$parent.items;
+        this.arr_total=this.$parent.items;
 		this.display=this.items;
 		axios.get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL").then(response=>{
             this.categories=response.data.result;
@@ -95,7 +97,8 @@ export default {
 			}else{
 				this.display=this.items;
 			}
-		}
+		},
+		
     },
 	methods:{
         DetailItem(item){
@@ -106,12 +109,17 @@ export default {
 			this.reRender=true;
 			this.$nextTick(()=>{
 			this.display=[];
-				this.display=[...this.display,...this.items.filter(item => item.name.toLowerCase().indexOf(value)>-1)];
-				
+				this.display=[...this.display,...this.items.filter(item => item.name.toLowerCase().indexOf(value)>-1)];	
 			this.reRender=false;
 			});
 		},
-		AddToCart(){
+		AddToCart(item){
+			this.$parent.CheckItem = item;
+			const dataAdd={...{qty:1},...item};//add qty at object 
+			this.$parent.cart.item=[...this.$parent.cart.item,...[dataAdd]];//insert to property item in parent
+
+			// const GetCart = JSON.parse(window.localStorage.getItem("cart"));
+			// console.log(GetCart);
 			
 		},
 		filterCategory(id){

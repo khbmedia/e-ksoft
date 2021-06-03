@@ -19,7 +19,7 @@
                                 <div class="product-featured-info">
                                     <h3>Light Tube Wall Sconce</h3>
                                     <div class="info-price">
-                                        <span>$80.00</span><del>$95.30</del>
+                                        <span>${{items.price}}</span><del>$95.30</del>
                                     </div>
                                     <p class="desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam aperiam, eaque ipsa quae ab illo inventore</p>
                                     <div class="bx-pager">
@@ -54,7 +54,8 @@ export default {
     },
     mounted(){
         this.data=this.$parent.dataDetail;
-        console.log(this.data);
+        this.display=this.items;
+        // console.log(this.data);
     }
 }
 </script>
