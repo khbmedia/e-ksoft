@@ -26,7 +26,8 @@ export default {
         totalqty: 0,
         item: [],
       },
-      removeItem: null,
+      removeCart:null,
+     
     };
   },
   mounted() {
@@ -41,28 +42,28 @@ export default {
   watch: {
     itemAdd(value) {
       if (value) {
-        this.itemAdd = value;
+       this.itemAdd = value;
+        
         var j = 0;
         if (this.cart.item.length > 0) {
           for (let i = 0; i < this.cart.item.length; i++) {
             if (this.itemAdd.id == this.cart.item[i].id) {
-              this.cart.item[i].qty++;
-              this.cart.item[i].amount =
-                this.cart.item[i].qty * this.cart.item[i].price;
+              this.cart.item[i].qty=this.cart.item[i].qty+value.qty;
+              this.cart.item[i].amount =this.cart.item[i].qty * this.cart.item[i].price;
               j++;
             }
           }
           if (j == 0) {
             const newItem = {
               ...this.itemAdd,
-              ...{ qty: 1, amount: this.itemAdd.price },
+              ...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
             };
             this.cart.item = [...this.cart.item, ...[newItem]];
           }
         } else {
           const newItem = {
             ...this.itemAdd,
-            ...{ qty: 1, amount: this.itemAdd.price },
+            ...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
           };
           this.cart.item = [...this.cart.item, ...[newItem]];
         }
@@ -79,9 +80,9 @@ export default {
       }
       this.$children[0].cart = this.cart;
     },
-    removeItem(value) {
-      console.log(value);
-    },
+    // removeCart(value) {
+      
+    // },
     search(value) {
       if (value && this.$children[2].currentTabComponent == "DetailItem") {
         this.$children[2].oldTabComponent = "DetailItem";

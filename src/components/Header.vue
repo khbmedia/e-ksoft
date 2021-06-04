@@ -6,7 +6,9 @@
           <div class="row">
             <div class="col-md-3 col-sm-12 col-xs-12">
               <div class="logo-header7">
-                <a href="/"><img src="images/logo7.png" alt="" /></a>
+                <router-link to="/"
+                  ><img src="images/logo7.png" alt=""
+                /></router-link>
               </div>
             </div>
             <div class="col-md-6 col-sm-8 col-xs-12">
@@ -17,7 +19,7 @@
                       @keyup="searchProduct"
                       class="search_input"
                       type="text"
-                      name=""
+                      v-model="userName"
                       placeholder="Search..."
                     />
                     <a
@@ -65,7 +67,6 @@
                           <input
                             type="text"
                             class="form-control"
-                            v-model="userName"
                             placeholder="Username"
                             required="required"
                           />
@@ -110,18 +111,44 @@
                       <h3 class="cart-title">
                         <a href="#">{{ item.name }}</a>
                       </h3>
-                      <div class="cart-qty">
-                        <label>Qty:</label> <span>{{ item.qty }}</span>
+
+                      <div class="product-featured-info">
+                        <div class="wrap-cart-qty">
+                          <label>Qty:</label>
+                          <div class="info-qty">
+                            <span class="qty-val">{{ item.qty }}</span>
+                            <a
+                              class="qty-up"
+                              href="javascript:;"
+                              @click="AddQtyCart(1)"
+                              ><span class="lnr lnr-chevron-up"></span
+                            ></a>
+                            <a
+                              class="qty-down"
+                              href="javascript:;"
+                              @click="AddQtyCart(-1)"
+                              ><span class="lnr lnr-chevron-down"></span
+                            ></a>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="wrap-cart-remove">
-                      <a class="remove-product" href="#"></a>
-                      <span class="cart-price">${{ item.amount }}</span>
+                      <a
+                        class="remove-product"
+                        href="javascript:;"
+                        @click="removeCart(item.id)"
+                      ></a>
+                      <span
+                        class="cart-price"
+                        style="display: block; text-align: center"
+                        >${{ item.price }}</span
+                      >
                     </div>
                   </li>
                 </ul>
                 <div class="total-cart">
-                  <label>Subtotal</label> <span>$72.99</span>
+                  <label>Subtotal</label> <span>${{ cart.totalprice }}</span>
                 </div>
                 <div class="link-cart">
                   <a class="cart-edit" href="#">edit cart</a>
@@ -156,14 +183,18 @@ export default {
       axios
         .get(
           "/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName=" +
-            userName
+            this.userName
         )
         .then((response) => {
           this.userName = response.data.result;
           this.$parent.customerName = this.userName;
         });
     },
+    removeCart(id) {
+    console.log(id);
   },
+  },
+  
   watch: {
     cart(value) {
       this.cart = value;

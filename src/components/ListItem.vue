@@ -115,7 +115,8 @@ export default {
 			});
 		},
 		AddToCart(item){
-			this.$parent.itemAdd=item;
+			const dataItem={...item,...{qty:1}};
+			this.$parent.itemAdd=dataItem;
 		},
 		filterCategory(id){
 			this.reRender=true;
