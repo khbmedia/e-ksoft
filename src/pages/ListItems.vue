@@ -20,7 +20,7 @@
 										</div>
 										<div class="cart-wishlist-compare2">
 											<a href="#" class="product-compare"><span class="lnr lnr-sync"></span></a>
-											<a href="#" class="product-add-cart" @click="AddToCart">Add to cart</a>
+											<a href="" class="product-add-cart" @click="AddToCart">Add to cart</a>
 											<a href="#" class="product-wishlist"><span class="lnr lnr-heart"></span></a>
 										</div>
 									</div>
@@ -43,25 +43,32 @@ import axios from "axios";
 export default {
   data(){
         return{
-            items:null
+            items:null,
+			sotrage:[]
         }
     },
     mounted(){
         axios.get("/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551").then(response=>{
             this.items=response.data.result;
-            console.log(this.items);
         });
+		if(localStorage.sotrage){
+			this.sotrage = JSON.parse(localStorage.sotrage);
+		}
     },
     watch:{
         items(value){
             if(value){
                 this.items=value;
             }
-        }
+        },
+		sotrage(newStorage){
+			console.log("date");
+			localStorage.sotrage = JSON.stringify(newStorage);
+		}
     },
 	methods:{
 		AddToCart(){
-			alert();
+			
 		}
 	}
 }
