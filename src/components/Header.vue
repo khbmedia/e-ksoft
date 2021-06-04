@@ -14,16 +14,35 @@
 						<div class="top-right">
 							<ul class="list-inline">
 								<li class="info-user">
-									<a href="#" class="account-link"><span class="lnr lnr-user"></span> My Account</a>
-									<ul class="list-unstyled inner-user-info">
-										<li><a href="#"><span class="lnr lnr-lock"></span> Login / Register</a></li>
-										<li><a href="#"><span class="lnr lnr-heart"></span> Wishlist</a></li>
-										<li><a href="#"><span class="lnr lnr-sync"></span> Compare</a></li>
+									<a href="#myModal"  data-toggle="modal" class="account-link">Login</a>
+									<!-- <ul class="list-unstyled inner-user-info">
+										<li><a href="#"><span class="lnr lnr-lock"></span> Login</a></li>
 										<li><a href="#"><span class="lnr lnr-exit"></span> Checkout</a></li>
-									</ul>
+									</ul> -->
 								</li>
 							</ul>
 						</div>
+                        <div id="myModal" class="modal fade">
+                            <div class="modal-dialog modal-login">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="avatar">
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="Avatar">
+                                        </div>				
+                                        <h4 class="modal-title">Login</h4>	
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input type="text" id="loginform" class="form-control" name="username" placeholder="Username" required="required">		
+                                        </div>    
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
