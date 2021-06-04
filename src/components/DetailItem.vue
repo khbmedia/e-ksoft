@@ -19,7 +19,7 @@
                                     <h3>Category : {{data.categoryName}}</h3>
                                     <h3>Code     : {{data.code}}</h3>
                                     <div class="info-price">
-                                        <span>Price : {{data.price}}{{data.currency}}</span>
+                                        <span>${{items.price}}</span><del>$95.30</del>
                                     </div>
                                     <p class="desc">Description : {{data.description}}</p>
                                     <div class="bx-pager">
@@ -59,6 +59,8 @@ export default {
             this.$refs.images.style.width="100%";
         }, 100);
         
+        this.display=this.items;
+        // console.log(this.data);
     }
 }
 </script>
