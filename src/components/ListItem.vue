@@ -114,7 +114,7 @@ export default {
 			});
 		},
 		AddToCart(item){
-			this.$parent.CheckItem = item;
+			this.$parent.AddNew = item;
 			const dataAdd={...{qty:1},...item};//add qty at object 
 			this.$parent.cart.item=[...this.$parent.cart.item,...[dataAdd]];//insert to property item in parent
 
