@@ -10,17 +10,23 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import axios from "axios";
 export default {
+  components: {
+    Header,
+    Footer,
+  },
+  name: "App",
   data() {
     return {
-      search:       null,
-      items:        null,
-      itemAdd:      null,
+      search: null,
+      items: null,
+      itemAdd: null,
+      customerName: null,
       cart: {
         totalprice: 0,
-        totalqty:   0,
-        item:       [],
+        totalqty: 0,
+        item: [],
       },
-      removeItem:   null,
+      removeItem: null,
     };
   },
   mounted() {
@@ -33,8 +39,7 @@ export default {
       });
   },
   watch: {
-    
-    itemAdd(value) {   
+    itemAdd(value) {
       if (value) {
         this.itemAdd = value;
         var j = 0;
@@ -42,43 +47,51 @@ export default {
           for (let i = 0; i < this.cart.item.length; i++) {
             if (this.itemAdd.id == this.cart.item[i].id) {
               this.cart.item[i].qty++;
-              this.cart.item[i].amount =this.cart.item[i].qty * this.cart.item[i].price;
+              this.cart.item[i].amount =
+                this.cart.item[i].qty * this.cart.item[i].price;
               j++;
             }
           }
           if (j == 0) {
-            const newItem = { ...this.itemAdd, ...{ qty: 1, amount: this.itemAdd.price } };
+            const newItem = {
+              ...this.itemAdd,
+              ...{ qty: 1, amount: this.itemAdd.price },
+            };
             this.cart.item = [...this.cart.item, ...[newItem]];
           }
         } else {
-          const newItem = { ...this.itemAdd, ...{ qty: 1, amount: this.itemAdd.price } };
+          const newItem = {
+            ...this.itemAdd,
+            ...{ qty: 1, amount: this.itemAdd.price },
+          };
           this.cart.item = [...this.cart.item, ...[newItem]];
         }
         this.itemAdd = null;
         this.$children[2].itemAdd = null;
-        var totalPrice=0;
-        var totalQty=0;
-        this.cart.item.forEach(element =>{
-            totalPrice += element.amount;
-            totalQty   += element.qty;
+        var totalPrice = 0;
+        var totalQty = 0;
+        this.cart.item.forEach((element) => {
+          totalPrice += element.amount;
+          totalQty += element.qty;
         });
-        this.cart.totalqty=totalQty;
-        this.cart.totalprice=totalPrice;
+        this.cart.totalqty = totalQty;
+        this.cart.totalprice = totalPrice;
       }
-      this.$children[0].cart=this.cart;
+      this.$children[0].cart = this.cart;
     },
-    removeItem(value){
+    removeItem(value) {
       console.log(value);
     },
-
     search(value) {
+      if (value && this.$children[2].currentTabComponent == "DetailItem") {
+        this.$children[2].oldTabComponent = "DetailItem";
+        this.$children[2].currentTabComponent = "ListItem";
+      } else if (!value && this.$children[2].oldTabComponent == "DetailItem") {
+        this.$children[2].currentTabComponent = "DetailItem";
+      }
+
       this.$children[2].search = value;
     },
   },
-  components: {
-    Header,
-    Footer,
-  },
-  name: "App",
 };
 </script>

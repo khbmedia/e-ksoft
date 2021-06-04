@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-		<div class="home-featured-product">
+		<div class="home-featured-product" v-if="data!=null">
 			<div class="container">
 				<h2 class="title title-home">Featured Products</h2>
 			</div>
@@ -10,20 +10,20 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-0">
                                 <div class="product-featured-thumb">
-                                    <ul class="bxslider">
-                                        <li><img src="images/photos/png/19.png" alt="" /></li>
-                                    </ul>
+                                    <img v-bind:src="'data:image/jpeg;base64,'+data.picture" ref="images">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-7 col-xs-12">
                                 <div class="product-featured-info">
-                                    <h3>Light Tube Wall Sconce</h3>
+                                    <h3>Name     : {{data.name}}</h3>
+                                    <h3>Category : {{data.categoryName}}</h3>
+                                    <h3>Code     : {{data.code}}</h3>
                                     <div class="info-price">
-                                        <span>${{items.price}}</span><del>$95.30</del>
+                                        <span>Price : {{data.price}}{{data.currency}}</span>
                                     </div>
-                                    <p class="desc">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam aperiam, eaque ipsa quae ab illo inventore</p>
+                                    <p class="desc">Description : {{data.description}}</p>
                                     <div class="bx-pager">
-                                        <a data-slide-index="0" href="#"><img src="images/photos/png/19.png" alt="" /></a>
+                                        <a data-slide-index="0" href="#"><img v-bind:src="'data:image/jpeg;base64,'+data.picture" ></a>
                                     </div>
                                     <div class="wrap-cart-qty">
                                         <label>Qty:</label>
@@ -55,7 +55,10 @@ export default {
     mounted(){
         this.data=this.$parent.dataDetail;
         this.display=this.items;
-        // console.log(this.data);
+        setTimeout(()=>{
+            this.$refs.images.style.width="100%";
+        }, 100);
+        
     }
 }
 </script>

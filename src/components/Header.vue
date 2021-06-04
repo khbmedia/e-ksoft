@@ -60,15 +60,12 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form
-                        action="/examples/actions/confirmation.php"
-                        method="post"
-                      >
+                      <form @submit="checkLogin()">
                         <div class="form-group">
                           <input
                             type="text"
                             class="form-control"
-                            name="username"
+                            v-model="userName"
                             placeholder="Username"
                             required="required"
                           />
@@ -87,31 +84,39 @@
                 </div>
               </div>
             </div>
-            <div class="info-cart info-cart7" >
-              <a  v-if="cart==null" class="info-icon icon-cart" href="#"><span class="lnr lnr-cart"></span>
-                <sup>0</sup></a>
-              <a v-else class="info-icon icon-cart" href="#"><span class="lnr lnr-cart"></span>
-                <sup >{{ cart.totalqty }}</sup></a>
-              <div class="inner-cart-info" v-if="cart!=null">
-                <h2>{{cart.totalqty}} items</h2>
+            <div class="info-cart info-cart7">
+              <a v-if="cart == null" class="info-icon icon-cart" href="#"
+                ><span class="lnr lnr-cart"></span> <sup>0</sup></a
+              >
+              <a v-else class="info-icon icon-cart" href="#"
+                ><span class="lnr lnr-cart"></span>
+                <sup>{{ cart.totalqty }}</sup></a
+              >
+              <div class="inner-cart-info" v-if="cart != null">
+                <h2>{{ cart.totalqty }} items</h2>
                 <ul class="info-list-cart">
                   <li
-                    class="item-info-cart" v-for="(item, idx) in cart.item" :key="idx" >
+                    class="item-info-cart"
+                    v-for="(item, idx) in cart.item"
+                    :key="idx"
+                  >
                     <div class="cart-thumb">
                       <a class="cart-thumb" href="#">
-                        <img v-bind:src="'data:image/jpeg;base64,' + item.picture" /></a>
+                        <img
+                          v-bind:src="'data:image/jpeg;base64,' + item.picture"
+                      /></a>
                     </div>
                     <div class="wrap-cart-title">
                       <h3 class="cart-title">
-                        <a href="#">{{item.name}}</a>
+                        <a href="#">{{ item.name }}</a>
                       </h3>
                       <div class="cart-qty">
-                        <label>Qty:</label> <span>{{item.qty}}</span>
+                        <label>Qty:</label> <span>{{ item.qty }}</span>
                       </div>
                     </div>
                     <div class="wrap-cart-remove">
                       <a class="remove-product" href="#"></a>
-                      <span class="cart-price">${{item.amount}}</span>
+                      <span class="cart-price">${{ item.amount }}</span>
                     </div>
                   </li>
                 </ul>
@@ -132,11 +137,13 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       items: null,
       cart: null,
+      userName: null,
     };
   },
 
@@ -144,7 +151,18 @@ export default {
     searchProduct(event) {
       this.$parent.search = event.target.value;
     },
-    AddToCart() {},
+
+    checkLogin() {
+      axios
+        .get(
+          "/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName=" +
+            userName
+        )
+        .then((response) => {
+          this.userName = response.data.result;
+          this.$parent.customerName = this.userName;
+        });
+    },
   },
   watch: {
     cart(value) {
