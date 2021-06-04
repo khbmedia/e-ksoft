@@ -14,6 +14,7 @@ export default {
    data(){
        return{
            currentTabComponent:ListItem,
+           oldTabComponent:null,
            items:null,
            dataDetail:null,
            search:null

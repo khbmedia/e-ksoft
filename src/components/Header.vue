@@ -124,7 +124,9 @@ export default {
             var loginform=document.getElementById("loginform").value;
             axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+loginform).then(response=>{
                 this.userName=response.data.result;
+                console.log(this.userName);
             });
+            
         }
 	}
 }

@@ -15,7 +15,8 @@ export default {
   data(){
     return{
       search:null,
-      items:null
+      items:null,
+      customerName:null
     }
   },
   mounted(){
@@ -26,9 +27,13 @@ export default {
   },
   watch:{
     search(value){
-      if(value){
-        this.$children.currentTabComponent = "ListItem";
+      if(value && this.$children[2].currentTabComponent == "DetailItem"){
+        this.$children[2].oldTabComponent = "DetailItem";
+        this.$children[2].currentTabComponent = "ListItem";
+      }else if(!value&&this.$children[2].oldTabComponent=="DetailItem"){
+         this.$children[2].currentTabComponent = "DetailItem";
       }
+      
       this.$children[2].search=value;
       
     }
