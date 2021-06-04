@@ -80,9 +80,22 @@ export default {
       }
       this.$children[0].cart = this.cart;
     },
-    // removeCart(value) {
-      
-    // },
+    removeCart(value) {
+
+      for(var j=0; j<this.cart.item.length; j++){
+				if(value == this.cart.item[j].id){
+          this.cart.item.splice(j,1);
+        }	
+			}
+        var totalPrice = 0;
+        var totalQty = 0;
+        this.cart.item.forEach((element) => {
+          totalPrice += element.amount;
+          totalQty += element.qty;
+        });
+        this.cart.totalqty = totalQty;
+        this.cart.totalprice = totalPrice;
+    },
     search(value) {
       if (value && this.$children[2].currentTabComponent == "DetailItem") {
         this.$children[2].oldTabComponent = "DetailItem";
