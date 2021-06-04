@@ -17,42 +17,20 @@ export default {
            currentTabComponent:ListItem,
            items:null,
            dataDetail:null,
-           AddNew:null,
-           cart:{
-                totalprice:0,
-                totalqty:0,
-                item:[]
-            },
+           itemAdd:null,
+           
        }
    },
    mounted(){
        this.items=this.$parent.items;
    },
-    watch:{
-        "cart.item":function(){
-            // const AddNewCart = this.AddNew;
-                    
-            //    console.log(JSON.parse(JSON.stringify(this.cart)));
-               const StrCart = JSON.stringify(this.cart);
-               window.localStorage.setItem('cart',StrCart);
-
-                 const GetCart = JSON.parse(window.localStorage.getItem("cart"));// get data from localStorage
-
-                console.log(GetCart.length);
-            //   if(GetCart.length){
-                
-            // }
-        },
-        
-        // CheckItem(value){
-        //         if(value){
-        //             const GetCart = JSON.parse(window.localStorage.getItem("cart"));// get data from localStorage
-
-
-        //             console.log(GetCart);
-        //         }
-        // },
-    },
+   watch:{
+       itemAdd(value){
+           this.$parent.itemAdd=value;
+       }
+   }
+   
+  
        
 }
 </script>

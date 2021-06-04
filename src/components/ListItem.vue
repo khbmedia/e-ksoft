@@ -42,7 +42,7 @@
 										</div>
 										<div class="cart-wishlist-compare2">
 											<a href="#" class="product-compare"><span class="lnr lnr-sync"></span></a>
-											<a href="#" class="product-add-cart" @click="AddToCart(item)">Add to cart</a>
+											<a href="javascript:;" class="product-add-cart" @click="AddToCart(item)">Add to cart</a>
 											<a href="#" class="product-wishlist"><span class="lnr lnr-heart"></span></a>
 										</div>
 									</div>
@@ -114,13 +114,7 @@ export default {
 			});
 		},
 		AddToCart(item){
-			this.$parent.AddNew = item;
-			const dataAdd={...{qty:1},...item};//add qty at object 
-			this.$parent.cart.item=[...this.$parent.cart.item,...[dataAdd]];//insert to property item in parent
-
-			// const GetCart = JSON.parse(window.localStorage.getItem("cart"));
-			// console.log(GetCart);
-			
+			this.$parent.itemAdd=item;
 		},
 		filterCategory(id){
 			this.reRender=true;

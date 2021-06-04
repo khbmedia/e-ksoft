@@ -1,39 +1,84 @@
 <template>
   <div id="app">
-    <Header/>
-    <router-view v-if="items!=null"></router-view>
-    <Footer/>
+    <Header />
+    <router-view v-if="items != null"></router-view>
+    <Footer />
   </div>
 </template>
-
 <script>
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import axios from  "axios";
+import axios from "axios";
 export default {
-  data(){
-    return{
-      search:null,
-      items:null
-    }
+  data() {
+    return {
+      search:       null,
+      items:        null,
+      itemAdd:      null,
+      cart: {
+        totalprice: 0,
+        totalqty:   0,
+        item:       [],
+      },
+      removeItem:   null,
+    };
   },
-  mounted(){
-    axios.get("/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551").then(response=>{
-            this.items=response.data.result;
-           
+  mounted() {
+    axios
+      .get(
+        "/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551"
+      )
+      .then((response) => {
+        this.items = response.data.result;
+      });
+  },
+  watch: {
+    
+    itemAdd(value) {   
+      if (value) {
+        this.itemAdd = value;
+        var j = 0;
+        if (this.cart.item.length > 0) {
+          for (let i = 0; i < this.cart.item.length; i++) {
+            if (this.itemAdd.id == this.cart.item[i].id) {
+              this.cart.item[i].qty++;
+              this.cart.item[i].amount =this.cart.item[i].qty * this.cart.item[i].price;
+              j++;
+            }
+          }
+          if (j == 0) {
+            const newItem = { ...this.itemAdd, ...{ qty: 1, amount: this.itemAdd.price } };
+            this.cart.item = [...this.cart.item, ...[newItem]];
+          }
+        } else {
+          const newItem = { ...this.itemAdd, ...{ qty: 1, amount: this.itemAdd.price } };
+          this.cart.item = [...this.cart.item, ...[newItem]];
+        }
+        this.itemAdd = null;
+        this.$children[2].itemAdd = null;
+        var totalPrice=0;
+        var totalQty=0;
+        this.cart.item.forEach(element =>{
+            totalPrice += element.amount;
+            totalQty   += element.qty;
         });
-  },
-  watch:{
-    search(value){
-      this.$children[2].search=value;
-    }
-  },
-  components:{
-    Header,
-    Footer
-  },
-    name: 'App'
-}
-</script>
+        this.cart.totalqty=totalQty;
+        this.cart.totalprice=totalPrice;
+      }
+      this.$children[0].cart=this.cart;
+    },
+    removeItem(value){
+      console.log(value);
+    },
 
+    search(value) {
+      this.$children[2].search = value;
+    },
+  },
+  components: {
+    Header,
+    Footer,
+  },
+  name: "App",
+};
+</script>
