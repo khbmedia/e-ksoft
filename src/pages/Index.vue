@@ -17,7 +17,7 @@ export default {
            oldTabComponent:null,
            items:null,
            dataDetail:null,
-           search:null
+           search:null,
        }
    },
    mounted(){

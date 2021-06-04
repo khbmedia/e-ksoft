@@ -74,7 +74,7 @@ blockquote {
     /* position: fixed;
     z-index: 150;
     width: 100vw; */
-    background-color: rebeccapurple;
+    /* background-color: rebeccapurple; */
 }
 .myButton {
 	background-color:#1997D4;
@@ -4490,7 +4490,7 @@ Page Product List Mr
 	top:0;
 	left:0;
 	content:"";
-	background:#1997d4;
+	background:#1B1D1F;
 	opacity:0;
 	transition:all 0.5s ease-out 0s;
 }
