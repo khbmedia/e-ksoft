@@ -33,9 +33,8 @@ export default {
        search(value){
        this.$children[0].search=value;
            
-       }
-   },
-    watch:{
+       },
+   
         "cart.item":function(){
            console.log('ok');
             
