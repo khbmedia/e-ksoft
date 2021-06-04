@@ -8405,10 +8405,11 @@ span.click-button{
 	line-height:38px;
 }
 .btn-link-default.btn-link-loadmore:hover {
-	background:#fdd932;
+	background:#fff;
+    color: #000000;
 }
 .btn-link-default.btn-link-loadmore {
-    background: #1997d4 none repeat scroll 0 0;
+    background: #000000;
     border-radius: 4px;
     display: block;
     margin: 30px auto auto;

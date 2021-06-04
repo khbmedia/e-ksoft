@@ -31,7 +31,6 @@
         <div class="header header-home">
 			<div class="container">
 				<div class="row">
-					
 					<div class="col-md-10 col-sm-10 col-xs-12">
 						<div class="header-slider default-paginav">
 							<div class="wrap-item">
@@ -105,28 +104,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="home-share-box">
-								<a href="#" class="icon-extra-sub icon-home-share">
-									<span class="lnr lnr-bullhorn"></span>
-								</a>
-								<div class="home-extra-sub">
-									<a href="#" class="close-extra-sub">Close</a>
-									<ul class="list-unstyled share-social">
-										<li><a href="#"><i class="fa fa-facebook-square"></i> Facebook</a></li>
-										<li><a href="#"><i class="fa fa-twitter-square"></i> Twitter</a></li>
-										<li><a href="#"><i class="fa fa-pinterest-square"></i> Pinterest</a></li>
-										<li><a href="#"><i class="fa fa-youtube-square"></i> Youtube</a></li>
-									</ul>
-								</div>
-							</div>
 							<div class="home-search-box">
 								<a href="#" class="icon-extra-sub icon-home-search">
 									<span class="lnr lnr-magnifier"></span>
 								</a>
 								<div class="home-extra-sub">
-									<a href="#" class="close-extra-sub">Close</a>
+									<a href="javascript:void(0);" class="close-extra-sub">Close</a>
 									<form class="home-search-form">
-										<input type="text" onblur="if (this.value=='') this.value = this.defaultValue" onfocus="if (this.value==this.defaultValue) this.value = ''" value="Search store" />
+										<input  @keyup="searchProduct" type="text" />
 										<input type="submit" value="Search" class="btn-link-default">
 									</form>
 								</div>
