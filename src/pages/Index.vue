@@ -19,6 +19,7 @@ export default {
            dataDetail:null,
            search:null,
            CheckItem:null,
+           AddNew:null,
            cart:{
                 totalprice:0,
                 totalqty:0,
@@ -36,12 +37,18 @@ export default {
        },
    
         "cart.item":function(){
-           console.log('ok');
-            
+            // const AddNewCart = this.AddNew;
+                    
             //    console.log(JSON.parse(JSON.stringify(this.cart)));
                const StrCart = JSON.stringify(this.cart);
                window.localStorage.setItem('cart',StrCart);
-            
+
+                 const GetCart = JSON.parse(window.localStorage.getItem("cart"));// get data from localStorage
+
+                console.log(GetCart.length);
+            //   if(GetCart.length){
+                
+            // }
         },
         
         // CheckItem(value){
