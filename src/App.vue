@@ -55,8 +55,7 @@ export default {
           }
           if (j == 0) {
             const newItem = {
-              ...this.itemAdd,
-              ...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
+              ...this.itemAdd,...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
             };
             this.cart.item = [...this.cart.item, ...[newItem]];
           }

@@ -76,7 +76,7 @@
           </div>
           <div class="col-md-2 col-sm-2 col-xs-12">
             <div class="home-box-extra">
-              <div class="home-cart-box" v-if="!reRender">
+              <div class="home-cart-box">
                 <a href="#" class="icon-extra-sub icon-home-cart" v-if="cart == null">
                   <span class="lnr lnr-cart"></span>
                   <sup>0</sup>
@@ -86,10 +86,11 @@
                   <span class="lnr lnr-cart"></span>
                   <sup>{{ cart.totalqty }}</sup>
                 </a>
-                <div class="home-extra-sub">
+                <div class="home-extra-sub nav" >
                   <a href="#" class="close-extra-sub" >Close</a>
+                  
                   <div class="inner-cart-info" v-if="cart != null">
-                    <ul class="info-list-cart" >
+                    <ul class="info-list-cart" style="max-height: 333px;overflow-y: auto;">
                       <li class="item-info-cart"  v-for="(item, idx) in cart.item"
                       :key="idx">
                         <div class="cart-thumb">
@@ -103,8 +104,17 @@
                           <h3 class="cart-title">
                             <a href="#">{{ item.name }}</a>
                           </h3>
-                          <div class="cart-qty">
-                            <label>Qty:</label> <span>{{ item.qty }}</span>
+                          <div class="product-featured-info">
+                            <div class="cart-qty">
+                              <label>Qty:</label> 
+                              <span class="qty-val" v-if="!hideCheckOut">{{item.qty}}</span>
+                              <div class="info-qty" v-if="hideCheckOut">
+                                <span class="qty-val">{{item.qty}}</span>
+                               
+                                <a class="qty-up" href="javascript:;" @click="AddQtyCart(item.id,item.qty,1)"><span class="lnr lnr-chevron-up"></span></a>
+                                <a class="qty-down" href="javascript:;" @click="AddQtyCart(item.id,item.qty,-1)"><span class="lnr lnr-chevron-down"></span></a>            
+                              </div>
+                            </div>
                           </div>
                         </div>
                         <div class="wrap-cart-remove">
@@ -113,16 +123,15 @@
                             ${{ item.price }}
                           </span>
                         </div>
-                      </li>
-
-                     
+                      </li>  
                     </ul>
                     <div class="total-cart">
                       <label>Subtotal</label> <span>${{cart.totalprice}}</span>
                     </div>
                     <div class="link-cart">
-                      <a href="#" class="cart-edit">edit cart</a>
-                      <a href="#" class="cart-checkout">checkout</a>
+                      <a href="javascript:;" @click="editCart()" class="cart-edit">edit cart</a>
+                      <a href="javascript:;" class="cart-checkout" @click="saveCart()"  v-if="hideCheckOut">Save</a>
+                      <a href="#" class="cart-checkout"  v-if="!hideCheckOut">checkout</a>
                     </div>
                   </div>
                 </div>
@@ -191,9 +200,15 @@ import axios from "axios";
 export default {
   data() {
     return {
+      hideCheckOut:false,
       items: null,
       cart: null,
       userName: null,
+      CartQty:null,
+      editQty:{
+        id:0,
+        newQty:0,
+      },
     };
   },
 
@@ -228,6 +243,27 @@ export default {
     removeCart(id) {
       this.$parent.removeCart = id;
     },
+    editCart(){
+     this.hideCheckOut=true;
+    },
+    AddQtyCart(id,oldQty,number){ 
+      if(this.editQty.length>0 && this.editQty.id == id){
+        console.log(number);
+      }else{
+         console.log(number);
+      }
+
+       this.editQty = [{id:id,newQty:oldQty}];
+    //  this.CartQty+=number;
+    //   if(this.CartQty<=0){
+    //       this.CartQty=1;
+    //   }
+      console.log(this.editQty);
+    },
+    saveCart(){
+       this.hideCheckOut=false;
+    }
+
   },
 
   watch: {
