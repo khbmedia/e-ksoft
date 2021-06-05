@@ -2877,7 +2877,7 @@ Page Product List Mr
     display: block;
     height: 40px;
     line-height: 40px;
-    padding: 0 20px;
+    padding: 5px 20px;
     text-transform: uppercase;
     font-size: 10px;
 }
@@ -10601,7 +10601,7 @@ body,html{
         height: 95px;
         border-radius: 50%;
         z-index: 9;
-        background: #60c7c1;
+        background: #07AC78 !important;
         padding: 15px;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
     }
@@ -10612,9 +10612,9 @@ body,html{
         margin-top: 80px;
     }
     .modal-login .btn, .modal-login .btn:active {
-        color: #fff;
+        color: #000000;
         border-radius: 4px;
-        background: #60c7c1 !important;
+        background: #07AC78 !important;
         text-decoration: none;
         transition: all 0.4s;
         line-height: normal;

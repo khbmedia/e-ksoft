@@ -13,12 +13,15 @@
 					<div class="col-md-8 col-sm-8 col-xs-5">
 						<div class="top-right">
 							<ul class="list-inline">
-								<li class="info-user">
-									<a href="#myModal"  data-toggle="modal" class="account-link">Login</a>
-									<!-- <ul class="list-unstyled inner-user-info">
-										<li><a href="#"><span class="lnr lnr-lock"></span> Login</a></li>
+								<li class="info-user" v-show="userName==null">
+									<a href="#myModal"  data-toggle="modal" class="account-link" ref="btnLogin">Login</a>
+								</li>
+								<li class="info-user" v-if="userName!=null">
+									<a href="#myModal" class="account-link" >{{userName.name}}</a>
+									<ul class="list-unstyled inner-user-info">
 										<li><a href="#"><span class="lnr lnr-exit"></span> Checkout</a></li>
-									</ul> -->
+										<li><a href="/"><span class="lnr lnr-lock"></span> Logout</a></li>
+									</ul>
 								</li>
 							</ul>
 						</div>
@@ -34,7 +37,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <input type="text" id="loginform" class="form-control" name="username" placeholder="Username" required="required">		
+                                            <input :required="ture" v-model="userName" type="text" id="loginform" class="form-control" name="username" placeholder="Username">		
                                         </div>    
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
@@ -167,14 +170,12 @@ export default {
 			
 		},
         user_name(){
-            var loginform=document.getElementById("loginform").value;
-            axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+loginform).then(response=>{
-                this.userName=response.data.result;
-                this.$parent.customerName=this.userName;
-                this.$refs.btnLogin.click();
+			axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+this.userName).then(response=>{
+			this.userName=response.data.result;
+			this.$parent.customerName=this.userName;
+			this.$refs.btnLogin.click();
             });
-            
-        }
+        },
 	},
     watch:{
         userName(value){
