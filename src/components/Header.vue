@@ -13,7 +13,7 @@
 					<div class="col-md-8 col-sm-8 col-xs-5">
 						<div class="top-right">
 							<ul class="list-inline">
-								<li class="info-user" v-show="userName==null">
+								<li class="" v-show="userName==null">
 									<a href="#myModal"  data-toggle="modal" class="account-link" ref="btnLogin">Login</a>
 								</li>
 								<li class="info-user" v-if="userName!=null">
@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <input :required="ture" v-model="userName" type="text" id="loginform" class="form-control" name="username" placeholder="Username">		
+                                            <input v-model="userName" type="text" id="loginform" class="form-control" name="username" placeholder="Username">		
                                         </div>    
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
