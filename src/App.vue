@@ -6,9 +6,14 @@
   </div>
 </template>
 <script>
+
+import Vue from "vue";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import axios from "axios";
+import axios from  "axios";
+import VueGeolocation from "vue-browser-geolocation";
+
+Vue.use(VueGeolocation)
 export default {
   components: {
     Header,
