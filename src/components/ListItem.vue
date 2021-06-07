@@ -36,7 +36,7 @@
 												<a class="product-thumb-link" href="javascript:void(0);"><img v-bind:src="'data:image/jpeg;base64,'+item.picture" class="img-responsive"></a>
 												<div class="product-extra-mask">
 													<div class="product-extra-link">
-														<a class="product-add-cart" href="javascript:void(0);"><span class="lnr lnr-cart"></span></a>
+														<a class="product-add-cart" href="javascript:void(0);" @click="AddToCart(item)"><span class="lnr lnr-cart"></span></a>
 													</div>
 												</div>
 											</div>
