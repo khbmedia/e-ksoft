@@ -19,14 +19,13 @@
 								<li class="info-user" v-if="userName!=null">
 									<a href="#myModal" class="account-link" >{{userName.name}}</a>
 									<ul class="list-unstyled inner-user-info">
-										<li><a href="#"><span class="lnr lnr-exit"></span> Checkout</a></li>
 										<li><a href="/"><span class="lnr lnr-lock"></span> Logout</a></li>
 									</ul>
 								</li>
 							</ul>
 						</div>
                         <div id="myModal" class="modal fade">
-                            <div class="modal-dialog modal-login">
+                            <div class="modal-dialog modal-login" style="height: 80vh; display: flex; align-items: center; justify-content: center;">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <div class="avatar">
@@ -36,8 +35,9 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
                                     <div class="modal-body">
+										<p class="message" style="text-aling:center">{{msg}}</p>
                                         <div class="form-group">
-                                            <input v-model="userName" type="text" id="loginform" class="form-control" name="username" placeholder="Username">		
+                                            <input v-model="userName" :state="nameState" type="text" id="loginform" class="form-control" name="username" placeholder="Username">		
                                         </div>    
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
@@ -153,7 +153,8 @@ export default {
   data(){
         return{
             items:null,
-            userName:null
+            userName:null,
+			msg:""
         }
     },
     mounted(){
@@ -170,11 +171,17 @@ export default {
 			
 		},
         user_name(){
-			axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+this.userName).then(response=>{
+			if(this.userName){
+				axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+this.userName).then(response=>{
 			this.userName=response.data.result;
 			this.$parent.customerName=this.userName;
 			this.$refs.btnLogin.click();
             });
+			}else{
+				this.msg="Please input name!";
+				
+			}
+			
         },
 	},
     watch:{
@@ -184,3 +191,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+	.message{
+		color:red;
+		text-align: center;
+	}
+</style>

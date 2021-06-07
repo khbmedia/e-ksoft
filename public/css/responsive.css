@@ -424,7 +424,7 @@
     text-align: center;
 }
 .top-right> ul> li{
-	display:none;
+	/* display:none; */
 }
 .top-right> ul> li.info-user{
 	display:block;
@@ -703,8 +703,10 @@
 }
 .home-extra-sub.show-box {
     left: 0;
-    padding: 20px 15px;
+    padding: 20% 15px;
     width: 100%;
+    position: fixed;
+    z-index: 10;
 }
 .main-nav.main-nav-home {
     max-width: none;

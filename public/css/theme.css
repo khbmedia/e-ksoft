@@ -2739,6 +2739,9 @@ Page Product List Mr
 /*Header*/
 .top-header {
     background: #1b1d1f none repeat scroll 0 0;
+    position: fixed;
+    z-index: 999999;
+    width: 100%;
 }
 .top-left .top-header{
 	background:#1b1d1f;
