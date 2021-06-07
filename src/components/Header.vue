@@ -16,37 +16,43 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8 col-sm-8 col-xs-5">
-            <div class="top-right">
-              <ul class="list-inline">
-                <li class="info-user">
-                  <a href="#" class="account-link"
-                    ><span class="lnr lnr-user"></span> My Account</a
-                  >
-                  <ul class="list-unstyled inner-user-info">
-                    <li>
-                      <a href="#"
-                        ><span class="lnr lnr-lock"></span> Login / Register</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><span class="lnr lnr-heart"></span> Wishlist</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#"><span class="lnr lnr-sync"></span> Compare</a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><span class="lnr lnr-exit"></span> Checkout</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+         	<div class="col-md-8 col-sm-8 col-xs-5">
+						<div class="top-right">
+							<ul class="list-inline">
+								<li class="" v-show="userName==null">
+									<a href="#myModal"  data-toggle="modal" class="account-link" ref="btnLogin">Login</a>
+								</li>
+								<li class="info-user" v-if="userName!=null">
+									<a href="#myModal" class="account-link" >{{userName.name}}</a>
+									<ul class="list-unstyled inner-user-info">
+										<li><a href="/"><span class="lnr lnr-lock"></span> Logout</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+            <div id="myModal" class="modal fade">
+                <div class="modal-dialog modal-login" style="height: 80vh; display: flex; align-items: center; justify-content: center;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="avatar">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="Avatar">
+                            </div>				
+                            <h4 class="modal-title">Login</h4>	
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="message" style="text-aling:center">{{msg}}</p>
+                            <div class="form-group">
+                                <input v-model="userName" :state="nameState" type="text" id="loginform" class="form-control" name="username" placeholder="Username">		
+                            </div>    
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+					</div>
         </div>
       </div>
     </div>
@@ -207,7 +213,9 @@ export default {
       cart: null,
       userName: null,
       CartQty:null,
-      editQty:null
+      editQty:null,
+      	msg:""
+        
     };
   },
 
@@ -228,18 +236,27 @@ export default {
           this.$refs.btnLogin.click();
         });
     },
-    checkLogin() {
-      axios
-        .get(
-          "/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName=" +
-            this.userName
-        )
-        .then((response) => {
-          this.userName = response.data.result;
-          this.$parent.customerName = this.userName;
-        });
-    },
-    removeCart(id) {
+	methods:{
+        searchProduct(event){
+            this.$parent.search=event.target.value;
+        },
+		AddToCart(){
+			
+		},
+        user_name(){
+			if(this.userName){
+				axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+this.userName).then(response=>{
+			this.userName=response.data.result;
+			this.$parent.customerName=this.userName;
+			this.$refs.btnLogin.click();
+            });
+			}else{
+				this.msg="Please input name!";
+				
+			}
+			
+        },
+         removeCart(id) {
       this.$parent.removeCart = id;
     },
     btnEditCart(){
@@ -256,6 +273,12 @@ export default {
             }
         }
       });
+    }
+	},
+    watch:{
+        userName(value){
+            this.userName=value;
+        }
     },
     
     saveCart(){
@@ -284,3 +307,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+	.message{
+		color:red;
+		text-align: center;
+	}
+</style>

@@ -1570,7 +1570,7 @@ blockquote {
 .footer {
     background: #f5f5f5 none repeat scroll 0 0;
     margin-top: 50px;
-    padding: 55px 0 35px;
+    padding: 10px 0 35px;
 }
 .logo-footer .sub-title {
     color: #1b1d1f;
@@ -2739,6 +2739,9 @@ Page Product List Mr
 /*Header*/
 .top-header {
     background: #1b1d1f none repeat scroll 0 0;
+    position: fixed;
+    z-index: 999999;
+    width: 100%;
 }
 .top-left .top-header{
 	background:#1b1d1f;
@@ -2877,7 +2880,7 @@ Page Product List Mr
     display: block;
     height: 40px;
     line-height: 40px;
-    padding: 0 20px;
+    padding: 5px 20px;
     text-transform: uppercase;
     font-size: 10px;
 }
@@ -8405,10 +8408,11 @@ span.click-button{
 	line-height:38px;
 }
 .btn-link-default.btn-link-loadmore:hover {
-	background:#fdd932;
+	background:#fff;
+    color: #000000;
 }
 .btn-link-default.btn-link-loadmore {
-    background: #1997d4 none repeat scroll 0 0;
+    background: #000000;
     border-radius: 4px;
     display: block;
     margin: 30px auto auto;
@@ -10600,7 +10604,7 @@ body,html{
         height: 95px;
         border-radius: 50%;
         z-index: 9;
-        background: #60c7c1;
+        background: #07AC78 !important;
         padding: 15px;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
     }
@@ -10611,9 +10615,9 @@ body,html{
         margin-top: 80px;
     }
     .modal-login .btn, .modal-login .btn:active {
-        color: #fff;
+        color: #000000;
         border-radius: 4px;
-        background: #60c7c1 !important;
+        background: #07AC78 !important;
         text-decoration: none;
         transition: all 0.4s;
         line-height: normal;

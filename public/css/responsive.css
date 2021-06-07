@@ -424,7 +424,7 @@
     text-align: center;
 }
 .top-right> ul> li{
-	display:none;
+	/* display:none; */
 }
 .top-right> ul> li.info-user{
 	display:block;
@@ -522,7 +522,6 @@
     margin: 0;
     padding: 15px 15px 30px;
     position: absolute;
-    right: -320px;
     top: 0;
     transition: all 0.5s ease-out 0s;
     width: 290px;
@@ -704,8 +703,10 @@
 }
 .home-extra-sub.show-box {
     left: 0;
-    padding: 20px 15px;
+    padding: 20% 15px;
     width: 100%;
+    position: fixed;
+    z-index: 10;
 }
 .main-nav.main-nav-home {
     max-width: none;
