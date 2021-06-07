@@ -67,7 +67,6 @@ export default {
         },
         AddToCart(item){
             const dataItem={...item,...{qty:this.CartQty}};
-            console.log(dataItem);
 			this.$parent.itemAdd=dataItem;
 		},
         AddQtyCart(number){ 

@@ -87,11 +87,12 @@
                   <sup>{{ cart.totalqty }}</sup>
                 </a>
                 <div class="home-extra-sub nav" >
-                  <a href="#" class="close-extra-sub" >Close</a>
+                   <span style="color:white;font-size: 22px;" v-if="cart!=null">{{cart.totalqty}} ITEMS</span>
+                  <a href="#" class="close-extra-sub" style="width: 100px;float: right;">Close</a>
                   
                   <div class="inner-cart-info" v-if="cart != null">
                     <ul class="info-list-cart" style="max-height: 333px;overflow-y: auto;">
-                      <li class="item-info-cart"  v-for="(item, idx) in cart.item"
+                      <li class="item-info-cart"  v-for="(item, idx) in (editQty!=null?editQty:cart.item)"
                       :key="idx">
                         <div class="cart-thumb">
                           <a href="#" class="cart-thumb">
@@ -111,8 +112,8 @@
                               <div class="info-qty" v-if="hideCheckOut">
                                 <span class="qty-val">{{item.qty}}</span>
                                
-                                <a class="qty-up" href="javascript:;" @click="AddQtyCart(item.id,item.qty,1)"><span class="lnr lnr-chevron-up"></span></a>
-                                <a class="qty-down" href="javascript:;" @click="AddQtyCart(item.id,item.qty,-1)"><span class="lnr lnr-chevron-down"></span></a>            
+                                <a class="qty-up" href="javascript:;" @click="editQtyCart(item,1)"><span class="lnr lnr-chevron-up"></span></a>
+                                <a class="qty-down" href="javascript:;" @click="editQtyCart(item,-1)"><span class="lnr lnr-chevron-down"></span></a>            
                               </div>
                             </div>
                           </div>
@@ -129,11 +130,12 @@
                       <label>Subtotal</label> <span>${{cart.totalprice}}</span>
                     </div>
                     <div class="link-cart">
-                      <a href="javascript:;" @click="editCart()" class="cart-edit">edit cart</a>
+                      <a href="javascript:;" @click="btnEditCart()" class="cart-edit">edit cart</a>
                       <a href="javascript:;" class="cart-checkout" @click="saveCart()"  v-if="hideCheckOut">Save</a>
                       <a href="#" class="cart-checkout"  v-if="!hideCheckOut">checkout</a>
                     </div>
                   </div>
+                
                 </div>
               </div>
               <div class="home-share-box">
@@ -205,10 +207,7 @@ export default {
       cart: null,
       userName: null,
       CartQty:null,
-      editQty:{
-        id:0,
-        newQty:0,
-      },
+      editQty:null
     };
   },
 
@@ -243,27 +242,36 @@ export default {
     removeCart(id) {
       this.$parent.removeCart = id;
     },
-    editCart(){
-     this.hideCheckOut=true;
-    },
-    AddQtyCart(id,oldQty,number){ 
-      if(this.editQty.length>0 && this.editQty.id == id){
-        console.log(number);
-      }else{
-         console.log(number);
-      }
-
-       this.editQty = [{id:id,newQty:oldQty}];
-    //  this.CartQty+=number;
-    //   if(this.CartQty<=0){
-    //       this.CartQty=1;
-    //   }
+    btnEditCart(){
+      this.editQty=this.cart.item;
+      this.hideCheckOut=true;
       console.log(this.editQty);
     },
+    editQtyCart(item,numer){ 
+      this.editQty.forEach((element)=>{
+        if(item.id == element.id){
+          element.qty = element.qty+(numer);
+          if(element.qty<=0){
+                element.qty=1;
+            }
+        }
+      });
+    },
+    
     saveCart(){
-       this.hideCheckOut=false;
+      this.hideCheckOut=false;
+      this.$parent.cart.item =[];
+      this.$parent.cart.item = [...this.$parent.cart.item,...this.editQty];
+      var totalPrice = 0;
+      var totalQty = 0;
+      this.$parent.cart.item.forEach((element) => {
+        element.amount = element.qty * element.price; // update amount        
+        totalPrice += element.amount;
+        totalQty += element.qty;
+      });
+      this.$parent.cart.totalprice = totalPrice;
+      this.$parent.cart.totalqty = totalQty;
     }
-
   },
 
   watch: {
