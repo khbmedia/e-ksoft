@@ -43,9 +43,9 @@ export default {
                const StrCart = JSON.stringify(this.cart);
                window.localStorage.setItem('cart',StrCart);
 
-                 const GetCart = JSON.parse(window.localStorage.getItem("cart"));// get data from localStorage
+                const GetCart = JSON.parse(window.localStorage.getItem("cart"));// get data from localStorage
 
-                console.log(GetCart.length);
+                console.log(GetCart.item.length);
             //   if(GetCart.length){
                 
             // }
