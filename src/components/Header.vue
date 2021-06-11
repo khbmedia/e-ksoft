@@ -355,6 +355,7 @@ export default {
 
       if(sessionStorage.getItem("username")){
         this.loginame = sessionStorage.getItem("username");
+        this.btnMyOrder();
       }
   },
   methods: {
@@ -369,7 +370,7 @@ export default {
               this.username
           )
           .then((response) => {
-            sessionStorage.setItem("username", response.data.result);
+            sessionStorage.setItem("username", response.data.result.name);
             this.loginame = sessionStorage.getItem("username");
             this.$refs.btnLogin.click();
             this.btnMyOrder();
@@ -419,7 +420,7 @@ export default {
     },
 
     checkout() {
-      if (this.$parent.customerName) {
+      if (this.loginame) {
         if (this.$parent.cart) {
           var itemPost = [];
           this.$parent.cart.item.forEach((element) => {
@@ -442,7 +443,7 @@ export default {
               id: null,
               tenancyName: "KCCL",
               branchId: 1,
-              customerName: this.$parent.customerName.name,
+              customerName:  this.loginame,
               shippingAddress: "string",
               memo: "",
             },
@@ -473,16 +474,18 @@ export default {
     },
 
     btnMyOrder() {
-      if (this.$parent.customerName) {
+      if (this.loginame) {
         axios
           .get(
             "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName=" +
-              this.$parent.customerName.name
+               this.loginame
           )
           .then((response) => {
-             sessionStorage.setItem("myOrder", response.data.result);
+             sessionStorage.setItem("myOrder",response.data.result);
             this.dataMyOrder = sessionStorage.getItem("myOrder");
+             
           });
+         console.log(this.loginame);
       }
     },
     tbn_deleteCart(id) {
