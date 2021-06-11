@@ -25,7 +25,6 @@ export default {
       search: null,
       items: null,
       itemAdd: null,
-      customerName: null,
       cart: {
         totalprice: 0,
         totalqty: 0,
@@ -48,7 +47,6 @@ export default {
     itemAdd(value) {
       if (value) {
        this.itemAdd = value;
-        
         var j = 0;
         if (this.cart.item.length > 0) {
           for (let i = 0; i < this.cart.item.length; i++) {
@@ -91,6 +89,7 @@ export default {
           this.cart.item.splice(j,1);
         }	
 			}
+     
         var totalPrice = 0;
         var totalQty = 0;
         this.cart.item.forEach((element) => {
