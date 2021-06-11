@@ -29,7 +29,7 @@
                   >
                 </li>
                 <li class="info-user" v-if="loginame != null">
-                  <a href="#myModal" class="account-link">{{
+                  <a href="javascript:;" class="account-link">{{
                    loginame
                   }}</a>
                   <ul class="list-unstyled inner-user-info">
@@ -93,7 +93,7 @@
                           <td>
                             <a
                               href="javascript:;"
-                              @click="confirmDeleted(item.id)"
+                              @click="tbn_deleteCart(item.id)"
                               class="btn btn-danger"
                               >Delete</a
                             >
@@ -477,18 +477,18 @@ export default {
       if (this.loginame) {
         axios
           .get(
-            "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName=" +
+            "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName="+
                this.loginame
           )
           .then((response) => {
-             sessionStorage.setItem("myOrder",response.data.result);
-            this.dataMyOrder = sessionStorage.getItem("myOrder");
-             
+            // this.dataMyOrder = response.data.result;
+            sessionStorage.setItem("myOrder",JSON.stringify(response.data.result));
+            this.dataMyOrder =JSON.parse(sessionStorage.getItem("myOrder"));   
           });
-         console.log(this.loginame);
       }
     },
     tbn_deleteCart(id) {
+      
       axios
         .delete(
           "/api/services/app/SaleOrder/DeleteSaleOrderByTenancy?TenancyName=KCCL&Id=" +
