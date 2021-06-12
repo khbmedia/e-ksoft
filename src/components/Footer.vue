@@ -16,7 +16,7 @@
 						</div>
 						<div class="col-md-3 col-sm-3 col-xs-12">
 							<div class="copyright">
-								<p>Design by <a href="#">7uptheme.com</a></p>
+								<p>Copyright @ <a href="#">E-KSOFT.com</a></p>
 							</div>
 						</div>
 					</div>
