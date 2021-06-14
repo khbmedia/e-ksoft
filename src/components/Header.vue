@@ -28,24 +28,40 @@
                     >Login</a
                   >
                 </li>
-                <li class="info-user" v-if="loginame != null">
-                  <a href="javascript:;" class="account-link">{{
-                   loginame
-                  }}</a>
-                  <ul class="list-unstyled inner-user-info">
-                    <li>
-                      <a href="javascript:;" @click="logout()"><span class="lnr lnr-lock"></span> Logout</a>
-                    </li>
-                    <li>
-                      <a 
+                <li class="" v-if="loginame != null &&isScreenPc()" >
+                  <a
+                    @click="btnMyOrder()"
+                    data-toggle="modal"
+                    data-target="#myOrder"
+                    style="cursor: pointer"
+                    ><span class="lnr lnr-book"></span> My Order</a
+                  >
+                </li>
+                <li v-bind:class="{'info-user':!isScreenPc()}" v-if="loginame != null">
+                  <a href="javascript:;" class="account-link"
+                    ><span class="lnr lnr-user"></span>{{ loginame }}</a
+                  >
+                  <ul class="list-unstyled inner-user-info" v-if="!isScreenPc()">
+                    <li class="" v-if="loginame != null">
+                      <a
                         @click="btnMyOrder()"
                         data-toggle="modal"
                         data-target="#myOrder"
                         style="cursor: pointer"
-                        ><span class="lnr lnr-cart"></span> My Order</a
+                        ><span class="lnr lnr-book"></span> My Order</a
+                      >
+                    </li>
+                    <li v-if="loginame != null">
+                      <a href="javascript:;" @click="logout()"
+                        ><span class="lnr lnr-power-switch"></span> Logout</a
                       >
                     </li>
                   </ul>
+                </li>
+                <li v-if="loginame != null&&isScreenPc()">
+                  <a href="javascript:;" @click="logout()"
+                    ><span class="lnr lnr-power-switch"></span> Logout</a
+                  >
                 </li>
               </ul>
             </div>
@@ -84,12 +100,12 @@
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
-                      <tbody >
+                      <tbody>
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>{{ item.reference }}</td>
                           <td>{{ item.amount }}</td>
-                          <td>{{ item.date.slice(0,10)}}</td>
+                          <td>{{ item.date.slice(0, 10) }}</td>
                           <td>
                             <a
                               href="javascript:;"
@@ -174,17 +190,17 @@
               <div class="wrap-item">
                 <div class="item">
                   <div class="item-home-slider">
-                    <a href="#"><img src="images/home/slide1.png" alt="" /></a>
+                    <a href="#"><img src="images/home/slide1.png" alt=""/></a>
                   </div>
                 </div>
                 <div class="item">
                   <div class="item-home-slider">
-                    <a href="#"><img src="images/home/slide2.png" alt="" /></a>
+                    <a href="#"><img src="images/home/slide2.png" alt=""/></a>
                   </div>
                 </div>
                 <div class="item">
                   <div class="item-home-slider">
-                    <a href="#"><img src="images/home/slide3.png" alt="" /></a>
+                    <a href="#"><img src="images/home/slide3.png" alt=""/></a>
                   </div>
                 </div>
               </div>
@@ -208,8 +224,10 @@
                 </a>
                 <div class="home-extra-sub nav">
                   <a href="#" class="close-extra-sub">Close</a>
-
-                  <div class="inner-cart-info" v-if="cart != null">
+                  <div
+                    class="inner-cart-info"
+                    v-if="cart != null && this.CheckOutForm == null"
+                  >
                     <ul
                       class="info-list-cart"
                       style="max-height: 333px; overflow-y: auto"
@@ -294,11 +312,56 @@
                       >
                       <a
                         href="#"
-                        @click="checkout()"
+                        @click="AddressForm()"
                         class="cart-checkout"
                         v-if="!hideCheckOut"
                         >checkout</a
                       >
+                    </div>
+                  </div>
+                  <div
+                    class="inner-cart-info"
+                    v-if="cart != null && this.CheckOutForm == 1"
+                  >
+                    <div class="contact-form">
+                      <a
+                        style="text-align: left;color: #a8a8a9; display: block; font-size: 16px; position: relative;text-transform: uppercase; padding-right: 36px;"
+                        >Enter Address</a
+                      >
+                      <form class="comment-form">
+                        <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
+                            <p>
+                              <input
+                                type="text"
+                                value="Enter Address *"
+                                v-model="address"
+                              />
+                            </p>
+                          </div>
+                          <div class="col-md-12 col-sm-6 col-xs-12">
+                            <p>
+                              <input
+                                type="text"
+                                value="Phone Number *"
+                                v-model="phone"
+                              />
+                            </p>
+                          </div>
+                        </div>
+                        <div class="link-cart">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <a href="javascript:;">Cancel</a>
+                            </div>
+                            <div class="col-sm-6">
+                              <a href="javascript:;" @click="checkout()"
+                                >checkout</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -341,24 +404,55 @@ export default {
       editQty: null,
       msg: "",
       dataMyOrder: null,
-      username:null,
-      loginame:null,
+      username: null,
+      loginame: null,
+      CheckOutForm: null,
+      long: null,
+      lat: null,
+      address: null,
+      phone: null,
     };
   },
 
   mounted() {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.long = position.coords.longitude;
+        fetch(
+          "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+            this.lat +
+            "," +
+            this.long +
+            "&key=AIzaSyB5KK9gONB5Sq5bH9e5NsBHJsBBo9njosM"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.address = data.results[0].formatted_address;
+          });
+      });
+    } else {
+      alert("Please Turn on your browser Location !");
+    }
+
     axios
       .get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL")
       .then((response) => {
         this.category = response.data.result;
       });
 
-      if(sessionStorage.getItem("username")){
-        this.loginame = sessionStorage.getItem("username");
-        this.btnMyOrder();
-      }
+    if (sessionStorage.getItem("username")) {
+      this.loginame = sessionStorage.getItem("username");
+      this.btnMyOrder();
+    }
   },
   methods: {
+    isScreenPc(){
+      return window.screen.availWidth > 600 ? true : false;
+    },
+    back() {
+      this.$parent.currentTabComponent = "ListItem";
+    },
     searchProduct(event) {
       this.$parent.search = event.target.value;
     },
@@ -379,10 +473,10 @@ export default {
         this.msg = "Please input name!";
       }
     },
-    logout(){
-        sessionStorage.removeItem("username");
-        sessionStorage.removeItem("myOrder");
-        this.loginame = null;
+    logout() {
+      sessionStorage.removeItem("username");
+      sessionStorage.removeItem("myOrder");
+      this.loginame = null;
     },
 
     removeCart(id) {
@@ -443,8 +537,8 @@ export default {
               id: null,
               tenancyName: "KCCL",
               branchId: 1,
-              customerName:  this.loginame,
-              shippingAddress: "string",
+              customerName: this.loginame,
+              shippingAddress: this.address,
               memo: "",
             },
             saleOrderTransactions: itemPost,
@@ -464,7 +558,18 @@ export default {
                 totalqty: 0,
                 item: [],
               };
-              console.log(this.cart);
+              if (
+                this.order != "" &&
+                this.editQty == null &&
+                this.cart == null
+              ) {
+                this.$fire({
+                  title: "Checkout",
+                  text: "Thank For Buying our Product",
+                  type: "success",
+                  timer: 5000,
+                });
+              }
             });
         }
       } else {
@@ -473,22 +578,28 @@ export default {
       }
     },
 
+    AddressForm() {
+      this.CheckOutForm = 1;
+    },
+
     btnMyOrder() {
       if (this.loginame) {
         axios
           .get(
-            "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName="+
-               this.loginame
+            "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName=" +
+              this.loginame
           )
           .then((response) => {
             // this.dataMyOrder = response.data.result;
-            sessionStorage.setItem("myOrder",JSON.stringify(response.data.result));
-            this.dataMyOrder =JSON.parse(sessionStorage.getItem("myOrder"));   
+            sessionStorage.setItem(
+              "myOrder",
+              JSON.stringify(response.data.result)
+            );
+            this.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
           });
       }
     },
     tbn_deleteCart(id) {
-      
       axios
         .delete(
           "/api/services/app/SaleOrder/DeleteSaleOrderByTenancy?TenancyName=KCCL&Id=" +
@@ -498,20 +609,16 @@ export default {
           this.dataDelete = response.data.result;
           this.btnMyOrder();
         });
-
-               
     },
-
   },
 
   watch: {
     cart(value) {
       this.cart = value;
     },
-    loginame(value){
+    loginame(value) {
       this.loginame = value;
     },
-    
   },
 };
 </script>
