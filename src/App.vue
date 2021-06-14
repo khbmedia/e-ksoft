@@ -82,16 +82,6 @@ export default {
         this.cart.totalprice = totalPrice;
       }
       this.$children[0].cart = this.cart;
-
-      if(this.$children[0].cart == this.cart){
-        this.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Your work has been saved',
-          showConfirmButton: false,
-          timer: 1500
-        });
-      }
     },
     
     removeCart(value) {
