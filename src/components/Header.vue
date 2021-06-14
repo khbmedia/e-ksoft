@@ -374,6 +374,15 @@ export default {
             this.loginame = sessionStorage.getItem("username");
             this.$refs.btnLogin.click();
             this.btnMyOrder();
+           if(sessionStorage.getItem("username") == this.username){
+              this.$fire({
+              title: "Login",
+              text: "Success",
+              type: "success",
+              timer: 1000
+           
+            });
+           }
           });
       } else {
         this.msg = "Please input name!";
@@ -383,6 +392,15 @@ export default {
         sessionStorage.removeItem("username");
         sessionStorage.removeItem("myOrder");
         this.loginame = null;
+        if(sessionStorage.getItem("username") == null && sessionStorage.getItem("myOrder") == null && this.loginame == null){
+          this.$fire({
+              title: "Logout",
+              text: "Success",
+              type: "success",
+              timer: 1000
+           
+            });
+        }
     },
 
     removeCart(id) {
@@ -417,6 +435,14 @@ export default {
       this.$parent.cart.totalprice = totalPrice;
       this.$parent.cart.totalqty = totalQty;
       this.editQty = null; // format data
+      if(this.$parent.cart.totalqty == totalQty && this.editQty == null){
+        this.$fire({
+          title: "SaveCart",
+          text: "Success",
+          type: "success",
+          timer: 1000
+        });
+      }
     },
 
     checkout() {
@@ -464,7 +490,15 @@ export default {
                 totalqty: 0,
                 item: [],
               };
-              console.log(this.cart);
+
+              if(this.order != '' && this.editQty == null && this.cart == null){
+                this.$fire({
+                  title: "Checkout",
+                  text: "Success",
+                  type: "success",
+                  timer: 1000
+                });
+              }
             });
         }
       } else {

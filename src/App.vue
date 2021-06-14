@@ -5,6 +5,7 @@
     <Footer />
   </div>
 </template>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
 import Vue from "vue";
@@ -31,6 +32,7 @@ export default {
         item: [],
       },
       removeCart:null,
+      toastCount: 0,
      
     };
   },
@@ -81,7 +83,12 @@ export default {
         this.cart.totalprice = totalPrice;
       }
       this.$children[0].cart = this.cart;
+
+      if(this.$children[0].cart == this.cart){
+       console.log('ok');
+      }
     },
+    
     removeCart(value) {
 
       for(var j=0; j<this.cart.item.length; j++){
