@@ -5,7 +5,6 @@
     <Footer />
   </div>
 </template>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
 import Vue from "vue";
@@ -85,7 +84,13 @@ export default {
       this.$children[0].cart = this.cart;
 
       if(this.$children[0].cart == this.cart){
-       console.log('ok');
+        this.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     },
     
