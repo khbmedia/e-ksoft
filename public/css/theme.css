@@ -861,7 +861,7 @@ blockquote {
 	transition:all 0.5s ease-out 0s;
 }
 .title-product {
-    font-size: 13px;
+    font-size: 17px;
     margin: 0 0 7px;
 }
 .item-product-info {
@@ -872,11 +872,12 @@ blockquote {
     color: #666;
 }
 .title-product a {
-    color: #1b1d1f;
+    color: red;
     text-transform: uppercase;
+    font-family: system-ui;
 }
 .title-product a:hover {
-    color: #999;
+    color:#000000;
 }
 .info-price del {
 	color:#999;
@@ -7038,8 +7039,8 @@ Page Product List Mr
     color: #999;
 }
 .footer.footer-dark .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 25px;
+    border-top: 0;
+    margin-top: 0;
 }
 .footer.footer-dark .footer-nav {
     border-color: rgba(255, 255, 255, 0.1);
