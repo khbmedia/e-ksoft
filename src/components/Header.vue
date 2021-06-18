@@ -1,131 +1,633 @@
 <template>
-    <div class="wrap">
-        <div id="header">
-            <div class="header header7">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12 col-xs-12">
-                            <div class="logo-header7">
-                                <a href="/"><img src="images/logo-color.svg" width="100px" height="50px" alt="" /></a>	
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-8 col-xs-12">
-                            <div class="container h-100">
-                                <div class="d-flex justify-content-center h-100">
-                                    <div class="searchbar">
-                                    <input @keyup="searchProduct" class="search_input" type="text" name="" placeholder="Search...">
-                                    <a href="#" class="search_icon" style="background: url(../images/icon-search.png) no-repeat center center;"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-4 col-xs-12">
-                            <div class="">
-                                <a href="#myModal" class="myButton" data-toggle="modal">Login</a>
-                            </div>
-                            <!-- Modal HTML -->
-                            <div id="myModal" class="modal fade">
-                                <div class="modal-dialog modal-login">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <div class="avatar">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="Avatar">
-                                            </div>				
-                                            <h4 class="modal-title">Login</h4>	
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <form action="" method="post"> -->
-                                                <div class="form-group">
-                                                    <input type="text" id="loginform" class="form-control" name="username" placeholder="Username" required="required">		
-                                                </div>    
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" @click="user_name()">Login</button>
-                                                </div>
-                                            <!-- </form> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>     
-                        </div>
-                        <div class="info-cart info-cart7">
-                            <a class="info-icon icon-cart" href="#"><span class="lnr lnr-cart"></span> <sup>0</sup></a>
-                            <div class="inner-cart-info">
-                                <h2>2 items</h2>
-                                <ul class="info-list-cart">
-                                    <li class="item-info-cart">
-                                        <div class="cart-thumb">
-                                            <a class="cart-thumb" href="#">
-                                                <img alt="" src="images/photos/png/1.png">
-                                            </a>
-                                        </div>	
-                                        <div class="wrap-cart-title">
-                                            <h3 class="cart-title"><a href="#">Birch Lane Merriweather</a></h3>
-                                            <div class="cart-qty"><label>Qty:</label> <span>1</span></div>
-                                        </div>	
-                                        <div class="wrap-cart-remove">
-                                            <a class="remove-product" href="#"></a>
-                                            <span class="cart-price">$49.99</span>
-                                        </div>	
-                                    </li>
-                                    <li class="item-info-cart">
-                                        <div class="cart-thumb">
-                                            <a href="#">
-                                                <img alt="" src="images/photos/png/2.png">
-                                            </a>
-                                        </div>
-                                        <div class="wrap-cart-title">
-                                            <h3 class="cart-title"><a href="#">Light Wall Sconce</a></h3>
-                                            <div class="cart-qty"><label>Qty:</label> <span>1</span></div>
-                                        </div>
-                                        <div class="wrap-cart-remove">
-                                            <a class="remove-product" href="#"></a>
-                                            <span class="cart-price">$23.00</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="total-cart">
-                                    <label>Subtotal</label> <span>$72.99</span>
-                                </div>
-                                <div class="link-cart">
-                                    <a class="cart-edit" href="#">edit cart</a>
-                                    <a class="cart-checkout" href="#">checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="wrap">
+    <div class="top-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-7">
+            <div class="top-left">
+              <div class="logo-header7">
+                <router-link to="/"
+                  ><img
+                    src="images/logo-color.svg"
+                    width="100px"
+                    height="50px"
+                    alt=""
+                /></router-link>
+              </div>
             </div>
+          </div>
+          <div class="col-md-8 col-sm-8 col-xs-5">
+            <div class="top-right">
+              <ul class="list-inline">
+                <li class="" v-show="loginame == null">
+                  <a
+                    href="#myModal"
+                    data-toggle="modal"
+                    class="account-link"
+                    ref="btnLogin"
+                    >Login</a
+                  >
+                </li>
+                <li class="" v-if="loginame != null &&isScreenPc()" >
+                  <a
+                    @click="btnMyOrder()"
+                    data-toggle="modal"
+                    data-target="#myOrder"
+                    style="cursor: pointer"
+                    ><span class="lnr lnr-book"></span> My Order</a
+                  >
+                </li>
+                <li v-bind:class="{'info-user':!isScreenPc()}" v-if="loginame != null">
+                  <a href="javascript:;" class="account-link"
+                    ><span class="lnr lnr-user"></span>{{ loginame }}</a
+                  >
+                  <ul class="list-unstyled inner-user-info" v-if="!isScreenPc()">
+                    <li class="" v-if="loginame != null">
+                      <a
+                        @click="btnMyOrder()"
+                        data-toggle="modal"
+                        data-target="#myOrder"
+                        style="cursor: pointer"
+                        ><span class="lnr lnr-book"></span> My Order</a
+                      >
+                    </li>
+                    <li v-if="loginame != null">
+                      <a href="javascript:;" @click="logout()"
+                        ><span class="lnr lnr-power-switch"></span> Logout</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li v-if="loginame != null&&isScreenPc()">
+                  <a href="javascript:;" @click="logout()"
+                    ><span class="lnr lnr-power-switch"></span> Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- popup -->
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="myOrder"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Order</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">No</th>
+                          <th scope="col">Reference</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Reference</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, idx) in dataMyOrder" :key="idx">
+                          <th scope="row">{{ idx + 1 }}</th>
+                          <td>{{ item.reference }}</td>
+                          <td>{{ item.amount }}</td>
+                          <td>{{ item.date.slice(0, 10) }}</td>
+                          <td>
+                            <a
+                              href="javascript:;"
+                              @click="tbn_deleteCart(item.id)"
+                              class="btn btn-danger"
+                              >Delete</a
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
+            </div>
+            <!--end model -->
+
+            <div id="myModal" class="modal fade">
+              <div
+                class="modal-dialog modal-login"
+                style="
+                  height: 80vh;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="avatar">
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+                        alt="Avatar"
+                      />
+                    </div>
+                    <h4 class="modal-title">Login</h4>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-hidden="true"
+                    >
+                      &times;
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p class="message" style="text-aling: center">{{ msg }}</p>
+                    <div class="form-group">
+                      <input
+                        v-model="username"
+                        type="text"
+                        id="loginform"
+                        class="form-control"
+                        name="username"
+                        placeholder="Username"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg btn-block login-btn"
+                        @click="user_name()"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end popup -->
+          </div>
         </div>
+      </div>
     </div>
-    
+    <div class="header header-home">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-sm-10 col-xs-12">
+            <div class="header-slider default-paginav">
+              <div class="wrap-item">
+                <div class="item">
+                  <div class="item-home-slider">
+                    <a href="#"><img src="images/home/slide1.png" alt=""/></a>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-home-slider">
+                    <a href="#"><img src="images/home/slide2.png" alt=""/></a>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item-home-slider">
+                    <a href="#"><img src="images/home/slide3.png" alt=""/></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2 col-xs-12">
+            <div class="home-box-extra">
+              <div class="home-cart-box">
+                <a
+                  href="#"
+                  class="icon-extra-sub icon-home-cart"
+                  v-if="cart == null"
+                >
+                  <span class="lnr lnr-cart"></span>
+                  <sup>0</sup>
+                </a>
+
+                <a href="#" class="icon-extra-sub icon-home-cart" v-else>
+                  <span class="lnr lnr-cart"></span>
+                  <sup>{{ cart.totalqty }}</sup>
+                </a>
+                <div class="home-extra-sub nav">
+                  <a href="#" class="close-extra-sub">Close</a>
+                  <div
+                    class="inner-cart-info"
+                    v-if="cart != null && this.CheckOutForm == null"
+                  >
+                    <ul
+                      class="info-list-cart"
+                      style="max-height: 333px; overflow-y: auto"
+                    >
+                      <li
+                        class="item-info-cart"
+                        v-for="(item, idx) in editQty != null
+                          ? editQty
+                          : cart.item"
+                        :key="idx"
+                      >
+                        <div class="cart-thumb">
+                          <a href="#" class="cart-thumb">
+                            <img
+                              v-bind:src="
+                                'data:image/jpeg;base64,' + item.picture
+                              "
+                            />
+                          </a>
+                        </div>
+                        <div class="wrap-cart-title">
+                          <h3 class="cart-title">
+                            <a href="#">{{ item.name }}</a>
+                          </h3>
+                          <div class="product-featured-info">
+                            <div class="cart-qty">
+                              <label>Qty:</label>
+                              <span class="qty-val" v-if="!hideCheckOut">{{
+                                item.qty
+                              }}</span>
+                              <div class="info-qty" v-if="hideCheckOut">
+                                <span class="qty-val">{{ item.qty }}</span>
+
+                                <a
+                                  class="qty-up"
+                                  href="javascript:;"
+                                  @click="editQtyCart(item, 1)"
+                                  ><span class="lnr lnr-chevron-up"></span
+                                ></a>
+                                <a
+                                  class="qty-down"
+                                  href="javascript:;"
+                                  @click="editQtyCart(item, -1)"
+                                  ><span class="lnr lnr-chevron-down"></span
+                                ></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="wrap-cart-remove">
+                          <a
+                            href="javascript:;"
+                            @click="removeCart(item.id)"
+                            class="remove-product"
+                          ></a>
+                          <span
+                            class="cart-price"
+                            style="display: block; text-align: left"
+                          >
+                            ${{ item.price }}
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="total-cart">
+                      <label>Subtotal</label>
+                      <span>${{ cart.totalprice }}</span>
+                    </div>
+                    <div class="link-cart">
+                      <a
+                        href="javascript:;"
+                        @click="btnEditCart()"
+                        class="cart-edit"
+                        >edit cart</a
+                      >
+                      <a
+                        href="javascript:;"
+                        class="cart-checkout"
+                        @click="saveCart()"
+                        v-if="hideCheckOut"
+                        >Save</a
+                      >
+                      <a
+                        href="#"
+                        @click="AddressForm()"
+                        class="cart-checkout"
+                        v-if="!hideCheckOut"
+                        >checkout</a
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="inner-cart-info"
+                    v-if="cart != null && this.CheckOutForm == 1"
+                  >
+                    <div class="contact-form">
+                      <a
+                        style="text-align: left;color: #a8a8a9; display: block; font-size: 16px; position: relative;text-transform: uppercase; padding-right: 36px;"
+                        >Enter Address</a
+                      >
+                      <form class="comment-form">
+                        <div class="row">
+                          <div class="col-md-12 col-sm-6 col-xs-12">
+                            <p>
+                              <input
+                                type="text"
+                                value="Enter Address *"
+                                v-model="address"
+                              />
+                            </p>
+                          </div>
+                          <div class="col-md-12 col-sm-6 col-xs-12">
+                            <p>
+                              <input
+                                type="text"
+                                value="Phone Number *"
+                                v-model="phone"
+                              />
+                            </p>
+                          </div>
+                        </div>
+                        <div class="link-cart">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <a href="javascript:;">Cancel</a>
+                            </div>
+                            <div class="col-sm-6">
+                              <a href="javascript:;" @click="checkout()"
+                                >checkout</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="home-search-box">
+                <a href="#" class="icon-extra-sub icon-home-search">
+                  <span class="lnr lnr-magnifier"></span>
+                </a>
+                <div class="home-extra-sub">
+                  <a href="javascript:void(0);" class="close-extra-sub"
+                    >Close</a
+                  >
+                  <form class="home-search-form">
+                    <input @keyup="searchProduct" type="text" />
+                    <input
+                      type="submit"
+                      value="Search"
+                      class="btn-link-default"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  data(){
-        return{
-            items:null,
-            userName:null
+  data() {
+    return {
+      hideCheckOut: false,
+      items: null,
+      cart: null,
+      CartQty: null,
+      editQty: null,
+      msg: "",
+      dataMyOrder: null,
+      username: null,
+      loginame: null,
+      CheckOutForm: null,
+      long: null,
+      lat: null,
+      address: null,
+      phone: null,
+    };
+  },
+
+  mounted() {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.long = position.coords.longitude;
+        fetch(
+          "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+            this.lat +
+            "," +
+            this.long +
+            "&key=AIzaSyB5KK9gONB5Sq5bH9e5NsBHJsBBo9njosM"
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.address = data.results[0].formatted_address;
+          });
+      });
+    } else {
+      alert("Please Turn on your browser Location !");
+    }
+
+    axios
+      .get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL")
+      .then((response) => {
+        this.category = response.data.result;
+      });
+
+    if (sessionStorage.getItem("username")) {
+      this.loginame = sessionStorage.getItem("username");
+      this.btnMyOrder();
+    }
+  },
+  methods: {
+    isScreenPc(){
+      return window.screen.availWidth > 600 ? true : false;
+    },
+    back() {
+      this.$parent.currentTabComponent = "ListItem";
+    },
+    searchProduct(event) {
+      this.$parent.search = event.target.value;
+    },
+    user_name() {
+      if (this.username) {
+        axios
+          .get(
+            "/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName=" +
+              this.username
+          )
+          .then((response) => {
+            sessionStorage.setItem("username", response.data.result.name);
+            this.loginame = sessionStorage.getItem("username");
+            this.$refs.btnLogin.click();
+            this.btnMyOrder();
+          });
+      } else {
+        this.msg = "Please input name!";
+      }
+    },
+    logout() {
+      sessionStorage.removeItem("username");
+      sessionStorage.removeItem("myOrder");
+      this.loginame = null;
+    },
+
+    removeCart(id) {
+      this.$parent.removeCart = id;
+    },
+    btnEditCart() {
+      this.editQty = this.cart.item;
+      this.hideCheckOut = true;
+    },
+    editQtyCart(item, numer) {
+      this.editQty.forEach((element) => {
+        if (item.id == element.id) {
+          element.qty = element.qty + numer;
+          if (element.qty <= 0) {
+            element.qty = 1;
+          }
         }
+      });
     },
-    mounted(){
-        
+
+    saveCart() {
+      this.hideCheckOut = false;
+      this.$parent.cart.item = [];
+      this.$parent.cart.item = [...this.$parent.cart.item, ...this.editQty];
+      var totalPrice = 0;
+      var totalQty = 0;
+      this.$parent.cart.item.forEach((element) => {
+        element.amount = element.qty * element.price; // update amount
+        totalPrice += element.amount;
+        totalQty += element.qty;
+      });
+      this.$parent.cart.totalprice = totalPrice;
+      this.$parent.cart.totalqty = totalQty;
+      this.editQty = null; // format data
     },
-	methods:{
-        searchProduct(event){
-            this.$parent.search=event.target.value;
-        },
-		AddToCart(){
-			
-		},
-        user_name(){
-            var loginform=document.getElementById("loginform").value;
-            axios.get("/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName="+loginform).then(response=>{
-                this.userName=response.data.result;
+
+    checkout() {
+      if (this.loginame) {
+        if (this.$parent.cart) {
+          var itemPost = [];
+          this.$parent.cart.item.forEach((element) => {
+            itemPost = [
+              ...itemPost,
+              ...[
+                {
+                  id: null,
+                  itemId: element.id,
+                  description: element.description,
+                  quantity: element.qty,
+                  unitMeasureId: element.unitMeasureId,
+                  price: element.price,
+                },
+              ],
+            ];
+          });
+          const dataCheckout = {
+            saleOrder: {
+              id: null,
+              tenancyName: "KCCL",
+              branchId: 1,
+              customerName: this.loginame,
+              shippingAddress: this.address,
+              memo: "",
+            },
+            saleOrderTransactions: itemPost,
+          };
+          axios
+            .post(
+              "/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy",
+              dataCheckout
+            )
+            .then((response) => {
+              this.order = response.saleOrder;
+
+              this.editQty = null;
+              this.cart = null;
+              this.$parent.cart = {
+                totalprice: 0,
+                totalqty: 0,
+                item: [],
+              };
+              if (
+                this.order != "" &&
+                this.editQty == null &&
+                this.cart == null
+              ) {
+                this.$fire({
+                  title: "Checkout",
+                  text: "Thank For Buying our Product",
+                  type: "success",
+                  timer: 5000,
+                });
+              }
             });
         }
-	}
-}
+      } else {
+        this.$refs.btnLogin.click();
+        this.msg = "Please Login!";
+      }
+    },
+
+    AddressForm() {
+      this.CheckOutForm = 1;
+    },
+
+    btnMyOrder() {
+      if (this.loginame) {
+        axios
+          .get(
+            "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName=" +
+              this.loginame
+          )
+          .then((response) => {
+            // this.dataMyOrder = response.data.result;
+            sessionStorage.setItem(
+              "myOrder",
+              JSON.stringify(response.data.result)
+            );
+            this.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
+          });
+      }
+    },
+    tbn_deleteCart(id) {
+      axios
+        .delete(
+          "/api/services/app/SaleOrder/DeleteSaleOrderByTenancy?TenancyName=KCCL&Id=" +
+            id
+        )
+        .then((response) => {
+          this.dataDelete = response.data.result;
+          this.btnMyOrder();
+        });
+    },
+  },
+
+  watch: {
+    cart(value) {
+      this.cart = value;
+    },
+    loginame(value) {
+      this.loginame = value;
+    },
+  },
+};
 </script>
+<style scoped>
+.message {
+  color: red;
+  text-align: center;
+}
+.swal2-popup {
+  z-index: 999;
+}
+</style>

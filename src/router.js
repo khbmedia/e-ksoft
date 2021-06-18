@@ -4,7 +4,7 @@ import Index from "./pages/Index.vue";
 import Checkout from  "./pages/CheckOut.vue";
 import Order from "./pages/Order.vue";
 import Category from "./pages/Category.vue";
-// import itemDdtail from "./pages/ItemDetail.vue";
+import ProductCard from "./components/ProductCard"
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -13,7 +13,7 @@ export default new VueRouter({
         {path:"/checkout",component:Checkout},
         {path:"/order",component:Order},
         {path:"/category",component:Category},
-        // {path:"/item-detail",component:itemDdtail}
+        {path:"/ProductCard",component:ProductCard}
     ],
     mode:'history',
     scrollBehavior () {

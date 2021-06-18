@@ -2,7 +2,7 @@
     <div id="content">
 		<div class="home-featured-product" v-if="data!=null">
 			<div class="container">
-				<h2 class="title title-home">Featured Products</h2>
+				<h2 class="title title-home"><span style="cursor:pointer;" class="lnr lnr-arrow-left" @click="back()"></span> Featured Products</h2>
 			</div>
 			<div class="home-featured-slider">
 				<div class="container">
@@ -28,11 +28,11 @@
                                     <div class="wrap-cart-qty">
                                         <label>Qty:</label>
                                         <div class="info-qty">
-                                            <span class="qty-val">1</span>
-                                            <a class="qty-up" href="#"><span class="lnr lnr-chevron-up"></span></a>
-                                            <a class="qty-down" href="#"><span class="lnr lnr-chevron-down"></span></a>
+                                            <span class="qty-val">{{CartQty}}</span>
+                                            <a class="qty-up" href="javascript:;" @click="AddQtyCart(1)"><span class="lnr lnr-chevron-up"></span></a>
+                                            <a class="qty-down" href="javascript:;" @click="AddQtyCart(-1)"><span class="lnr lnr-chevron-down"></span></a>
                                         </div>
-                                        <a class="btn-link-default add-to-cart" href="#">Add To Cart</a>
+                                        <a class="btn-link-default add-to-cart" @click="AddToCart(data)" href="javascript:;">Add To Cart</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,16 +49,37 @@
 export default {
     data(){
         return{
-            data:null
+            data:null,
+            CartQty:1
         }
     },
     mounted(){
         this.data=this.$parent.dataDetail;
-        console.log(this.data);
+        this.display=this.items;
         setTimeout(()=>{
             this.$refs.images.style.width="100%";
         }, 100);
         
+    },
+    methods:{
+        back(){
+            this.$parent.currentTabComponent="ListItem";
+        },
+        AddToCart(item){
+            const dataItem={...item,...{qty:this.CartQty}};
+			this.$parent.itemAdd=dataItem;
+		},
+        AddQtyCart(number){ 
+            this.CartQty+=number;
+            if(this.CartQty<=0){
+                this.CartQty=1;
+            }
+        }
+    },
+    watch:{
+        CartQty(value){
+            this.CartQty=value;
+        }
     }
 }
 </script>

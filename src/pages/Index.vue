@@ -15,6 +15,7 @@ export default {
    data(){
        return{
            currentTabComponent:ListItem,
+           oldTabComponent:null,
            items:null,
            dataDetail:null,
            search:null,
@@ -25,12 +26,18 @@ export default {
                 totalqty:0,
                 item:[]
             },
+           itemAdd:null,
+           
+           search:null
        }
    },
    mounted(){
        this.items=this.$parent.items;
    },
    watch:{
+       itemAdd(value){
+           this.$parent.itemAdd=value;
+       },
        search(value){
        this.$children[0].search=value;
            
