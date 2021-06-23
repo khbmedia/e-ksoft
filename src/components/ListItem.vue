@@ -112,7 +112,6 @@ export default {
             this.categories=response.data.result;
             
         });
-		
     },
     watch:{
         items(value){
@@ -146,6 +145,7 @@ export default {
 		AddToCart(item){
 			const dataItem={...item,...{qty:1}};
 			this.$parent.itemAdd=dataItem;
+			this.$alert('Add Success',dataItem.name);
 		},
 		filterCategory(id){
 			this.reRender=true;
@@ -160,8 +160,6 @@ export default {
 			});
 			this.reRender=false;
 			});
-			
-			// console.log(this.display);
 		},
 		searchProduct(value){
 			console.log(value);

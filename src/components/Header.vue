@@ -80,7 +80,7 @@
                           <th scope="col">No</th>
                           <th scope="col">Reference</th>
                           <th scope="col">Amount</th>
-                          <th scope="col">Reference</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -88,7 +88,7 @@
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>{{ item.reference }}</td>
-                          <td>{{ item.amount }}</td>
+                          <td>{{ item.amount }} $</td>
                           <td>{{ item.date.slice(0,10)}}</td>
                           <td>
                             <a
@@ -374,6 +374,7 @@ export default {
             this.loginame = sessionStorage.getItem("username");
             this.$refs.btnLogin.click();
             this.btnMyOrder();
+            this.$alert("Login Success");
           });
       } else {
         this.msg = "Please input name!";
@@ -383,6 +384,7 @@ export default {
         sessionStorage.removeItem("username");
         sessionStorage.removeItem("myOrder");
         this.loginame = null;
+        this.$alert("Logout Success");
     },
 
     removeCart(id) {
@@ -456,7 +458,6 @@ export default {
             )
             .then((response) => {
               this.order = response.saleOrder;
-
               this.editQty = null;
               this.cart = null;
               this.$parent.cart = {
@@ -464,7 +465,7 @@ export default {
                 totalqty: 0,
                 item: [],
               };
-              console.log(this.cart);
+              this.$alert("Order Success");
             });
         }
       } else {
