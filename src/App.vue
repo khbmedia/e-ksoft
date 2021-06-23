@@ -31,6 +31,7 @@ export default {
         item: [],
       },
       removeCart:null,
+      toastCount: 0,
      
     };
   },
@@ -82,6 +83,7 @@ export default {
       }
       this.$children[0].cart = this.cart;
     },
+    
     removeCart(value) {
 
       for(var j=0; j<this.cart.item.length; j++){
