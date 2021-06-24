@@ -1,5 +1,5 @@
 module.exports = {
     devServer: {
-      proxy: 'http://acc.ksoft.solutions'
+      proxy: 'http://acc.ksoft.solutions/'
     }
   }
