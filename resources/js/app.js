@@ -10,11 +10,14 @@ window.Vue = require('vue').default;
 import router from './router';
 import VueSweetalert2 from 'vue-sweetalert2';
 import VueSimpleAlert from "vue-simple-alert";
+import VueSkeletonLoader from 'skeleton-loader-vue';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 Vue.use(VueSweetalert2);
 Vue.use(VueSimpleAlert);
+Vue.use(VueSkeletonLoader);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

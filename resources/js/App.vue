@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <router-view v-if="items != null"></router-view>
+    <Skeleton v-else/>
     <Footer />
   </div>
 </template>
@@ -9,12 +10,13 @@
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
+import Skeleton from "./pages/Skeleton.vue";
 
 export default {
   components: {
     Header,
     Footer,
+    Skeleton
   },
   name: "App",
   data() {

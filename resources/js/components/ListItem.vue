@@ -37,11 +37,13 @@
           <div class="default-directnav  home-directnav">
             <div class="wrap-item">
               <div class="item">
-                <ul class="list-product row list-unstyled" v-if="!reRender">
+                <ul class="list-product row list-unstyled" v-if="display!=null">
                   <li
+                    
                     class="col-md-3 col-sm-6 col-xs-12"
                     v-for="(item, idx) in display"
                     :key="idx"
+
                   >
                     <div class="item-product">
                       <div class="item-product-thumb">
@@ -76,8 +78,10 @@
                         </div>
                       </div>
                     </div>
+                    
                   </li>
                 </ul>
+               
               </div>
             </div>
           </div>
@@ -184,10 +188,10 @@ export default {
         timerProgressBar: true,
         toast: true,
         position: "top-end",
+        background: "black",
         icon: "success",
 
-        title: "Add to cart",
-        text: "Item has been added!",
+        title: '<span style="color:#fff">Item Added!<span>',
       });
 	document.querySelector(".swal2-top-end").style.zIndex=999999999;
     },

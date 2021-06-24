@@ -18,8 +18,8 @@ class ItemController extends Controller
         $response=Http::get("http://acc.ksoft.solutions/api/services/app/Customer/GetCustomerByName?TenancyName=KCCL&CustomerName=".$name);
         return $response->json();
     }
-    public function get_checkout($dataCheckout){
-        $response=Http::post("http://acc.ksoft.solutions/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy".$dataCheckout);
+    public function get_checkout(Request $request){
+        $response=Http::post("http://acc.ksoft.solutions/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy",$request->all());
         return $response->json();
     }
     public function get_order($loginame){

@@ -77,9 +77,9 @@
               aria-hidden="true"
             >
               <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" style="order-radius: 0; background: #1b1d1f none repeat scroll 0 0;border-radius: 0;">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">My Order</h5>
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #fff; text-align: center">My Order</h5>
                     <button
                       type="button"
                       class="close"
@@ -92,7 +92,7 @@
                   <div class="modal-body">
                     <table class="table">
                       <thead>
-                        <tr>
+                        <tr style="color: #fff;">
                           <th scope="col">No</th>
                           <th scope="col">Reference</th>
                           <th scope="col">Amount</th>
@@ -100,7 +100,7 @@
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody style="color: #fff;">
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>{{ item.reference }}</td>
@@ -110,7 +110,7 @@
                             <a
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
-                              class="btn btn-danger"
+                              style="color:red;"
                               >Delete</a
                             >
                           </td>
@@ -118,7 +118,6 @@
                       </tbody>
                     </table>
                   </div>
-                  <div class="modal-footer"></div>
                 </div>
               </div>
             </div>
@@ -134,7 +133,7 @@
                   justify-content: center;
                 "
               >
-                <div class="modal-content">
+                <div class="modal-content" style="background: #1b1d1f;border-radius: 0">
                   <div class="modal-header">
                     <div class="avatar">
                       <img
@@ -142,7 +141,7 @@
                         alt="Avatar"
                       />
                     </div>
-                    <h4 class="modal-title">Login</h4>
+                    <h4 class="modal-title" style="color: #fff">Login</h4>
                     <button
                       type="button"
                       class="close"
@@ -159,6 +158,7 @@
                         v-model="username"
                         type="text"
                         id="loginform"
+                        style="border-radius: 0"
                         class="form-control"
                         name="username"
                         placeholder="Username"
@@ -167,6 +167,7 @@
                     <div class="form-group">
                       <button
                         type="submit"
+                        style="border-radius: 0"
                         class="btn btn-primary btn-lg btn-block login-btn"
                         @click="user_name()"
                       >
@@ -335,6 +336,7 @@
                               <input
                                 type="text"
                                 value="Enter Address *"
+                                placeholder="Enter Address"
                                 v-model="address"
                               />
                             </p>
@@ -344,6 +346,7 @@
                               <input
                                 type="text"
                                 value="Phone Number *"
+                                placeholder="Enter Phone Number"
                                 v-model="phone"
                               />
                             </p>
@@ -387,6 +390,7 @@
             </div>
           </div>
         </div>
+       
       </div>
     </div>
   </div>
@@ -544,8 +548,9 @@ export default {
             },
             saleOrderTransactions: itemPost,
           };
+
           axios
-            .post("/api/get_checkout/" + this.dataCheckout)
+            .post("/api/get_checkout" ,dataCheckout)
             .then((response) => {
               this.order = response.saleOrder;
 
@@ -562,10 +567,11 @@ export default {
                 this.cart == null
               ) {
                 this.$fire({
-                  title: "Checkout",
-                  text: "Thank For Buying our Product",
+                  title: '<span style="color:#fff">Checkout successfully!</span>',
                   type: "success",
-                  timer: 5000,
+                  background:"#000",
+                  showConfirmButton: false,
+                  timer: 355000,
                 });
               }
             });
