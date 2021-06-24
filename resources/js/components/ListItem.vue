@@ -138,7 +138,7 @@ export default {
     this.arr_total = this.$parent.items;
     this.display = this.items;
     axios
-      .get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL")
+      .get("/api/get_category")
       .then((response) => {
         this.categories = response.data.result;
       });

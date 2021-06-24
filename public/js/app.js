@@ -2519,7 +2519,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       "long": null,
       lat: null,
       address: null,
-      phone: null
+      phone: null,
+      dataCheckout: null
     };
   },
   mounted: function mounted() {
@@ -2640,7 +2641,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             },
             saleOrderTransactions: itemPost
           };
-          axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy", dataCheckout).then(function (response) {
+          axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/get_checkout/" + this.dataCheckout).then(function (response) {
             _this3.order = response.saleOrder;
             _this3.editQty = null;
             _this3.cart = null;
@@ -2672,7 +2673,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this4 = this;
 
       if (this.loginame) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName=" + this.loginame).then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_order/" + this.loginame).then(function (response) {
           // this.dataMyOrder = response.data.result;
           sessionStorage.setItem("myOrder", JSON.stringify(response.data.result));
           _this4.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
@@ -2682,7 +2683,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     tbn_deleteCart: function tbn_deleteCart(id) {
       var _this5 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/services/app/SaleOrder/DeleteSaleOrderByTenancy?TenancyName=KCCL&Id=" + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/get_delete/" + id).then(function (response) {
         _this5.dataDelete = response.data.result;
 
         _this5.btnMyOrder();
@@ -2871,7 +2872,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     this.items = this.$parent.items;
     this.arr_total = this.$parent.items;
     this.display = this.items;
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_category").then(function (response) {
       _this.categories = response.data.result;
     });
   },

@@ -411,6 +411,7 @@ export default {
       lat: null,
       address: null,
       phone: null,
+      dataCheckout:null
     };
   },
 
@@ -544,10 +545,7 @@ export default {
             saleOrderTransactions: itemPost,
           };
           axios
-            .post(
-              "/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy",
-              dataCheckout
-            )
+            .post("/api/get_checkout/" + this.dataCheckout)
             .then((response) => {
               this.order = response.saleOrder;
 
@@ -586,7 +584,7 @@ export default {
       if (this.loginame) {
         axios
           .get(
-            "/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=KCCL&CustomerName=" +
+            "/api/get_order/" +
               this.loginame
           )
           .then((response) => {
@@ -602,9 +600,7 @@ export default {
     tbn_deleteCart(id) {
       axios
         .delete(
-          "/api/services/app/SaleOrder/DeleteSaleOrderByTenancy?TenancyName=KCCL&Id=" +
-            id
-        )
+          "/api/get_delete/" + id)
         .then((response) => {
           this.dataDelete = response.data.result;
           this.btnMyOrder();
