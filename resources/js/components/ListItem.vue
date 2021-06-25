@@ -141,11 +141,14 @@ export default {
     this.items = this.$parent.items;
     this.arr_total = this.$parent.items;
     this.display = this.items;
-    axios
-      .get("/api/get_category")
-      .then((response) => {
-        this.categories = response.data.result;
-      });
+    if(this.$route.query.tenancy){
+      axios
+        .get("/api/get_category/"+this.$route.query.tenancy)
+        .then((response) => {
+          this.categories = response.data.result;
+        });
+    }
+    
   },
   watch: {
     items(value) {

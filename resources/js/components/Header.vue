@@ -100,7 +100,7 @@
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
-                      <tbody style="color: #fff;">
+                      <tbody style="color: #fff;" v-if="dataMyOrder.length">
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>{{ item.reference }}</td>
@@ -114,6 +114,11 @@
                               >Delete</a
                             >
                           </td>
+                        </tr>
+                      </tbody>
+                      <tbody style="color: #fff;" v-else>
+                        <tr>
+                            <td colspan="6">No Product Found.</td>
                         </tr>
                       </tbody>
                     </table>
@@ -297,7 +302,7 @@
                       <label>Subtotal</label>
                       <span>${{ cart.totalprice }}</span>
                     </div>
-                    <div class="link-cart">
+                    <div class="link-cart" :style="{'text-align':'center','display':isScreenPc()?'flex':'block'}">
                       <a
                         href="javascript:;"
                         @click="btnEditCart()"
@@ -352,17 +357,11 @@
                             </p>
                           </div>
                         </div>
-                        <div class="link-cart">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <a href="javascript:;">Cancel</a>
-                            </div>
-                            <div class="col-sm-6">
-                              <a href="javascript:;" @click="checkout()"
-                                >checkout</a
-                              >
-                            </div>
-                          </div>
+                        <div class="link-cart" :style="{'text-align':'center','display':isScreenPc()?'flex':'block'}">
+                            <a href="javascript:;" class="cart-edit">Cancel</a>
+                            <a href="javascript:;" class="cart-edit" @click="checkout()"
+                              >checkout</a
+                            >
                         </div>
                       </form>
                     </div>
@@ -441,11 +440,12 @@ export default {
     }
 
     axios
-      .get("/api/get_category")
+     if(this.$route.query.tenancy){
+      axios.get("/api/get_category/"+this.$route.query.tenancy)
       .then((response) => {
         this.category = response.data.result;
       });
-
+     };
     if (sessionStorage.getItem("username")) {
       this.loginame = sessionStorage.getItem("username");
       this.btnMyOrder();
@@ -465,7 +465,7 @@ export default {
       if (this.username) {
         axios
           .get(
-            "/api/get_customer_name/" +
+            "/api/get_customer_name/" +this.$route.query.tenancy+"/"+
               this.username
           )
           .then((response) => {
@@ -540,7 +540,7 @@ export default {
           const dataCheckout = {
             saleOrder: {
               id: null,
-              tenancyName: "KCCL",
+              tenancyName: this.$route.query.tenancy,
               branchId: 1,
               customerName: this.loginame,
               shippingAddress: this.address,
@@ -550,7 +550,7 @@ export default {
           };
 
           axios
-            .post("/api/get_checkout" ,dataCheckout)
+            .post("/api/get_checkout/"+this.$route.query.tenancy ,dataCheckout)
             .then((response) => {
               this.order = response.saleOrder;
 
@@ -571,7 +571,7 @@ export default {
                   type: "success",
                   background:"#000",
                   showConfirmButton: false,
-                  timer: 355000,
+                  timer: 3000,
                 });
               }
             });
@@ -590,7 +590,7 @@ export default {
       if (this.loginame) {
         axios
           .get(
-            "/api/get_order/" +
+            "/api/get_order/" + this.$route.query.tenancy + "/" +
               this.loginame
           )
           .then((response) => {
@@ -606,7 +606,7 @@ export default {
     tbn_deleteCart(id) {
       axios
         .delete(
-          "/api/get_delete/" + id)
+          "/api/get_delete/"+ this.$route.query.tenancy + "/" + id)
         .then((response) => {
           this.dataDelete = response.data.result;
           this.btnMyOrder();
