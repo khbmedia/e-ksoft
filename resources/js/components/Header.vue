@@ -100,7 +100,7 @@
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
-                      <tbody style="color: #fff;" v-if="dataMyOrder.length">
+                      <tbody style="color: #fff;" v-if="dataMyOrder!=null">
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>{{ item.reference }}</td>
@@ -516,6 +516,7 @@ export default {
       this.$parent.cart.totalprice = totalPrice;
       this.$parent.cart.totalqty = totalQty;
       this.editQty = null; // format data
+      sessionStorage.setItem('cart',JSON.stringify(this.$parent.cart));
     },
 
     checkout() {

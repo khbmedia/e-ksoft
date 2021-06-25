@@ -34,6 +34,11 @@ export default {
     };
   },
   mounted() {
+    if(sessionStorage.getItem('cart')){
+      this.cart=null;
+      this.cart=JSON.parse(sessionStorage.getItem('cart'));
+      this.$children[0].cart=this.cart;
+    }
     if(this.$route.query.tenancy){
     axios
       .get(
@@ -70,7 +75,9 @@ export default {
             ...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
           };
           this.cart.item = [...this.cart.item, ...[newItem]];
+
         }
+
         this.itemAdd = null;
         this.$children[2].itemAdd = null;
         var totalPrice = 0;
@@ -81,6 +88,7 @@ export default {
         });
         this.cart.totalqty = totalQty;
         this.cart.totalprice = totalPrice;
+        sessionStorage.setItem('cart',JSON.stringify(this.cart));
       }
       this.$children[0].cart = this.cart;
     },

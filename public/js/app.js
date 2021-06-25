@@ -1900,6 +1900,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
+    if (sessionStorage.getItem('cart')) {
+      this.cart = null;
+      this.cart = JSON.parse(sessionStorage.getItem('cart'));
+      this.$children[0].cart = this.cart;
+    }
+
     if (this.$route.query.tenancy) {
       axios.get("/api/get_item/" + this.$route.query.tenancy).then(function (response) {
         _this.items = response.data.result;
@@ -1948,6 +1954,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         this.cart.totalqty = totalQty;
         this.cart.totalprice = totalPrice;
+        sessionStorage.setItem('cart', JSON.stringify(this.cart));
       }
 
       this.$children[0].cart = this.cart;
@@ -2628,6 +2635,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.$parent.cart.totalprice = totalPrice;
       this.$parent.cart.totalqty = totalQty;
       this.editQty = null; // format data
+
+      sessionStorage.setItem('cart', JSON.stringify(this.$parent.cart));
     },
     checkout: function checkout() {
       var _this3 = this;
@@ -44498,7 +44507,7 @@ var render = function() {
                           _c("table", { staticClass: "table" }, [
                             _vm._m(1),
                             _vm._v(" "),
-                            _vm.dataMyOrder.length
+                            _vm.dataMyOrder != null
                               ? _c(
                                   "tbody",
                                   { staticStyle: { color: "#fff" } },
