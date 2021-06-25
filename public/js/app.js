@@ -1900,6 +1900,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
+    sessionStorage.removeItem('savefrom-helper-extension'); // clear session Unidentified!
+
     if (sessionStorage.getItem('cart')) {
       this.cart = null;
       this.cart = JSON.parse(sessionStorage.getItem('cart'));
@@ -1974,6 +1976,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.cart.totalqty = totalQty;
       this.cart.totalprice = totalPrice;
+      sessionStorage.setItem('cart', JSON.stringify(this.cart));
     },
     search: function search(value) {
       if (value && this.$children[2].currentTabComponent == "DetailItem") {
@@ -2642,9 +2645,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this3 = this;
 
       if (this.loginame) {
-        if (this.$parent.cart) {
+        var get_cart_session = JSON.parse(sessionStorage.getItem("cart"));
+
+        if (get_cart_session.item.length > 0) {
           var itemPost = [];
-          this.$parent.cart.item.forEach(function (element) {
+          get_cart_session.item.forEach(function (element) {
             itemPost = [].concat(_toConsumableArray(itemPost), [{
               id: null,
               itemId: element.id,
@@ -2683,8 +2688,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 showConfirmButton: false,
                 timer: 3000
               });
+
+              sessionStorage.removeItem('cart');
             }
           });
+        } else {
+          alert("You are not select product. Please select product !");
         }
       } else {
         this.$refs.btnLogin.click();

@@ -34,6 +34,7 @@ export default {
     };
   },
   mounted() {
+    sessionStorage.removeItem('savefrom-helper-extension'); // clear session Unidentified!
     if(sessionStorage.getItem('cart')){
       this.cart=null;
       this.cart=JSON.parse(sessionStorage.getItem('cart'));
@@ -108,6 +109,7 @@ export default {
         });
         this.cart.totalqty = totalQty;
         this.cart.totalprice = totalPrice;
+        sessionStorage.setItem('cart',JSON.stringify(this.cart));
     },
     search(value) {
       if (value && this.$children[2].currentTabComponent == "DetailItem") {
