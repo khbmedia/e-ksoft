@@ -34,13 +34,16 @@ export default {
     };
   },
   mounted() {
+    if(this.$route.query.tenancy){
     axios
       .get(
-        "/api/get_item"
+        "/api/get_item/"+this.$route.query.tenancy
       )
       .then((response) => {
         this.items = response.data.result;
       });
+    }
+   
   },
   watch: {
     itemAdd(value) {
