@@ -45704,7 +45704,50 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "content" } }, [
-    _vm._m(0),
+    _c("div", { staticClass: "product-best-sale style2" }, [
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          {
+            staticClass: "title-product-best-sale",
+            staticStyle: { "padding-top": "5%" }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-9 col-sm-9 col-xs-12" }, [
+                _c("div", { staticClass: "nav-tabs-border" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+                    [
+                      _c(
+                        "li",
+                        [
+                          _c("skeleton-loader-vue", {
+                            attrs: { width: 175, height: 38, animation: "fade" }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        [
+                          _c("skeleton-loader-vue", {
+                            attrs: { width: 175, height: 38, animation: "fade" }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "tab-content" }, [
@@ -45743,7 +45786,7 @@ var render = function() {
                               1
                             ),
                             _vm._v(" "),
-                            _vm._m(1, true)
+                            _vm._m(0, true)
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "item-product-info" }, [
@@ -45793,34 +45836,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product-best-sale style2" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          {
-            staticClass: "title-product-best-sale",
-            staticStyle: { "padding-top": "5%" }
-          },
-          [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-9 col-sm-9 col-xs-12" }, [
-                _c("div", { staticClass: "nav-tabs-border" }, [
-                  _c("ul", {
-                    staticClass: "nav nav-tabs",
-                    attrs: { role: "tablist" }
-                  })
-                ])
-              ])
-            ])
-          ]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

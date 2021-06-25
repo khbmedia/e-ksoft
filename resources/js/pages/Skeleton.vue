@@ -6,7 +6,22 @@
                     <div class="row">
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <div class="nav-tabs-border">
-                                <ul role="tablist" class="nav nav-tabs"></ul>
+                                <ul role="tablist" class="nav nav-tabs">
+                                    <li>
+                                        <skeleton-loader-vue
+                                        :width="175"
+                                        :height="38"
+                                        animation="fade"
+                                        />
+                                    </li>
+                                    <li>
+                                        <skeleton-loader-vue
+                                        :width="175"
+                                        :height="38"
+                                        animation="fade"
+                                        />
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <!-- <div class="col-md-3 col-sm-3 col-xs-12">

@@ -11,7 +11,8 @@ class ItemController extends Controller
         return $response->json();
     }
     public function get_category(){
-        $response=Http::get("http://acc.ksoft.solutions/api/services/app/Category/GetCategoryByTenancy/GetItemByTenancy?TenancyName=KCCL");
+        
+        $response=Http::get("http://acc.ksoft.solutions/api/services/app/Category/GetCategoryByTenancy?TenancyName=KCCL");
         return $response->json();
     }
     public function get_customer_name($name){
