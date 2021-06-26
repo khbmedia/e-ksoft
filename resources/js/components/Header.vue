@@ -481,6 +481,7 @@ export default {
     logout() {
       sessionStorage.removeItem("username");
       sessionStorage.removeItem("myOrder");
+      sessionStorage.removeItem("cart");
       this.loginame = null;
     },
 
@@ -576,7 +577,7 @@ export default {
               }
             });
         }else{
-          alert("You are not select product. Please select product !");
+          alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
         }
       } else {
         this.$refs.btnLogin.click();
@@ -585,7 +586,14 @@ export default {
     },
 
     AddressForm() {
-      this.CheckOutForm = 1;
+      var cart_session = JSON.parse(sessionStorage.getItem("cart"));
+      console.log(cart_session.item.length);
+      if(cart_session.item.length > 0){
+        this.CheckOutForm = 1;
+      }else{
+        alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
+      }
+      
     },
 
     btnMyOrder() {

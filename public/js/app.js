@@ -2603,6 +2603,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     logout: function logout() {
       sessionStorage.removeItem("username");
       sessionStorage.removeItem("myOrder");
+      sessionStorage.removeItem("cart");
       this.loginame = null;
     },
     removeCart: function removeCart(id) {
@@ -2693,7 +2694,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             }
           });
         } else {
-          alert("You are not select product. Please select product !");
+          alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
         }
       } else {
         this.$refs.btnLogin.click();
@@ -2701,7 +2702,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     },
     AddressForm: function AddressForm() {
-      this.CheckOutForm = 1;
+      var cart_session = JSON.parse(sessionStorage.getItem("cart"));
+      console.log(cart_session.item.length);
+
+      if (cart_session.item.length > 0) {
+        this.CheckOutForm = 1;
+      } else {
+        alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
+      }
     },
     btnMyOrder: function btnMyOrder() {
       var _this4 = this;
