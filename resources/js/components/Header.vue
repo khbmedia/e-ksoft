@@ -481,6 +481,7 @@ export default {
     logout() {
       sessionStorage.removeItem("username");
       sessionStorage.removeItem("myOrder");
+      sessionStorage.removeItem("cart");
       this.loginame = null;
     },
 
@@ -521,9 +522,11 @@ export default {
 
     checkout() {
       if (this.loginame) {
-        if (this.$parent.cart) {
+        var get_cart_session = JSON.parse(sessionStorage.getItem("cart"));
+        
+        if (get_cart_session.item.length > 0) {
           var itemPost = [];
-          this.$parent.cart.item.forEach((element) => {
+          get_cart_session.item.forEach((element) => {
             itemPost = [
               ...itemPost,
               ...[
@@ -551,7 +554,7 @@ export default {
           };
 
           axios
-            .post("/api/get_checkout/"+this.$route.query.tenancy ,dataCheckout)
+            .post("/api/get_checkout/"+this.$route.query.tenancy,dataCheckout)
             .then((response) => {
               this.order = response.saleOrder;
 
@@ -562,20 +565,19 @@ export default {
                 totalqty: 0,
                 item: [],
               };
-              if (
-                this.order != "" &&
-                this.editQty == null &&
-                this.cart == null
-              ) {
+              if (this.order != "" && this.editQty == null && this.cart == null ) {
                 this.$fire({
                   title: '<span style="color:#fff">Checkout successfully!</span>',
                   type: "success",
                   background:"#000",
                   showConfirmButton: false,
                   timer: 3000,
-                });
+                }); 
+                sessionStorage.removeItem('cart');
               }
             });
+        }else{
+          alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
         }
       } else {
         this.$refs.btnLogin.click();
@@ -584,7 +586,14 @@ export default {
     },
 
     AddressForm() {
-      this.CheckOutForm = 1;
+      var cart_session = JSON.parse(sessionStorage.getItem("cart"));
+      console.log(cart_session.item.length);
+      if(cart_session.item.length > 0){
+        this.CheckOutForm = 1;
+      }else{
+        alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
+      }
+      
     },
 
     btnMyOrder() {
