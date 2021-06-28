@@ -68,6 +68,18 @@ export default {
         AddToCart(item){
             const dataItem={...item,...{qty:this.CartQty}};
 			this.$parent.itemAdd=dataItem;
+            this.$swal.fire({
+                showConfirmButton: false,
+                timer: 900000,
+                timerProgressBar: true,
+                toast: true,
+                position: "top-end",
+                background: "black",
+                icon: "success",
+
+                title: '<span style="color:#fff">Item Added!<span>',
+            });
+            document.querySelector(".swal2-backdrop-show").style.zIndex=99999999;
 		},
         AddQtyCart(number){ 
             this.CartQty+=number;

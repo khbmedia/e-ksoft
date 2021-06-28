@@ -25,6 +25,7 @@ class ItemController extends Controller
     }
     public function get_order($tenancy,$loginame){
         $response=Http::get("http://acc.ksoft.solutions/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=".$tenancy."&CustomerName=".$loginame);
+    
         return $response->json();
     }
     public function get_delete($tenancy,$id){
