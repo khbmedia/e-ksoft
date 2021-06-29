@@ -9,7 +9,7 @@
 							<div class="menu-footer">
 								<div class="top-left">
                                     <div class="logo-header7">
-                                        <a href="/"><img src="images/logo-color.svg" width="100px" height="50px" alt="" /></a>	
+                                        <a href="javascript:;" @click="changeComponent('ListItem')"><img src="images/logo-color.svg" width="100px" height="50px" alt="" /></a>	
                                     </div>
                                 </div>
 							</div>
@@ -26,3 +26,13 @@
 	</div>
     </div>
 </template>
+<script>
+export default{
+methods:{
+	changeComponent(component){
+      this.$parent.currentTabComponent=component;
+      
+    },
+}
+}
+</script>

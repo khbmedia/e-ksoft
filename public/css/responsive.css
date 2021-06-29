@@ -841,12 +841,12 @@
     text-align: center;
 }
 .top-right .info-user .inner-user-info {
-    left: auto;
+    /* left: auto; */
     right: 0;
 }
 .top-right > ul > li > a {
-    padding-right: 0;
-	border-left:none;
+    padding-right: 60;
+	border:none;
 }
 .top-right .info-user::before {
     left: auto;

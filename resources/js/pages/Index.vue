@@ -27,6 +27,9 @@ export default {
        this.items=this.$parent.items;
    },
    watch:{
+       currentTabComponent(value){
+           this.$parent.currentTabComponent=value;
+       },
        itemAdd(value){
            this.$parent.itemAdd=value;
        },
