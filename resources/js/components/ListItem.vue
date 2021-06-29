@@ -5,9 +5,9 @@
       <div class="container">
         <div class="title-product-best-sale" style="padding-top: 5%;">
           <div class="row">
-            <div class="col-md-9 col-sm-9 col-xs-12">
+            <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="nav-tabs-border">
-                <ul role="tablist" class="nav nav-tabs">
+                <ul role="tablist" class="nav nav-tabs" style="display: flex; overflow-x: auto; overflow-y: hidden;}">
                   <li
                     v-for="(item, idx) in categories"
                     :key="idx"
@@ -22,11 +22,6 @@
                 </ul>
               </div>
             </div>
-            <!-- <div class="col-md-3 col-sm-3 col-xs-12">
-							<div class="filter-product">
-								<a href="#" class="btn-filter style-border-left">Filter</a>
-							</div>
-						</div> -->
           </div>
         </div>
       </div>
@@ -40,7 +35,7 @@
                 <ul class="list-product row list-unstyled" v-if="display!=null">
                   <li
                     
-                    class="col-md-3 col-sm-6 col-xs-12"
+                    class="col-md-3 col-sm-6 col-xs-6"
                     v-for="(item, idx) in display"
                     :key="idx"
 
@@ -223,4 +218,8 @@ export default {
   },
 };
 </script>
-
+<style scoped>
+.nav-tabs-border .nav-tabs > li > a:hover, .nav-tabs-border .nav-tabs > li.active > a{
+  width:175px
+}
+</style>

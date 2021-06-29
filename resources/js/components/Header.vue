@@ -3,20 +3,20 @@
     <div class="top-header">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-7">
+          <div class="col-md-4 col-sm-4 hidden-xs">
             <div class="top-left">
               <div class="logo-header7">
-                <router-link to="/"
+                <a href="javascript:;" @click="changeComponent('ListItem')"
                   ><img
                     src="images/logo-color.svg"
                     width="100px"
                     height="50px"
                     alt=""
-                /></router-link>
+                /></a>
               </div>
             </div>
           </div>
-          <div class="col-md-8 col-sm-8 col-xs-5">
+          <div class="col-md-8 col-sm-8 col-xs-4">
             <div class="top-right">
               <ul class="list-inline">
                 <li class="" v-show="loginame == null">
@@ -181,6 +181,51 @@
             </div>
             <!-- end popup -->
           </div>
+          <div class="hidden-lg hidden-md hidden-sm col-xs-4">
+            <div class="top-right">
+              <div class="home-search-box">
+                <a href="#" class="icon-extra-sub icon-home-search">
+                  <span class="lnr lnr-magnifier" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
+                </a>
+                <div class="home-extra-sub">
+                  <a href="javascript:void(0);" class="close-extra-sub"
+                    >Close</a
+                  >
+                  <form class="home-search-form">
+                    <input @keyup="searchProduct" type="text" />
+                    <input
+                      type="submit"
+                      value="Search"
+                      class="btn-link-default"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hidden-lg hidden-md hidden-sm col-xs-4">
+            <div class="top-right">
+              <div class="home-cart-box">
+                <a
+                  href="#"
+                  class="icon-extra-sub icon-home-cart"
+                  v-if="cart == null"
+                >
+                  <span class="lnr lnr-cart" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
+                  <sup style="font-size: 13px; position: absolute; right: 25px; color: #fff; padding-left: 10px;top: 15px;">0</sup>
+                </a>
+
+                <a href="#" class="icon-extra-sub icon-home-cart" v-else>
+                  <span class="lnr lnr-cart" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
+                  <sup style="font-size: 13px; position: absolute; right: 25px; color: #fff; padding-left: 10px;top: 15px;">{{ cart.totalqty }}</sup>
+                </a>
+                <div class="home-extra-sub nav">
+                  <a href="#" class="close-extra-sub">Close</a>
+                  <component v-bind:is="currentTabComponent"></component>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -208,7 +253,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-2 col-sm-2 col-xs-12">
+          <div class="col-md-2 col-sm-2 hidden-xs">
             <div class="home-box-extra"><!-- checkout -->
               <div class="home-cart-box">
                 <a
@@ -227,9 +272,6 @@
                 <div class="home-extra-sub nav">
                   <a href="#" class="close-extra-sub">Close</a>
                   <component v-bind:is="currentTabComponent"></component>
-                  
-                  
-                  
                 </div>
               </div>
               <div class="home-search-box">
@@ -323,6 +365,10 @@ export default {
     }
   },
   methods: {
+    changeComponent(component){
+      this.$parent.currentTabComponent=component;
+      
+    },
     setActiveList(component) {
       this.currentTabComponent=component;
     },

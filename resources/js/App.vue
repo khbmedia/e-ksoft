@@ -30,7 +30,7 @@ export default {
         item: [],
       },
       removeCart:null,
-     
+      currentTabComponent:null
     };
   },
   mounted() {
@@ -52,6 +52,7 @@ export default {
    
   },
   watch: {
+    
     itemAdd(value) {
       if (value) {
        this.itemAdd = value;
@@ -110,6 +111,10 @@ export default {
         this.cart.totalqty = totalQty;
         this.cart.totalprice = totalPrice;
         sessionStorage.setItem('cart',JSON.stringify(this.cart));
+    },
+    currentTabComponent(value){
+
+      this.$children[2].currentTabComponent =value;
     },
     search(value) {
       if (value && this.$children[2].currentTabComponent == "DetailItem") {
