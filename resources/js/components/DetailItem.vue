@@ -70,7 +70,7 @@ export default {
 			this.$parent.itemAdd=dataItem;
             this.$swal.fire({
                 showConfirmButton: false,
-                timer: 900000,
+                timer: 3000,
                 timerProgressBar: true,
                 toast: true,
                 position: "top-end",
