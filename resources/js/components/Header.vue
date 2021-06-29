@@ -100,7 +100,7 @@
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
-                      <tbody style="color: #fff;" v-if="dataMyOrder!=null">
+                      <tbody style="color: #fff;">
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>{{ item.reference }}</td>
@@ -116,11 +116,7 @@
                           </td>
                         </tr>
                       </tbody>
-                      <tbody style="color: #fff;" v-else>
-                        <tr>
-                            <td colspan="6">No Product Found.</td>
-                        </tr>
-                      </tbody>
+                      
                     </table>
                   </div>
                 </div>
@@ -213,7 +209,7 @@
             </div>
           </div>
           <div class="col-md-2 col-sm-2 col-xs-12">
-            <div class="home-box-extra">
+            <div class="home-box-extra"><!-- checkout -->
               <div class="home-cart-box">
                 <a
                   href="#"
@@ -230,142 +226,10 @@
                 </a>
                 <div class="home-extra-sub nav">
                   <a href="#" class="close-extra-sub">Close</a>
-                  <div
-                    class="inner-cart-info"
-                    v-if="cart != null && this.CheckOutForm == null"
-                  >
-                    <ul
-                      class="info-list-cart"
-                      style="max-height: 333px; overflow-y: auto"
-                    >
-                      <li
-                        class="item-info-cart"
-                        v-for="(item, idx) in editQty != null
-                          ? editQty
-                          : cart.item"
-                        :key="idx"
-                      >
-                        <div class="cart-thumb">
-                          <a href="#" class="cart-thumb">
-                            <img
-                              v-bind:src="
-                                'data:image/jpeg;base64,' + item.picture
-                              "
-                            />
-                          </a>
-                        </div>
-                        <div class="wrap-cart-title">
-                          <h3 class="cart-title">
-                            <a href="#">{{ item.name }}</a>
-                          </h3>
-                          <div class="product-featured-info">
-                            <div class="cart-qty">
-                              <label>Qty:</label>
-                              <span class="qty-val" v-if="!hideCheckOut">{{
-                                item.qty
-                              }}</span>
-                              <div class="info-qty" v-if="hideCheckOut">
-                                <span class="qty-val">{{ item.qty }}</span>
-
-                                <a
-                                  class="qty-up"
-                                  href="javascript:;"
-                                  @click="editQtyCart(item, 1)"
-                                  ><span class="lnr lnr-chevron-up"></span
-                                ></a>
-                                <a
-                                  class="qty-down"
-                                  href="javascript:;"
-                                  @click="editQtyCart(item, -1)"
-                                  ><span class="lnr lnr-chevron-down"></span
-                                ></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="wrap-cart-remove">
-                          <a
-                            href="javascript:;"
-                            @click="removeCart(item.id)"
-                            class="remove-product"
-                          ></a>
-                          <span
-                            class="cart-price"
-                            style="display: block; text-align: left"
-                          >
-                            ${{ item.price }}
-                          </span>
-                        </div>
-                      </li>
-                    </ul>
-                    <div class="total-cart">
-                      <label>Subtotal</label>
-                      <span>${{ cart.totalprice }}</span>
-                    </div>
-                    <div class="link-cart" :style="{'text-align':'center','display':isScreenPc()?'flex':'block'}">
-                      <a
-                        href="javascript:;"
-                        @click="btnEditCart()"
-                        class="cart-edit"
-                        >edit cart</a
-                      >
-                      <a
-                        href="javascript:;"
-                        class="cart-checkout"
-                        @click="saveCart()"
-                        v-if="hideCheckOut"
-                        >Save</a
-                      >
-                      <a
-                        href="#"
-                        @click="AddressForm()"
-                        class="cart-checkout"
-                        v-if="!hideCheckOut"
-                        >checkout</a
-                      >
-                    </div>
-                  </div>
-                  <div
-                    class="inner-cart-info"
-                    v-if="cart != null && this.CheckOutForm == 1"
-                  >
-                    <div class="contact-form">
-                      <a
-                        style="text-align: left;color: #a8a8a9; display: block; font-size: 16px; position: relative;text-transform: uppercase; padding-right: 36px;"
-                        >Enter Address</a
-                      >
-                      <form class="comment-form">
-                        <div class="row">
-                          <div class="col-md-12 col-sm-6 col-xs-12">
-                            <p>
-                              <input
-                                type="text"
-                                value="Enter Address *"
-                                placeholder="Enter Address"
-                                v-model="address"
-                              />
-                            </p>
-                          </div>
-                          <div class="col-md-12 col-sm-6 col-xs-12">
-                            <p>
-                              <input
-                                type="text"
-                                value="Phone Number *"
-                                placeholder="Enter Phone Number"
-                                v-model="phone"
-                              />
-                            </p>
-                          </div>
-                        </div>
-                        <div class="link-cart" :style="{'text-align':'center','display':isScreenPc()?'flex':'block'}">
-                            <a href="javascript:;" class="cart-edit">Cancel</a>
-                            <a href="javascript:;" class="cart-edit" @click="checkout()"
-                              >checkout</a
-                            >
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+                  <component v-bind:is="currentTabComponent"></component>
+                  
+                  
+                  
                 </div>
               </div>
               <div class="home-search-box">
@@ -397,9 +261,16 @@
 
 <script>
 import axios from "axios";
+import Cart from "./Cart.vue";
+import Checkout from "./Checkout.vue";
 export default {
+  components:{
+      'Cart':Cart,
+      'Checkout':Checkout
+  },
   data() {
     return {
+      currentTabComponent:'Cart',
       hideCheckOut: false,
       items: null,
       cart: null,
@@ -452,6 +323,9 @@ export default {
     }
   },
   methods: {
+    setActiveList(component) {
+      this.currentTabComponent=component;
+    },
     isScreenPc(){
       return window.screen.availWidth > 600 ? true : false;
     },
@@ -573,6 +447,8 @@ export default {
                   showConfirmButton: false,
                   timer: 3000,
                 }); 
+                this.currentTabComponent="Cart";
+                this.phone=null;
                 sessionStorage.removeItem('cart');
               }
             });
@@ -604,7 +480,7 @@ export default {
               this.loginame
           )
           .then((response) => {
-            // this.dataMyOrder = response.data.result;
+            this.dataMyOrder = response.data.result;
             sessionStorage.setItem(
               "myOrder",
               JSON.stringify(response.data.result)
