@@ -38,13 +38,19 @@
                   >
                 </li>
                 <li v-bind:class="{'info-user':!isScreenPc()}" v-if="loginame != null">
-                  <a href="javascript:;" class="account-link"
-                    ><span class="lnr lnr-user"></span>{{ loginame }}</a
-                  >
+                  <a href="javascript:;" class="account-link hidden-xs">
+                    <span class="lnr lnr-user"></span>{{ loginame }}
+                  </a>
+                  <a href="javascript:;" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
+                    <span class="lnr lnr-menu" style="color: #fff; margin-top: 8px;"></span>
+                  </a>
                   <ul class="list-unstyled inner-user-info" v-if="!isScreenPc()">
+                    <li v-if="loginame != null">
+                      <a href="javascript:;" ><span class="lnr lnr-user"></span> {{loginame}}</a>
+                    </li>
                     <li class="" v-if="loginame != null">
                       <a
-                        @click="btnMyOrder()"
+                        @click="btnMyOrder()" 
                         data-toggle="modal"
                         data-target="#myOrder"
                         style="cursor: pointer"

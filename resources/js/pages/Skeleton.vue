@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <div class="nav-tabs-border">
-                                <ul role="tablist" class="nav nav-tabs">
+                                <ul role="tablist" class="nav nav-tabs" style="display: flex; overflow-x: auto; overflow-y: hidden;}">
                                     <li>
                                         <skeleton-loader-vue
                                         :width="175"
@@ -40,7 +40,7 @@
                         <div class="wrap-item">
                             <div class="item">
                                 <div class="row">
-                                    <div class="col-md-3" v-for="(item, idx) in 4" :key="idx">
+                                    <div class="col-md-3 col-sm-6 col-xs-6" v-for="(item, idx) in 4" :key="idx">
                                         <div class="item-product">
                                             <div class="item-product-thumb">
                                                 <a
