@@ -1901,8 +1901,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    sessionStorage.removeItem('savefrom-helper-extension'); // clear session Unidentified!
-
     if (sessionStorage.getItem('cart')) {
       this.cart = null;
       this.cart = JSON.parse(sessionStorage.getItem('cart'));
@@ -1917,14 +1915,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   watch: {
     itemAdd: function itemAdd(value) {
+      var _this2 = this;
+
       if (value) {
+        var idadd = value.id;
+
+        if (JSON.parse(sessionStorage.getItem("btnupdateOrder"))) {
+          var ct = false;
+          this.cart.item.forEach(function (element) {
+            console.log('true-item-' + value.id + '=' + element.itemId);
+
+            if (element.itemId == idadd && value.id != null) {
+              value.id = element.id;
+              ct = true;
+            }
+
+            if (ct == false && element.id != null) {
+              value.id = null;
+              value.itemId = idadd;
+              value.saleOrderId = _this2.$children[0].idOrder;
+            }
+          });
+        }
+
         this.itemAdd = value;
         var j = 0;
 
         if (this.cart.item.length > 0) {
           for (var i = 0; i < this.cart.item.length; i++) {
-            if (this.itemAdd.id == this.cart.item[i].id) {
+            if (this.itemAdd.name == this.cart.item[i].name) {
               this.cart.item[i].qty = this.cart.item[i].qty + value.qty;
+              this.cart.item[i].quantity = this.cart.item[i].qty;
               this.cart.item[i].amount = this.cart.item[i].qty * this.cart.item[i].price;
               j++;
             }
@@ -1933,6 +1954,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (j == 0) {
             var newItem = _objectSpread(_objectSpread({}, this.itemAdd), {
               qty: value.qty,
+              quantity: value.qty,
               amount: this.itemAdd.price * value.qty
             });
 
@@ -1941,6 +1963,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         } else {
           var _newItem = _objectSpread(_objectSpread({}, this.itemAdd), {
             qty: value.qty,
+            quantity: value.qty,
             amount: this.itemAdd.price * value.qty
           });
 
@@ -2008,49 +2031,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2373,6 +2353,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Cart_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cart.vue */ "./resources/js/components/Cart.vue");
 /* harmony import */ var _Checkout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Checkout.vue */ "./resources/js/components/Checkout.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2688,6 +2674,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2700,6 +2693,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       currentTabComponent: 'Cart',
       hideCheckOut: false,
+      btnupdateOrder: false,
       items: null,
       cart: null,
       CartQty: null,
@@ -2713,11 +2707,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       lat: null,
       address: null,
       phone: null,
-      dataCheckout: null
+      dataCheckout: null,
+      idOrder: null,
+      address_order: null
     };
   },
   mounted: function mounted() {
     var _this = this;
+
+    this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
 
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(function (position) {
@@ -2792,14 +2790,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     btnEditCart: function btnEditCart() {
       this.editQty = this.cart.item;
       this.hideCheckOut = true;
+      this.btnupdateOrder = false;
     },
     editQtyCart: function editQtyCart(item, numer) {
       this.editQty.forEach(function (element) {
         if (item.id == element.id) {
           element.qty = element.qty + numer;
+          element.quantity = element.qty;
 
           if (element.qty <= 0) {
             element.qty = 1;
+            element.quantity = 1;
           }
         }
       });
@@ -2821,6 +2822,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.editQty = null; // format data
 
       sessionStorage.setItem('cart', JSON.stringify(this.$parent.cart));
+
+      if (JSON.parse(sessionStorage.getItem("btnupdateOrder"))) {
+        this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
+      }
     },
     checkout: function checkout() {
       var _this3 = this;
@@ -2911,6 +2916,83 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this5.dataDelete = response.data.result;
 
         _this5.btnMyOrder();
+      });
+    },
+    tbn_editOrder: function tbn_editOrder(inx) {
+      var _this6 = this;
+
+      this.idOrder = this.dataMyOrder[inx].id; // check btn update order
+
+      this.btnupdateOrder = true;
+      sessionStorage.setItem('btnupdateOrder', JSON.stringify(this.btnupdateOrder)); // clear cart
+
+      this.$parent.cart = {
+        totalprice: 0,
+        totalqty: 0,
+        item: []
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_edit_order/" + this.$route.query.tenancy + "/" + this.idOrder).then(function (response) {
+        _this6.address_order = response.data.result.saleOrder.shippingAddress;
+        _this6.$parent.cart.item = [].concat(_toConsumableArray(_this6.$parent.cart.item), _toConsumableArray(response.data.result.saleOrderTransactions));
+        var data = {};
+        var items = [];
+
+        for (var i = 0; i < _this6.$parent.cart.item.length; i++) {
+          data = _objectSpread(_objectSpread(_objectSpread({}, data), _this6.$parent.cart.item[i]), {
+            qty: _this6.$parent.cart.item[i].quantity,
+            name: _this6.$parent.cart.item[i].itemName
+          });
+          items = [].concat(_toConsumableArray(items), [data]);
+        }
+
+        _this6.$parent.cart.item = [];
+        _this6.$parent.cart.item = items; //  count total qty and total price
+
+        var totalPrice = 0;
+        var totalQty = 0;
+
+        _this6.$parent.cart.item.forEach(function (element) {
+          totalPrice += element.amount;
+          totalQty += element.qty;
+        });
+
+        _this6.$parent.cart.totalqty = totalQty;
+        _this6.$parent.cart.totalprice = totalPrice;
+        sessionStorage.setItem('cart', JSON.stringify(_this6.$parent.cart));
+        _this6.cart = _this6.$parent.cart;
+      });
+    },
+    tbn_updateOrder: function tbn_updateOrder() {
+      var _this7 = this;
+
+      var updateOrder = {
+        saleOrder: {
+          id: this.idOrder,
+          tenancyName: this.$route.query.tenancy,
+          branchId: 1,
+          customerName: this.loginame,
+          shippingAddress: this.address_order,
+          memo: ""
+        },
+        saleOrderTransactions: this.$parent.cart.item
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/get_checkout/" + this.$route.query.tenancy, updateOrder).then(function (response) {
+        // check btn update order
+        _this7.btnupdateOrder = false;
+        sessionStorage.removeItem('cart');
+        sessionStorage.removeItem('btnupdateOrder');
+        _this7.cart = null;
+        _this7.$parent.cart = {
+          totalprice: 0,
+          totalqty: 0,
+          item: []
+        }, _this7.$fire({
+          title: '<span style="color:#fff">Update Order Success</span>',
+          type: "success",
+          background: "#000",
+          showConfirmButton: false,
+          timer: 2000
+        });
       });
     }
   },
@@ -3327,7 +3409,9 @@ __webpack_require__.r(__webpack_exports__);
       items: null,
       dataDetail: null,
       itemAdd: null,
-      search: null
+      search: null,
+      getct: null,
+      btnupdateOrder: null
     };
   },
   mounted: function mounted() {
@@ -44597,9 +44681,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                        $" +
-                          _vm._s(item.price) +
-                          "\n                      "
+                        "\n          $" + _vm._s(item.price) + "\n        "
                       )
                     ]
                   )
@@ -44656,7 +44738,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            !_vm.$parent.hideCheckOut
+            !_vm.$parent.hideCheckOut && !_vm.$parent.btnupdateOrder
               ? _c(
                   "a",
                   {
@@ -44669,6 +44751,22 @@ var render = function() {
                     }
                   },
                   [_vm._v("checkout")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.$parent.btnupdateOrder
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "cart-checkout",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$parent.tbn_updateOrder()
+                      }
+                    }
+                  },
+                  [_vm._v("Update Order")]
                 )
               : _vm._e()
           ]
@@ -45327,7 +45425,30 @@ var render = function() {
                                     _c(
                                       "a",
                                       {
-                                        staticStyle: { color: "red" },
+                                        staticStyle: {
+                                          color: "rgba(44, 240, 109, 0.863)",
+                                          "margin-right": "5px"
+                                        },
+                                        attrs: {
+                                          href: "javascript:;",
+                                          "data-dismiss": "modal"
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.tbn_editOrder(idx)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Edit")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticStyle: {
+                                          color: "red",
+                                          "margin-left": "5px"
+                                        },
                                         attrs: { href: "javascript:;" },
                                         on: {
                                           click: function($event) {
@@ -45697,7 +45818,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Reference")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])

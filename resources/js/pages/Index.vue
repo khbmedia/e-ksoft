@@ -10,7 +10,7 @@ import DetailItem from "../components/DetailItem.vue";
 export default {
    components:{
        "ListItem":ListItem,
-       "DetailItem":DetailItem
+       "DetailItem":DetailItem,
    },
    data(){
        return{
@@ -18,9 +18,10 @@ export default {
            oldTabComponent:null,
            items:null,
            dataDetail:null,
-           itemAdd:null,
-           
-           search:null
+           itemAdd:null, 
+           search:null,
+           getct:null,
+           btnupdateOrder:null,
        }
    },
    mounted(){
@@ -34,9 +35,10 @@ export default {
            this.$parent.itemAdd=value;
        },
        search(value){
-       this.$children[0].search=value;
-           
-       }
+       this.$children[0].search=value;    
+       },
+     
+      
    }
    
   

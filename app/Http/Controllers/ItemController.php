@@ -19,15 +19,24 @@ class ItemController extends Controller
         $response=Http::get("http://acc.ksoft.solutions/api/services/app/Customer/GetCustomerByName?TenancyName=".$tenancy."&CustomerName=".$name);
         return $response->json();
     }
+    // checkout and update Order
     public function get_checkout(Request $request){
+        // dd($request->all());
         $response=Http::post("http://acc.ksoft.solutions/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy",$request->all());
-        return $response->json();
+        // $response=Http::post("http://acc.ksoft.solutions/api/services/app/SaleOrder/CreateOrUpdateSaleOrder",$request->all());
+        return dd($response->json());
     }
     public function get_order($tenancy,$loginame){
         $response=Http::get("http://acc.ksoft.solutions/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=".$tenancy."&CustomerName=".$loginame);
     
         return $response->json();
     }
+    public function get_edit_order($tenancy,$id){
+        $response=Http::get("http://acc.ksoft.solutions/api/services/app/SaleOrder/GetSaleOrderForEditByTenancy?TenancyName=".$tenancy."&Id=".$id);
+    
+        return $response->json();
+    }
+   
     public function get_delete($tenancy,$id){
         $response=Http::delete("http://acc.ksoft.solutions/api/services/app/SaleOrder/DeleteSaleOrderByTenancy?TenancyName=".$tenancy."&Id=".$id);
         return $response->json();

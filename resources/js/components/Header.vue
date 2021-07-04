@@ -96,7 +96,7 @@
                           <th scope="col">No</th>
                           <th scope="col">Reference</th>
                           <th scope="col">Amount</th>
-                          <th scope="col">Reference</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -108,9 +108,16 @@
                           <td>{{ item.date.slice(0, 10) }}</td>
                           <td>
                             <a
+                              href="javascript:;"  data-dismiss="modal"
+                              @click="tbn_editOrder(idx)"
+                              style="color:rgba(44, 240, 109, 0.863); margin-right: 5px;"
+                              >Edit</a
+                            >
+
+                            <a
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
-                              style="color:red;"
+                              style="color:red;margin-left: 5px;"
                               >Delete</a
                             >
                           </td>
@@ -314,6 +321,7 @@ export default {
     return {
       currentTabComponent:'Cart',
       hideCheckOut: false,
+      btnupdateOrder:false,
       items: null,
       cart: null,
       CartQty: null,
@@ -327,11 +335,15 @@ export default {
       lat: null,
       address: null,
       phone: null,
-      dataCheckout:null
+      dataCheckout:null,
+      idOrder:null,
+      address_order:null,   
+        
     };
   },
 
   mounted() {
+    this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
@@ -411,13 +423,16 @@ export default {
     btnEditCart() {
       this.editQty = this.cart.item;
       this.hideCheckOut = true;
+      this.btnupdateOrder = false;
     },
     editQtyCart(item, numer) {
       this.editQty.forEach((element) => {
         if (item.id == element.id) {
           element.qty = element.qty + numer;
+          element.quantity = element.qty;
           if (element.qty <= 0) {
             element.qty = 1;
+            element.quantity = 1;
           }
         }
       });
@@ -438,6 +453,9 @@ export default {
       this.$parent.cart.totalqty = totalQty;
       this.editQty = null; // format data
       sessionStorage.setItem('cart',JSON.stringify(this.$parent.cart));
+      if(JSON.parse(sessionStorage.getItem("btnupdateOrder"))){
+        this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
+      }
     },
 
     checkout() {
@@ -527,10 +545,7 @@ export default {
           )
           .then((response) => {
             this.dataMyOrder = response.data.result;
-            sessionStorage.setItem(
-              "myOrder",
-              JSON.stringify(response.data.result)
-            );
+            sessionStorage.setItem("myOrder",JSON.stringify(response.data.result));
             this.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
           });
       }
@@ -544,6 +559,84 @@ export default {
           this.btnMyOrder();
         });
     },
+    tbn_editOrder(inx){
+      this.idOrder = this.dataMyOrder[inx].id;
+      // check btn update order
+      this.btnupdateOrder = true;
+      sessionStorage.setItem('btnupdateOrder',JSON.stringify(this.btnupdateOrder));
+       // clear cart
+          this.$parent.cart ={
+            totalprice: 0,
+            totalqty: 0,
+            item: [],
+          };
+
+      axios
+          .get(
+            "/api/get_edit_order/" + this.$route.query.tenancy + "/" + this.idOrder)
+          .then((response) => {
+           this.address_order = response.data.result.saleOrder.shippingAddress;
+          this.$parent.cart.item=[...this.$parent.cart.item,...response.data.result.saleOrderTransactions];
+           var data={};
+           var items=[]
+            for(let i=0;i<this.$parent.cart.item.length;i++){
+            data={...data,...this.$parent.cart.item[i],...{qty:this.$parent.cart.item[i].quantity,name:this.$parent.cart.item[i].itemName}};
+            items=[...items,...[data]];
+           }
+           this.$parent.cart.item=[];
+           this.$parent.cart.item=items;
+ 
+        //  count total qty and total price
+          var totalPrice = 0;
+          var totalQty = 0;
+          this.$parent.cart.item.forEach((element) => {
+            totalPrice += element.amount;
+            totalQty += element.qty;
+          });
+          this.$parent.cart.totalqty = totalQty;
+          this.$parent.cart.totalprice = totalPrice;
+          sessionStorage.setItem('cart',JSON.stringify(this.$parent.cart));
+         this.cart = this.$parent.cart;
+      });
+    },
+    tbn_updateOrder(){
+      const updateOrder = {
+            saleOrder: {
+              id: this.idOrder,
+              tenancyName: this.$route.query.tenancy,
+              branchId: 1,
+              customerName: this.loginame,
+              shippingAddress: this.address_order,
+              memo: "",
+            },
+            saleOrderTransactions: this.$parent.cart.item,
+          };
+      axios
+          .post(
+            "/api/get_checkout/"+this.$route.query.tenancy,updateOrder)
+          .then((response) => {
+
+          // check btn update order
+          this.btnupdateOrder = false;
+          sessionStorage.removeItem('cart'); 
+          sessionStorage.removeItem('btnupdateOrder'); 
+          this.cart = null;
+          this.$parent.cart= {
+                    totalprice: 0,
+                    totalqty: 0,
+                    item: [],
+                  },
+          
+          this.$fire({
+                title: '<span style="color:#fff">Update Order Success</span>',
+                type: "success",
+                background: "#000",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+        });
+
+    }
   },
 
   watch: {
@@ -553,6 +646,7 @@ export default {
     loginame(value) {
       this.loginame = value;
     },
+       
   },
 };
 </script>

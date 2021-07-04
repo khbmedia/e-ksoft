@@ -179,6 +179,7 @@ export default {
     },
     AddToCart(item) {
       const dataItem = { ...item, ...{ qty: 1 } };
+      
       this.$parent.itemAdd = dataItem;
       this.$swal.fire({
         showConfirmButton: false,
@@ -191,7 +192,7 @@ export default {
 
         title: '<span style="color:#fff">Item Added!<span>',
       });
-	document.querySelector(".swal2-top-end").style.zIndex=999999999;
+	  document.querySelector(".swal2-top-end").style.zIndex=999999999;
     },
     filterCategory(id) {
       this.reRender = true;
