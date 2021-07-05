@@ -2,6 +2,41 @@
   <div class="wrap">
     <div class="top-header">
       <div class="container">
+         <!-- Modal -->
+        <div class="modal fade" id="editqtycartpopup" >
+          <div class="modal-dialog" role="document" v-if="this.editqtycartpopupdata">
+            <div class="modal-content" style="order-radius: 0; background: #1b1d1f none repeat scroll 0 0;border-radius: 0;">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel" style="color: #fff; text-align: center">{{this.editqtycartpopupdata.name}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="img">
+                      <img v-bind:src="'data:image/jpeg;base64,' + this.editqtycartpopupdata.picture" width="80" height="100" />
+                    </div>
+                  </div>                   
+                  <div class="col-md-8">    
+                    <div class="btnchange" style="color:#428bca; font-size: 20px; padding-top: 30px;">
+                      <label style="margin-right: 10px; font-size: 25px;">Qty:</label>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, -1)" style="background-color: white; padding: 0px 9px; font-size: 20px;">-</a>
+                      <span class="qty-val" style="background-color: white; padding: 0px 50px; font-size: 20px; ">{{this.editqtycartpopupdata.qty}}</span>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, 1)" style="background-color: white; padding: 0px 9px; font-size: 20px;">+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <div class="modal-footer" style="margin-top: 0px;">
+                <button type="button" class="btn btn-success" data-dismiss="modal" @click="saveCart()">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--end model -->
         <div class="row">
           <div class="col-md-4 col-sm-4 hidden-xs">
             <div class="top-left">
@@ -337,7 +372,9 @@ export default {
       phone: null,
       dataCheckout:null,
       idOrder:null,
-      address_order:null,   
+      address_order:null,  
+      editqtycartpopupdata:null, 
+      // editqtycartpopupshow:null,
         
     };
   },
@@ -416,7 +453,6 @@ export default {
       sessionStorage.removeItem("cart");
       this.loginame = null;
     },
-
     removeCart(id) {
       this.$parent.removeCart = id;
     },
@@ -426,16 +462,16 @@ export default {
       this.btnupdateOrder = false;
     },
     editQtyCart(item, numer) {
-      this.editQty.forEach((element) => {
-        if (item.id == element.id) {
-          element.qty = element.qty + numer;
-          element.quantity = element.qty;
-          if (element.qty <= 0) {
-            element.qty = 1;
-            element.quantity = 1;
+        this.editQty.forEach((element) => {
+          if (item.id == element.id) {
+            element.qty = element.qty + numer;
+            element.quantity = element.qty;
+            if (element.qty <= 0) {
+              element.qty = 1;
+              element.quantity = 1;
+            }
           }
-        }
-      });
+        });
     },
 
     saveCart() {
@@ -636,6 +672,10 @@ export default {
               });
         });
 
+    },
+    editqtycartpopup(editqtycartpopupdata){
+      this.editqtycartpopupdata = editqtycartpopupdata;
+      this.editQty = this.cart.item;
     }
   },
 
@@ -646,6 +686,11 @@ export default {
     loginame(value) {
       this.loginame = value;
     },
+    editqtycartpopupdata(value){
+      if(value){
+        this.value = value;
+      }
+    }
        
   },
 };

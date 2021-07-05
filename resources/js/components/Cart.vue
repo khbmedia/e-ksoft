@@ -1,19 +1,15 @@
 <template>
   <div class="inner-cart-info" v-if="$parent.cart != null">
     <ul class="info-list-cart" style="max-height: 333px; overflow-y: auto">
-      <li class="item-info-cart" v-for="(item, idx) in $parent.editQty != null
-                          ? $parent.editQty
-                          : $parent.cart.item" :key="idx">
+      <li class="item-info-cart" v-for="(item, idx) in $parent.editQty != null ? $parent.editQty: $parent.cart.item" :key="idx">
         <div class="cart-thumb">
-          <a href="#" class="cart-thumb">
-            <img v-bind:src="
-                                'data:image/jpeg;base64,' + item.picture
-                              " />
+          <a href="#" class="cart-thumb" data-toggle="modal" data-target="#editqtycartpopup" @click="$parent.editqtycartpopup(item)">
+            <img v-bind:src="'data:image/jpeg;base64,' + item.picture" />
           </a>
         </div>
         <div class="wrap-cart-title">
           <h3 class="cart-title">
-            <a href="#">{{ item.name }}</a>
+            <a href="#"  data-toggle="modal" data-target="#editqtycartpopup" @click="$parent.editqtycartpopup(item)" >{{ item.name }}</a>
           </h3>
           <div class="product-featured-info">
             <div class="cart-qty">
@@ -23,7 +19,6 @@
                 }}</span>
               <div class="info-qty" v-if="$parent.hideCheckOut">
                 <span class="qty-val">{{ item.qty }}</span>
-
                 <a class="qty-up" href="javascript:;" @click="$parent.editQtyCart(item, 1)"><span
                     class="lnr lnr-chevron-up"></span></a>
                 <a class="qty-down" href="javascript:;" @click="$parent.editQtyCart(item, -1)"><span

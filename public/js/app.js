@@ -2080,11 +2080,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setActive: function setActive(Form) {
@@ -2681,6 +2676,41 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2709,7 +2739,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       phone: null,
       dataCheckout: null,
       idOrder: null,
-      address_order: null
+      address_order: null,
+      editqtycartpopupdata: null // editqtycartpopupshow:null,
+
     };
   },
   mounted: function mounted() {
@@ -2994,6 +3026,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           timer: 2000
         });
       });
+    },
+    editqtycartpopup: function editqtycartpopup(editqtycartpopupdata) {
+      this.editqtycartpopupdata = editqtycartpopupdata;
+      this.editQty = this.cart.item;
     }
   },
   watch: {
@@ -3002,6 +3038,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     loginame: function loginame(value) {
       this.loginame = value;
+    },
+    editqtycartpopupdata: function editqtycartpopupdata(value) {
+      if (value) {
+        this.value = value;
+      }
     }
   }
 });
@@ -44591,18 +44632,47 @@ var render = function() {
             function(item, idx) {
               return _c("li", { key: idx, staticClass: "item-info-cart" }, [
                 _c("div", { staticClass: "cart-thumb" }, [
-                  _c("a", { staticClass: "cart-thumb", attrs: { href: "#" } }, [
-                    _c("img", {
-                      attrs: { src: "data:image/jpeg;base64," + item.picture }
-                    })
-                  ])
+                  _c(
+                    "a",
+                    {
+                      staticClass: "cart-thumb",
+                      attrs: {
+                        href: "#",
+                        "data-toggle": "modal",
+                        "data-target": "#editqtycartpopup"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.$parent.editqtycartpopup(item)
+                        }
+                      }
+                    },
+                    [
+                      _c("img", {
+                        attrs: { src: "data:image/jpeg;base64," + item.picture }
+                      })
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "wrap-cart-title" }, [
                   _c("h3", { staticClass: "cart-title" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _vm._v(_vm._s(item.name))
-                    ])
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "#",
+                          "data-toggle": "modal",
+                          "data-target": "#editqtycartpopup"
+                        },
+                        on: {
+                          click: function($event) {
+                            return _vm.$parent.editqtycartpopup(item)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(item.name))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "product-featured-info" }, [
@@ -45195,6 +45265,191 @@ var render = function() {
   return _c("div", { staticClass: "wrap" }, [
     _c("div", { staticClass: "top-header" }, [
       _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          { staticClass: "modal fade", attrs: { id: "editqtycartpopup" } },
+          [
+            this.editqtycartpopupdata
+              ? _c(
+                  "div",
+                  { staticClass: "modal-dialog", attrs: { role: "document" } },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-content",
+                        staticStyle: {
+                          "order-radius": "0",
+                          background: "#1b1d1f none repeat scroll 0 0",
+                          "border-radius": "0"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c(
+                            "h4",
+                            {
+                              staticClass: "modal-title",
+                              staticStyle: {
+                                color: "#fff",
+                                "text-align": "center"
+                              },
+                              attrs: { id: "exampleModalLabel" }
+                            },
+                            [_vm._v(_vm._s(this.editqtycartpopupdata.name))]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-md-3" }, [
+                              _c("div", { staticClass: "img" }, [
+                                _c("img", {
+                                  attrs: {
+                                    src:
+                                      "data:image/jpeg;base64," +
+                                      this.editqtycartpopupdata.picture,
+                                    width: "80",
+                                    height: "100"
+                                  }
+                                })
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-8" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "btnchange",
+                                  staticStyle: {
+                                    color: "#428bca",
+                                    "font-size": "20px",
+                                    "padding-top": "30px"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticStyle: {
+                                        "margin-right": "10px",
+                                        "font-size": "25px"
+                                      }
+                                    },
+                                    [_vm._v("Qty:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticStyle: {
+                                        "background-color": "white",
+                                        padding: "0px 9px",
+                                        "font-size": "20px"
+                                      },
+                                      attrs: { href: "javascript:;" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editQtyCart(
+                                            _vm.editqtycartpopupdata,
+                                            -1
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("-")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "qty-val",
+                                      staticStyle: {
+                                        "background-color": "white",
+                                        padding: "0px 50px",
+                                        "font-size": "20px"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(this.editqtycartpopupdata.qty)
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticStyle: {
+                                        "background-color": "white",
+                                        padding: "0px 9px",
+                                        "font-size": "20px"
+                                      },
+                                      attrs: { href: "javascript:;" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editQtyCart(
+                                            _vm.editqtycartpopupdata,
+                                            1
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("+")]
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "modal-footer",
+                            staticStyle: { "margin-top": "0px" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.saveCart()
+                                  }
+                                }
+                              },
+                              [_vm._v("Save")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal"
+                                }
+                              },
+                              [_vm._v("Close")]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e()
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-4 col-sm-4 hidden-xs" }, [
             _c("div", { staticClass: "top-left" }, [
@@ -45398,11 +45653,11 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._m(0),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c("table", { staticClass: "table" }, [
-                            _vm._m(1),
+                            _vm._m(2),
                             _vm._v(" "),
                             _c(
                               "tbody",
@@ -45495,7 +45750,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c(
@@ -45569,7 +45824,7 @@ var render = function() {
           _c("div", { staticClass: "hidden-lg hidden-md hidden-sm col-xs-4" }, [
             _c("div", { staticClass: "top-right" }, [
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(3),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -45696,7 +45951,7 @@ var render = function() {
     _c("div", { staticClass: "header header-home" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(4),
+          _vm._m(5),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-2 col-sm-2 hidden-xs" }, [
             _c("div", { staticClass: "home-box-extra" }, [
@@ -45744,7 +45999,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(5),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -45777,6 +46032,23 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
