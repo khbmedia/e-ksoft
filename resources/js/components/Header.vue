@@ -463,7 +463,7 @@ export default {
     },
     editQtyCart(item, numer) {
         this.editQty.forEach((element) => {
-          if (item.id == element.id) {
+          if (item.name == element.name) {
             element.qty = element.qty + numer;
             element.quantity = element.qty;
             if (element.qty <= 0) {

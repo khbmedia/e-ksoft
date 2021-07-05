@@ -2826,7 +2826,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     editQtyCart: function editQtyCart(item, numer) {
       this.editQty.forEach(function (element) {
-        if (item.id == element.id) {
+        if (item.name == element.name) {
           element.qty = element.qty + numer;
           element.quantity = element.qty;
 
