@@ -2080,6 +2080,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setActive: function setActive(Form) {
@@ -44631,131 +44633,153 @@ var render = function() {
               : _vm.$parent.cart.item,
             function(item, idx) {
               return _c("li", { key: idx, staticClass: "item-info-cart" }, [
-                _c("div", { staticClass: "cart-thumb" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "cart-thumb",
-                      attrs: {
-                        href: "#",
-                        "data-toggle": "modal",
-                        "data-target": "#editqtycartpopup"
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.$parent.editqtycartpopup(item)
-                        }
-                      }
+                _c(
+                  "div",
+                  {
+                    staticStyle: { cursor: "pointer" },
+                    attrs: {
+                      "data-toggle": "modal",
+                      "data-target": "#editqtycartpopup"
                     },
-                    [
-                      _c("img", {
-                        attrs: { src: "data:image/jpeg;base64," + item.picture }
-                      })
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "wrap-cart-title" }, [
-                  _c("h3", { staticClass: "cart-title" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: {
-                          href: "#",
-                          "data-toggle": "modal",
-                          "data-target": "#editqtycartpopup"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.$parent.editqtycartpopup(item)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(item.name))]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "product-featured-info" }, [
-                    _c("div", { staticClass: "cart-qty" }, [
-                      _c("label", [_vm._v("Qty:")]),
-                      _vm._v(" "),
-                      !_vm.$parent.hideCheckOut
-                        ? _c("span", { staticClass: "qty-val" }, [
-                            _vm._v(_vm._s(item.qty))
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.$parent.hideCheckOut
-                        ? _c("div", { staticClass: "info-qty" }, [
-                            _c("span", { staticClass: "qty-val" }, [
-                              _vm._v(_vm._s(item.qty))
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "qty-up",
-                                attrs: { href: "javascript:;" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$parent.editQtyCart(item, 1)
-                                  }
-                                }
-                              },
-                              [
-                                _c("span", {
-                                  staticClass: "lnr lnr-chevron-up"
-                                })
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "qty-down",
-                                attrs: { href: "javascript:;" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$parent.editQtyCart(item, -1)
-                                  }
-                                }
-                              },
-                              [
-                                _c("span", {
-                                  staticClass: "lnr lnr-chevron-down"
-                                })
-                              ]
-                            )
-                          ])
-                        : _vm._e()
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "wrap-cart-remove" }, [
-                  _c("a", {
-                    staticClass: "remove-product",
-                    attrs: { href: "javascript:;" },
                     on: {
                       click: function($event) {
-                        return _vm.$parent.removeCart(item.id)
+                        return _vm.$parent.editqtycartpopup(item)
                       }
                     }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "cart-price",
-                      staticStyle: { display: "block", "text-align": "left" }
-                    },
-                    [
-                      _vm._v(
-                        "\n          $" + _vm._s(item.price) + "\n        "
+                  },
+                  [
+                    _c("div", { staticClass: "cart-thumb" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "cart-thumb",
+                          attrs: {
+                            href: "#",
+                            "data-toggle": "modal",
+                            "data-target": "#editqtycartpopup"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$parent.editqtycartpopup(item)
+                            }
+                          }
+                        },
+                        [
+                          _c("img", {
+                            attrs: {
+                              src: "data:image/jpeg;base64," + item.picture
+                            }
+                          })
+                        ]
                       )
-                    ]
-                  )
-                ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "wrap-cart-title" }, [
+                      _c("h3", { staticClass: "cart-title" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: "#",
+                              "data-toggle": "modal",
+                              "data-target": "#editqtycartpopup"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.$parent.editqtycartpopup(item)
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(item.name))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "product-featured-info" }, [
+                        _c("div", { staticClass: "cart-qty" }, [
+                          _c("label", [_vm._v("Qty:")]),
+                          _vm._v(" "),
+                          !_vm.$parent.hideCheckOut
+                            ? _c("span", { staticClass: "qty-val" }, [
+                                _vm._v(_vm._s(item.qty))
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.$parent.hideCheckOut
+                            ? _c("div", { staticClass: "info-qty" }, [
+                                _c("span", { staticClass: "qty-val" }, [
+                                  _vm._v(_vm._s(item.qty))
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "qty-up",
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.$parent.editQtyCart(item, 1)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass: "lnr lnr-chevron-up"
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "qty-down",
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.$parent.editQtyCart(item, -1)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass: "lnr lnr-chevron-down"
+                                    })
+                                  ]
+                                )
+                              ])
+                            : _vm._e()
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "wrap-cart-remove" }, [
+                      _c("a", {
+                        staticClass: "remove-product",
+                        attrs: { href: "javascript:;" },
+                        on: {
+                          click: function($event) {
+                            return _vm.$parent.removeCart(item.id)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "cart-price",
+                          staticStyle: {
+                            display: "block",
+                            "text-align": "left"
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n          $" + _vm._s(item.price) + "\n        "
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
               ])
             }
           ),
@@ -45418,7 +45442,7 @@ var render = function() {
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-success",
+                                staticClass: "cart-checkout",
                                 staticStyle: {
                                   color: "rgba(44, 240, 109, 0.863)"
                                 },
@@ -45438,7 +45462,7 @@ var render = function() {
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-warning",
+                                staticClass: "cart-checkout",
                                 staticStyle: { color: "red" },
                                 attrs: {
                                   type: "button",

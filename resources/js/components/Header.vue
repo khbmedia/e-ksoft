@@ -30,8 +30,8 @@
                 </div>
               </div>
                <div class="modal-footer" style="margin-top: 0px;">
-                <button type="button" class="btn btn-success" data-dismiss="modal" @click="saveCart()" style="color:rgba(44, 240, 109, 0.863);">Save</button>
-                <button type="button" class="btn btn-warning" data-dismiss="modal" style="color:red">Close</button>
+                <button type="button" class="cart-checkout" data-dismiss="modal" @click="saveCart()" style="color:rgba(44, 240, 109, 0.863);">Save</button>
+                <button type="button" class="cart-checkout" data-dismiss="modal" style="color:red">Close</button>
               </div>
             </div>
           </div>
