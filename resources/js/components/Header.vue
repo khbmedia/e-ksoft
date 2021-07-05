@@ -704,14 +704,17 @@ export default {
   z-index: 999;
 }
 .imgpopup{
- width: 25%;
+ /* width: 30%; */
  float: left;
+}
+.imgpopup img{
+  max-width: none !important;
 }
 .btnchange{
   color:#428bca; 
   font-size: 20px; 
   padding-top: 30px;
-  width: 70%;
+  /* width: 70%; */
   float: left;
   
 }
