@@ -15,23 +15,23 @@
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-3">
-                    <div class="img">
+                    <div class="imgpopup">
                       <img v-bind:src="'data:image/jpeg;base64,' + this.editqtycartpopupdata.picture" width="80" height="100" />
                     </div>
                   </div>                   
                   <div class="col-md-8">    
-                    <div class="btnchange" style="color:#428bca; font-size: 20px; padding-top: 30px;">
-                      <label style="color:white; margin-right: 10px; font-size: 25px;">Quantity : </label>
-                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, -1)" style="background-color: white; color:red; padding: 0px 9px; font-size: 20px;">-</a>
-                      <span class="qty-val" style="background-color: white; padding: 0px 50px; font-size: 20px; ">{{this.editqtycartpopupdata.qty}}</span>
-                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, 1)" style="background-color: white; color:rgba(44, 240, 109, 0.863); padding: 0px 9px; font-size: 20px;">+</a>
+                    <div class="btnchange">
+                      <label class="qty">Quantity : </label>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, -1)" class="donqty">-</a>
+                      <span class="showqty">{{this.editqtycartpopupdata.qty}}</span>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, 1)" class="upqty">+</a>
                     </div>
                   </div>
                 </div>
               </div>
-               <div class="modal-footer" style="margin-top: 0px;">
-                <button type="button" class="cart-checkout" data-dismiss="modal" @click="saveCart()" style="color:rgba(44, 240, 109, 0.863);">Save</button>
-                <button type="button" class="cart-checkout" data-dismiss="modal" style="color:red">Close</button>
+               <div class="modal-footer link-cart" style="margin-top: 0px;">
+                <button type="button" class="cart-checkout" data-dismiss="modal" @click="saveCart()" style="width: 97px; height: 35px;">SAVE</button>
+                <button type="button" class="cart-checkout" data-dismiss="modal" style="width: 97px; height: 35px;">CLOSE</button>
               </div>
             </div>
           </div>
@@ -703,4 +703,67 @@ export default {
 .swal2-popup {
   z-index: 999;
 }
+.imgpopup{
+ width: 25%;
+ float: left;
+}
+.btnchange{
+  color:#428bca; 
+  font-size: 20px; 
+  padding-top: 30px;
+  width: 70%;
+  float: left;
+  
+}
+.btnchange .qty{
+  color:white; 
+  margin-right: 10px; 
+  font-weight: 100;
+}
+.btnchange .donqty{
+  background-color: white; 
+  color:red; 
+  padding: 0px 9px; 
+  font-size: 20px;
+  }
+  .btnchange .showqty{
+    background-color: white; 
+    padding: 0px 50px; 
+    font-size: 20px; 
+    margin: 0px -4px;
+  }
+  .btnchange .upqty{
+    background-color: white; 
+    color:rgba(44, 240, 109, 0.863); 
+    padding: 0px 9px; 
+    font-size: 20px;
+  }
+  @media (max-width: 414px) { 
+    .imgpopup{float: left; width: 30%;}
+    .btnchange{float: left; width: 70%;}
+    .btnchange .qty{
+      color:white; 
+      margin-right: 3px; 
+      font-weight: 100;
+      font-size: 17px;
+    }
+    .btnchange .donqty{
+      background-color: white; 
+      color:red; 
+      padding: 0px 8px; 
+      font-size: 18px;
+    }
+    .btnchange .showqty{
+      background-color: white; 
+      padding: 0px 25px; 
+      font-size: 18px; 
+      margin: 0px -4px;
+    }
+    .btnchange .upqty{
+      background-color: white; 
+      color:rgba(44, 240, 109, 0.863); 
+      padding: 0px 8px; 
+      font-size: 18px;
+    }
+  }
 </style>

@@ -8108,7 +8108,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n width: 25%;\r\n float: left;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:#428bca; \r\n  font-size: 20px; \r\n  padding-top: 30px;\r\n  width: 70%;\r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:red; \r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:rgba(44, 240, 109, 0.863); \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.imgpopup[data-v-1f42fb90]{float: left; width: 30%;}\n.btnchange[data-v-1f42fb90]{float: left; width: 70%;}\n.btnchange .qty[data-v-1f42fb90]{\r\n      color:white; \r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      background-color: white; \r\n      color:red; \r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      background-color: white; \r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      background-color: white; \r\n      color:rgba(44, 240, 109, 0.863); \r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45329,7 +45329,7 @@ var render = function() {
                         _c("div", { staticClass: "modal-body" }, [
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-md-3" }, [
-                              _c("div", { staticClass: "img" }, [
+                              _c("div", { staticClass: "imgpopup" }, [
                                 _c("img", {
                                   attrs: {
                                     src:
@@ -45343,91 +45343,49 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-md-8" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "btnchange",
-                                  staticStyle: {
-                                    color: "#428bca",
-                                    "font-size": "20px",
-                                    "padding-top": "30px"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticStyle: {
-                                        color: "white",
-                                        "margin-right": "10px",
-                                        "font-size": "25px"
+                              _c("div", { staticClass: "btnchange" }, [
+                                _c("label", { staticClass: "qty" }, [
+                                  _vm._v("Quantity : ")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "donqty",
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editQtyCart(
+                                          _vm.editqtycartpopupdata,
+                                          -1
+                                        )
                                       }
-                                    },
-                                    [_vm._v("Quantity : ")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "a",
-                                    {
-                                      staticStyle: {
-                                        "background-color": "white",
-                                        color: "red",
-                                        padding: "0px 9px",
-                                        "font-size": "20px"
-                                      },
-                                      attrs: { href: "javascript:;" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.editQtyCart(
-                                            _vm.editqtycartpopupdata,
-                                            -1
-                                          )
-                                        }
+                                    }
+                                  },
+                                  [_vm._v("-")]
+                                ),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "showqty" }, [
+                                  _vm._v(_vm._s(this.editqtycartpopupdata.qty))
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "upqty",
+                                    attrs: { href: "javascript:;" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editQtyCart(
+                                          _vm.editqtycartpopupdata,
+                                          1
+                                        )
                                       }
-                                    },
-                                    [_vm._v("-")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass: "qty-val",
-                                      staticStyle: {
-                                        "background-color": "white",
-                                        padding: "0px 50px",
-                                        "font-size": "20px"
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(this.editqtycartpopupdata.qty)
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "a",
-                                    {
-                                      staticStyle: {
-                                        "background-color": "white",
-                                        color: "rgba(44, 240, 109, 0.863)",
-                                        padding: "0px 9px",
-                                        "font-size": "20px"
-                                      },
-                                      attrs: { href: "javascript:;" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.editQtyCart(
-                                            _vm.editqtycartpopupdata,
-                                            1
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("+")]
-                                  )
-                                ]
-                              )
+                                    }
+                                  },
+                                  [_vm._v("+")]
+                                )
+                              ])
                             ])
                           ])
                         ]),
@@ -45435,7 +45393,7 @@ var render = function() {
                         _c(
                           "div",
                           {
-                            staticClass: "modal-footer",
+                            staticClass: "modal-footer link-cart",
                             staticStyle: { "margin-top": "0px" }
                           },
                           [
@@ -45443,9 +45401,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "cart-checkout",
-                                staticStyle: {
-                                  color: "rgba(44, 240, 109, 0.863)"
-                                },
+                                staticStyle: { width: "97px", height: "35px" },
                                 attrs: {
                                   type: "button",
                                   "data-dismiss": "modal"
@@ -45456,20 +45412,20 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Save")]
+                              [_vm._v("SAVE")]
                             ),
                             _vm._v(" "),
                             _c(
                               "button",
                               {
                                 staticClass: "cart-checkout",
-                                staticStyle: { color: "red" },
+                                staticStyle: { width: "97px", height: "35px" },
                                 attrs: {
                                   type: "button",
                                   "data-dismiss": "modal"
                                 }
                               },
-                              [_vm._v("Close")]
+                              [_vm._v("CLOSE")]
                             )
                           ]
                         )
