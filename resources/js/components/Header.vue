@@ -21,17 +21,17 @@
                   </div>                   
                   <div class="col-md-8">    
                     <div class="btnchange" style="color:#428bca; font-size: 20px; padding-top: 30px;">
-                      <label style="margin-right: 10px; font-size: 25px;">Qty:</label>
-                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, -1)" style="background-color: white; padding: 0px 9px; font-size: 20px;">-</a>
+                      <label style="color:white; margin-right: 10px; font-size: 25px;">Quantity : </label>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, -1)" style="background-color: white; color:red; padding: 0px 9px; font-size: 20px;">-</a>
                       <span class="qty-val" style="background-color: white; padding: 0px 50px; font-size: 20px; ">{{this.editqtycartpopupdata.qty}}</span>
-                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, 1)" style="background-color: white; padding: 0px 9px; font-size: 20px;">+</a>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, 1)" style="background-color: white; color:rgba(44, 240, 109, 0.863); padding: 0px 9px; font-size: 20px;">+</a>
                     </div>
                   </div>
                 </div>
               </div>
                <div class="modal-footer" style="margin-top: 0px;">
-                <button type="button" class="btn btn-success" data-dismiss="modal" @click="saveCart()">Save</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" @click="saveCart()" style="color:rgba(44, 240, 109, 0.863);">Save</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal" style="color:red">Close</button>
               </div>
             </div>
           </div>

@@ -45334,11 +45334,12 @@ var render = function() {
                                     "label",
                                     {
                                       staticStyle: {
+                                        color: "white",
                                         "margin-right": "10px",
                                         "font-size": "25px"
                                       }
                                     },
-                                    [_vm._v("Qty:")]
+                                    [_vm._v("Quantity : ")]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -45346,6 +45347,7 @@ var render = function() {
                                     {
                                       staticStyle: {
                                         "background-color": "white",
+                                        color: "red",
                                         padding: "0px 9px",
                                         "font-size": "20px"
                                       },
@@ -45384,6 +45386,7 @@ var render = function() {
                                     {
                                       staticStyle: {
                                         "background-color": "white",
+                                        color: "rgba(44, 240, 109, 0.863)",
                                         padding: "0px 9px",
                                         "font-size": "20px"
                                       },
@@ -45416,6 +45419,9 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-success",
+                                staticStyle: {
+                                  color: "rgba(44, 240, 109, 0.863)"
+                                },
                                 attrs: {
                                   type: "button",
                                   "data-dismiss": "modal"
@@ -45432,7 +45438,8 @@ var render = function() {
                             _c(
                               "button",
                               {
-                                staticClass: "btn btn-primary",
+                                staticClass: "btn btn-warning",
+                                staticStyle: { color: "red" },
                                 attrs: {
                                   type: "button",
                                   "data-dismiss": "modal"
