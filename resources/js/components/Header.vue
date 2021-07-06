@@ -201,7 +201,8 @@
                         style="border-radius: 0"
                         class="form-control"
                         name="username"
-                        placeholder="Username"
+                        ref="username"
+                        
                       />
                     </div>
                     <div class="form-group">
@@ -437,7 +438,7 @@ export default {
           .then((response) => {
             sessionStorage.setItem("username", response.data.result.name);
             this.loginame = sessionStorage.getItem("username");
-            this.$refs.btnLogin.click();
+            this.$refs.btnLogin.click(); // open form login
             this.btnMyOrder();
           });
       } else {
@@ -448,7 +449,10 @@ export default {
       sessionStorage.removeItem("username");
       sessionStorage.removeItem("myOrder");
       sessionStorage.removeItem("cart");
+       sessionStorage.removeItem('btnupdateOrder');
+      this.btnupdateOrder = false;    
       this.loginame = null;
+      
     },
     removeCart(id) {
       this.$parent.removeCart = id;
@@ -470,7 +474,6 @@ export default {
           }
         });
     },
-
     saveCart() {
       this.hideCheckOut = false;
       this.$parent.cart.item = [];
@@ -490,7 +493,6 @@ export default {
         this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
       }
     },
-
     checkout() {
       if (this.loginame) {
         var get_cart_session = JSON.parse(sessionStorage.getItem("cart"));
@@ -557,7 +559,6 @@ export default {
         this.msg = "Please Login!";
       }
     },
-
     AddressForm() {
       var cart_session = JSON.parse(sessionStorage.getItem("cart"));
       console.log(cart_session.item.length);
@@ -568,7 +569,6 @@ export default {
       }
       
     },
-
     btnMyOrder() {
       if (this.loginame) {
         axios
@@ -580,6 +580,18 @@ export default {
             this.dataMyOrder = response.data.result;
             sessionStorage.setItem("myOrder",JSON.stringify(response.data.result));
             this.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
+           
+            if(this.dataMyOrder.length == 0){
+              this.cart = null;
+              this.$parent.cart = {
+                totalprice: 0,
+                totalqty: 0,
+                item: [],
+              };
+              this.btnupdateOrder = false;
+              sessionStorage.removeItem('cart'); 
+              sessionStorage.removeItem('btnupdateOrder');  
+            }
           });
       }
     },
@@ -633,42 +645,45 @@ export default {
       });
     },
     tbn_updateOrder(){
-      const updateOrder = {
-            saleOrder: {
-              id: this.idOrder,
-              tenancyName: this.$route.query.tenancy,
-              branchId: 1,
-              customerName: this.loginame,
-              shippingAddress: this.address_order,
-              memo: "",
-            },
-            saleOrderTransactions: this.$parent.cart.item,
-          };
-      axios
+      if(this.loginame){
+          const updateOrder = {
+          saleOrder: {
+            id: this.idOrder,
+            tenancyName: this.$route.query.tenancy,
+            branchId: 1,
+            customerName: this.loginame,
+            shippingAddress: this.address_order,
+            memo: "",
+          },
+          saleOrderTransactions: this.$parent.cart.item,
+        };
+        axios
           .post(
             "/api/get_checkout/"+this.$route.query.tenancy,updateOrder)
           .then((response) => {
 
           // check btn update order
           this.btnupdateOrder = false;
-          sessionStorage.removeItem('cart'); 
-          sessionStorage.removeItem('btnupdateOrder'); 
+           sessionStorage.removeItem('btnupdateOrder'); 
+          sessionStorage.removeItem('cart');    
           this.cart = null;
           this.$parent.cart= {
-                    totalprice: 0,
-                    totalqty: 0,
-                    item: [],
-                  },
+            totalprice: 0,
+            totalqty: 0,
+            item: [],
+          },
           
           this.$fire({
-                title: '<span style="color:#fff">Update Order Success</span>',
-                type: "success",
-                background: "#000",
-                showConfirmButton: false,
-                timer: 2000,
-              });
+            title: '<span style="color:#fff">Update Order Success</span>',
+            type: "success",
+            background: "#000",
+            showConfirmButton: false,
+            timer: 2000,
+          });
         });
-
+      }else{
+        this.$refs.btnLogin.click();
+      }
     },
     editqtycartpopup(editqtycartpopupdata){
       this.editqtycartpopupdata = editqtycartpopupdata;
@@ -681,7 +696,12 @@ export default {
       this.cart = value;
     },
     loginame(value) {
-      this.loginame = value;
+      if(value){
+        this.loginame = value;
+      }else{
+        this.loginame = null;
+      }
+      
     },
     editqtycartpopupdata(value){
       if(value){

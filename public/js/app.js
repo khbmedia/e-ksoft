@@ -2708,6 +2708,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 
@@ -2799,7 +2800,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           sessionStorage.setItem("username", response.data.result.name);
           _this2.loginame = sessionStorage.getItem("username");
 
-          _this2.$refs.btnLogin.click();
+          _this2.$refs.btnLogin.click(); // open form login
+
 
           _this2.btnMyOrder();
         });
@@ -2811,6 +2813,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       sessionStorage.removeItem("username");
       sessionStorage.removeItem("myOrder");
       sessionStorage.removeItem("cart");
+      sessionStorage.removeItem('btnupdateOrder');
+      this.btnupdateOrder = false;
       this.loginame = null;
     },
     removeCart: function removeCart(id) {
@@ -2935,6 +2939,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           _this4.dataMyOrder = response.data.result;
           sessionStorage.setItem("myOrder", JSON.stringify(response.data.result));
           _this4.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
+
+          if (_this4.dataMyOrder.length == 0) {
+            _this4.cart = null;
+            _this4.$parent.cart = {
+              totalprice: 0,
+              totalqty: 0,
+              item: []
+            };
+            _this4.btnupdateOrder = false;
+            sessionStorage.removeItem('cart');
+            sessionStorage.removeItem('btnupdateOrder');
+          }
         });
       }
     },
@@ -2994,35 +3010,39 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     tbn_updateOrder: function tbn_updateOrder() {
       var _this7 = this;
 
-      var updateOrder = {
-        saleOrder: {
-          id: this.idOrder,
-          tenancyName: this.$route.query.tenancy,
-          branchId: 1,
-          customerName: this.loginame,
-          shippingAddress: this.address_order,
-          memo: ""
-        },
-        saleOrderTransactions: this.$parent.cart.item
-      };
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/get_checkout/" + this.$route.query.tenancy, updateOrder).then(function (response) {
-        // check btn update order
-        _this7.btnupdateOrder = false;
-        sessionStorage.removeItem('cart');
-        sessionStorage.removeItem('btnupdateOrder');
-        _this7.cart = null;
-        _this7.$parent.cart = {
-          totalprice: 0,
-          totalqty: 0,
-          item: []
-        }, _this7.$fire({
-          title: '<span style="color:#fff">Update Order Success</span>',
-          type: "success",
-          background: "#000",
-          showConfirmButton: false,
-          timer: 2000
+      if (this.loginame) {
+        var updateOrder = {
+          saleOrder: {
+            id: this.idOrder,
+            tenancyName: this.$route.query.tenancy,
+            branchId: 1,
+            customerName: this.loginame,
+            shippingAddress: this.address_order,
+            memo: ""
+          },
+          saleOrderTransactions: this.$parent.cart.item
+        };
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/get_checkout/" + this.$route.query.tenancy, updateOrder).then(function (response) {
+          // check btn update order
+          _this7.btnupdateOrder = false;
+          sessionStorage.removeItem('btnupdateOrder');
+          sessionStorage.removeItem('cart');
+          _this7.cart = null;
+          _this7.$parent.cart = {
+            totalprice: 0,
+            totalqty: 0,
+            item: []
+          }, _this7.$fire({
+            title: '<span style="color:#fff">Update Order Success</span>',
+            type: "success",
+            background: "#000",
+            showConfirmButton: false,
+            timer: 2000
+          });
         });
-      });
+      } else {
+        this.$refs.btnLogin.click();
+      }
     },
     editqtycartpopup: function editqtycartpopup(editqtycartpopupdata) {
       this.editqtycartpopupdata = editqtycartpopupdata;
@@ -3034,7 +3054,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.cart = value;
     },
     loginame: function loginame(value) {
-      this.loginame = value;
+      if (value) {
+        this.loginame = value;
+      } else {
+        this.loginame = null;
+      }
     },
     editqtycartpopupdata: function editqtycartpopupdata(value) {
       if (value) {
@@ -44787,40 +44811,11 @@ var render = function() {
             staticClass: "link-cart",
             style: {
               "text-align": "center",
-              display: _vm.$parent.isScreenPc() ? "flex" : "block"
+              display: _vm.$parent.isScreenPc() ? "flex" : "block",
+              "justify-content": "center"
             }
           },
           [
-            _c(
-              "a",
-              {
-                staticClass: "cart-edit",
-                attrs: { href: "javascript:;" },
-                on: {
-                  click: function($event) {
-                    return _vm.$parent.btnEditCart()
-                  }
-                }
-              },
-              [_vm._v("edit cart")]
-            ),
-            _vm._v(" "),
-            _vm.$parent.hideCheckOut
-              ? _c(
-                  "a",
-                  {
-                    staticClass: "cart-checkout",
-                    attrs: { href: "javascript:;" },
-                    on: {
-                      click: function($event) {
-                        return _vm.$parent.saveCart()
-                      }
-                    }
-                  },
-                  [_vm._v("Save")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
             !_vm.$parent.hideCheckOut && !_vm.$parent.btnupdateOrder
               ? _c(
                   "a",
@@ -45759,13 +45754,13 @@ var render = function() {
                                 expression: "username"
                               }
                             ],
+                            ref: "username",
                             staticClass: "form-control",
                             staticStyle: { "border-radius": "0" },
                             attrs: {
                               type: "text",
                               id: "loginform",
-                              name: "username",
-                              placeholder: "Username"
+                              name: "username"
                             },
                             domProps: { value: _vm.username },
                             on: {
