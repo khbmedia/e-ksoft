@@ -8,12 +8,9 @@
             <div class="modal-content" style="order-radius: 0; background: #1b1d1f none repeat scroll 0 0;border-radius: 0;">
               <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel" style="color: #fff; text-align: center">{{this.editqtycartpopupdata.name}}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                  <span aria-hidden="true">&times;</span>
-                </button>
               </div>
               <div class="modal-body">
-                <div class="row">
+                <div class="row" style="display: flex; justify-content: center; align-items: center;">
                   <div class="col-md-3">
                     <div class="imgpopup">
                       <img v-bind:src="'data:image/jpeg;base64,' + this.editqtycartpopupdata.picture" width="80" height="100" />
@@ -704,17 +701,14 @@ export default {
   z-index: 999;
 }
 .imgpopup{
- /* width: 30%; */
  float: left;
 }
 .imgpopup img{
   max-width: none !important;
 }
 .btnchange{
-  color:#428bca; 
+  color:black;
   font-size: 20px; 
-  padding-top: 30px;
-  /* width: 70%; */
   float: left;
   
 }
@@ -725,7 +719,7 @@ export default {
 }
 .btnchange .donqty{
   background-color: white; 
-  color:red; 
+  color:black;
   padding: 0px 9px; 
   font-size: 20px;
   }
@@ -737,34 +731,26 @@ export default {
   }
   .btnchange .upqty{
     background-color: white; 
-    color:rgba(44, 240, 109, 0.863); 
+    color:black; 
     padding: 0px 9px; 
     font-size: 20px;
   }
   @media (max-width: 414px) { 
-    .imgpopup{float: left; width: 30%;}
-    .btnchange{float: left; width: 70%;}
     .btnchange .qty{
-      color:white; 
       margin-right: 3px; 
       font-weight: 100;
       font-size: 17px;
     }
     .btnchange .donqty{
-      background-color: white; 
-      color:red; 
       padding: 0px 8px; 
       font-size: 18px;
     }
     .btnchange .showqty{
-      background-color: white; 
       padding: 0px 25px; 
       font-size: 18px; 
       margin: 0px -4px;
     }
     .btnchange .upqty{
-      background-color: white; 
-      color:rgba(44, 240, 109, 0.863); 
       padding: 0px 8px; 
       font-size: 18px;
     }

@@ -13,7 +13,7 @@
           </h3>
           <div class="product-featured-info">
             <div class="cart-qty">
-              <label>Qty:</label>
+              <a href="#" data-toggle="modal" data-target="#editqtycartpopup" @click="$parent.editqtycartpopup(item)" style="color:white;">Quantity:</a>
               <span class="qty-val" v-if="!$parent.hideCheckOut">{{
                 item.qty
                 }}</span>

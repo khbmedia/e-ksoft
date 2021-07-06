@@ -2708,9 +2708,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
 
 
 
@@ -8106,7 +8103,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n /* width: 30%; */\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:#428bca; \r\n  font-size: 20px; \r\n  padding-top: 30px;\r\n  /* width: 70%; */\r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:red; \r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:rgba(44, 240, 109, 0.863); \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.imgpopup[data-v-1f42fb90]{float: left; width: 30%;}\n.btnchange[data-v-1f42fb90]{float: left; width: 70%;}\n.btnchange .qty[data-v-1f42fb90]{\r\n      color:white; \r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      background-color: white; \r\n      color:red; \r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      background-color: white; \r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      background-color: white; \r\n      color:rgba(44, 240, 109, 0.863); \r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -44677,7 +44674,23 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "product-featured-info" }, [
                     _c("div", { staticClass: "cart-qty" }, [
-                      _c("label", [_vm._v("Qty:")]),
+                      _c(
+                        "a",
+                        {
+                          staticStyle: { color: "white" },
+                          attrs: {
+                            href: "#",
+                            "data-toggle": "modal",
+                            "data-target": "#editqtycartpopup"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$parent.editqtycartpopup(item)
+                            }
+                          }
+                        },
+                        [_vm._v("Quantity:")]
+                      ),
                       _vm._v(" "),
                       !_vm.$parent.hideCheckOut
                         ? _c("span", { staticClass: "qty-val" }, [
@@ -45297,73 +45310,84 @@ var render = function() {
                               attrs: { id: "exampleModalLabel" }
                             },
                             [_vm._v(_vm._s(this.editqtycartpopupdata.name))]
-                          ),
-                          _vm._v(" "),
-                          _vm._m(0)
+                          )
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-3" }, [
-                              _c("div", { staticClass: "imgpopup" }, [
-                                _c("img", {
-                                  attrs: {
-                                    src:
-                                      "data:image/jpeg;base64," +
-                                      this.editqtycartpopupdata.picture,
-                                    width: "80",
-                                    height: "100"
-                                  }
-                                })
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-8" }, [
-                              _c("div", { staticClass: "btnchange" }, [
-                                _c("label", { staticClass: "qty" }, [
-                                  _vm._v("Quantity : ")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "donqty",
-                                    attrs: { href: "javascript:;" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editQtyCart(
-                                          _vm.editqtycartpopupdata,
-                                          -1
-                                        )
-                                      }
+                          _c(
+                            "div",
+                            {
+                              staticClass: "row",
+                              staticStyle: {
+                                display: "flex",
+                                "justify-content": "center",
+                                "align-items": "center"
+                              }
+                            },
+                            [
+                              _c("div", { staticClass: "col-md-3" }, [
+                                _c("div", { staticClass: "imgpopup" }, [
+                                  _c("img", {
+                                    attrs: {
+                                      src:
+                                        "data:image/jpeg;base64," +
+                                        this.editqtycartpopupdata.picture,
+                                      width: "80",
+                                      height: "100"
                                     }
-                                  },
-                                  [_vm._v("-")]
-                                ),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "showqty" }, [
-                                  _vm._v(_vm._s(this.editqtycartpopupdata.qty))
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "upqty",
-                                    attrs: { href: "javascript:;" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.editQtyCart(
-                                          _vm.editqtycartpopupdata,
-                                          1
-                                        )
+                                  })
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-8" }, [
+                                _c("div", { staticClass: "btnchange" }, [
+                                  _c("label", { staticClass: "qty" }, [
+                                    _vm._v("Quantity : ")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "donqty",
+                                      attrs: { href: "javascript:;" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editQtyCart(
+                                            _vm.editqtycartpopupdata,
+                                            -1
+                                          )
+                                        }
                                       }
-                                    }
-                                  },
-                                  [_vm._v("+")]
-                                )
+                                    },
+                                    [_vm._v("-")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "showqty" }, [
+                                    _vm._v(
+                                      _vm._s(this.editqtycartpopupdata.qty)
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "upqty",
+                                      attrs: { href: "javascript:;" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editQtyCart(
+                                            _vm.editqtycartpopupdata,
+                                            1
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("+")]
+                                  )
+                                ])
                               ])
-                            ])
-                          ])
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c(
@@ -45616,11 +45640,11 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c("table", { staticClass: "table" }, [
-                            _vm._m(2),
+                            _vm._m(1),
                             _vm._v(" "),
                             _c(
                               "tbody",
@@ -45713,7 +45737,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(3),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c(
@@ -45787,7 +45811,7 @@ var render = function() {
           _c("div", { staticClass: "hidden-lg hidden-md hidden-sm col-xs-4" }, [
             _c("div", { staticClass: "top-right" }, [
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -45914,7 +45938,7 @@ var render = function() {
     _c("div", { staticClass: "header header-home" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(5),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-2 col-sm-2 hidden-xs" }, [
             _c("div", { staticClass: "home-box-extra" }, [
@@ -45962,7 +45986,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -45995,23 +46019,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
