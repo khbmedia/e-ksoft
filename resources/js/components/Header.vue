@@ -371,8 +371,7 @@ export default {
       idOrder:null,
       address_order:null,  
       editqtycartpopupdata:null, 
-      // editqtycartpopupshow:null,
-        
+   
     };
   },
 
@@ -496,7 +495,6 @@ export default {
     checkout() {
       if (this.loginame) {
         var get_cart_session = JSON.parse(sessionStorage.getItem("cart"));
-        
         if (get_cart_session.item.length > 0) {
           var itemPost = [];
           get_cart_session.item.forEach((element) => {
@@ -561,7 +559,6 @@ export default {
     },
     AddressForm() {
       var cart_session = JSON.parse(sessionStorage.getItem("cart"));
-      console.log(cart_session.item.length);
       if(cart_session.item.length > 0){
         this.CheckOutForm = 1;
       }else{
@@ -580,18 +577,6 @@ export default {
             this.dataMyOrder = response.data.result;
             sessionStorage.setItem("myOrder",JSON.stringify(response.data.result));
             this.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
-           
-            if(this.dataMyOrder.length == 0){
-              this.cart = null;
-              this.$parent.cart = {
-                totalprice: 0,
-                totalqty: 0,
-                item: [],
-              };
-              this.btnupdateOrder = false;
-              sessionStorage.removeItem('cart'); 
-              sessionStorage.removeItem('btnupdateOrder');  
-            }
           });
       }
     },
@@ -603,6 +588,17 @@ export default {
           this.dataDelete = response.data.result;
           this.btnMyOrder();
         });
+        if(this.dataMyOrder.length == 1){
+          this.cart = null;
+          this.$parent.cart = {
+            totalprice: 0,
+            totalqty: 0,
+            item: [],
+          };
+          this.btnupdateOrder = false;
+          sessionStorage.removeItem('cart'); 
+          sessionStorage.removeItem('btnupdateOrder');  
+        }
     },
     tbn_editOrder(inx){
       this.idOrder = this.dataMyOrder[inx].id;

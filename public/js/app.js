@@ -2737,8 +2737,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       dataCheckout: null,
       idOrder: null,
       address_order: null,
-      editqtycartpopupdata: null // editqtycartpopupshow:null,
-
+      editqtycartpopupdata: null
     };
   },
   mounted: function mounted() {
@@ -2923,7 +2922,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     AddressForm: function AddressForm() {
       var cart_session = JSON.parse(sessionStorage.getItem("cart"));
-      console.log(cart_session.item.length);
 
       if (cart_session.item.length > 0) {
         this.CheckOutForm = 1;
@@ -2939,18 +2937,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           _this4.dataMyOrder = response.data.result;
           sessionStorage.setItem("myOrder", JSON.stringify(response.data.result));
           _this4.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
-
-          if (_this4.dataMyOrder.length == 0) {
-            _this4.cart = null;
-            _this4.$parent.cart = {
-              totalprice: 0,
-              totalqty: 0,
-              item: []
-            };
-            _this4.btnupdateOrder = false;
-            sessionStorage.removeItem('cart');
-            sessionStorage.removeItem('btnupdateOrder');
-          }
         });
       }
     },
@@ -2962,6 +2948,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         _this5.btnMyOrder();
       });
+
+      if (this.dataMyOrder.length == 1) {
+        this.cart = null;
+        this.$parent.cart = {
+          totalprice: 0,
+          totalqty: 0,
+          item: []
+        };
+        this.btnupdateOrder = false;
+        sessionStorage.removeItem('cart');
+        sessionStorage.removeItem('btnupdateOrder');
+      }
     },
     tbn_editOrder: function tbn_editOrder(inx) {
       var _this6 = this;
