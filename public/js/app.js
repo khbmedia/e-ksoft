@@ -45526,12 +45526,13 @@ var render = function() {
                           "sup",
                           {
                             staticStyle: {
-                              "font-size": "13px",
-                              position: "absolute",
-                              right: "25px",
+                              right: "0px",
+                              top: "-25px",
+                              "font-size": "18px",
+                              "border-radius": "50%",
+                              background: "#ff0000",
                               color: "#fff",
-                              "padding-left": "10px",
-                              top: "15px"
+                              padding: "0px 7px"
                             }
                           },
                           [_vm._v("0")]
@@ -45561,12 +45562,13 @@ var render = function() {
                           "sup",
                           {
                             staticStyle: {
-                              "font-size": "13px",
-                              position: "absolute",
-                              right: "25px",
+                              right: "0px",
+                              top: "-25px",
+                              "font-size": "18px",
+                              "border-radius": "50%",
+                              background: "#ff0000",
                               color: "#fff",
-                              "padding-left": "10px",
-                              top: "15px"
+                              padding: "0px 7px"
                             }
                           },
                           [_vm._v(_vm._s(_vm.cart.totalqty))]
