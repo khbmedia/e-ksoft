@@ -2,6 +2,38 @@
   <div class="wrap">
     <div class="top-header">
       <div class="container">
+         <!-- Modal -->
+        <div class="modal fade" id="editqtycartpopup" >
+          <div class="modal-dialog" role="document" v-if="this.editqtycartpopupdata">
+            <div class="modal-content" style="order-radius: 0; background: #1b1d1f none repeat scroll 0 0;border-radius: 0;">
+              <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel" style="color: #fff; text-align: center">{{this.editqtycartpopupdata.name}}</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row" style="display: flex; justify-content: center; align-items: center;">
+                  <div class="col-md-3">
+                    <div class="imgpopup">
+                      <img v-bind:src="'data:image/jpeg;base64,' + this.editqtycartpopupdata.picture" width="80" height="100" />
+                    </div>
+                  </div>                   
+                  <div class="col-md-8">    
+                    <div class="btnchange">
+                      <label class="qty">Quantity : </label>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, -1)" class="donqty">-</a>
+                      <span class="showqty">{{this.editqtycartpopupdata.qty}}</span>
+                      <a href="javascript:;" @click="editQtyCart(editqtycartpopupdata, 1)" class="upqty">+</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <div class="modal-footer link-cart" style="margin-top: 0px;">
+                <button type="button" class="cart-checkout" data-dismiss="modal" @click="saveCart()" style="width: 97px; height: 35px;">SAVE</button>
+                <button type="button" class="cart-checkout" data-dismiss="modal" style="width: 97px; height: 35px;">CLOSE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--end model -->
         <div class="row">
           <div class="col-md-4 col-sm-4 hidden-xs">
             <div class="top-left">
@@ -102,7 +134,7 @@
                           <th scope="col">No</th>
                           <th scope="col">Reference</th>
                           <th scope="col">Amount</th>
-                          <th scope="col">Reference</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -114,9 +146,16 @@
                           <td>{{ item.date.slice(0, 10) }}</td>
                           <td>
                             <a
+                              href="javascript:;"  data-dismiss="modal"
+                              @click="tbn_editOrder(idx)"
+                              style="color:rgba(44, 240, 109, 0.863); margin-right: 5px;"
+                              >Edit</a
+                            >
+
+                            <a
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
-                              style="color:red;"
+                              style="color:red;margin-left: 5px;"
                               >Delete</a
                             >
                           </td>
@@ -320,6 +359,7 @@ export default {
     return {
       currentTabComponent:'Cart',
       hideCheckOut: false,
+      btnupdateOrder:false,
       items: null,
       cart: null,
       CartQty: null,
@@ -333,11 +373,17 @@ export default {
       lat: null,
       address: null,
       phone: null,
-      dataCheckout:null
+      dataCheckout:null,
+      idOrder:null,
+      address_order:null,  
+      editqtycartpopupdata:null, 
+      // editqtycartpopupshow:null,
+        
     };
   },
 
   mounted() {
+    this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
         this.lat = position.coords.latitude;
@@ -410,23 +456,25 @@ export default {
       sessionStorage.removeItem("cart");
       this.loginame = null;
     },
-
     removeCart(id) {
       this.$parent.removeCart = id;
     },
     btnEditCart() {
       this.editQty = this.cart.item;
       this.hideCheckOut = true;
+      this.btnupdateOrder = false;
     },
     editQtyCart(item, numer) {
-      this.editQty.forEach((element) => {
-        if (item.id == element.id) {
-          element.qty = element.qty + numer;
-          if (element.qty <= 0) {
-            element.qty = 1;
+        this.editQty.forEach((element) => {
+          if (item.name == element.name) {
+            element.qty = element.qty + numer;
+            element.quantity = element.qty;
+            if (element.qty <= 0) {
+              element.qty = 1;
+              element.quantity = 1;
+            }
           }
-        }
-      });
+        });
     },
 
     saveCart() {
@@ -444,6 +492,9 @@ export default {
       this.$parent.cart.totalqty = totalQty;
       this.editQty = null; // format data
       sessionStorage.setItem('cart',JSON.stringify(this.$parent.cart));
+      if(JSON.parse(sessionStorage.getItem("btnupdateOrder"))){
+        this.btnupdateOrder = JSON.parse(sessionStorage.getItem("btnupdateOrder"));
+      }
     },
 
     checkout() {
@@ -533,10 +584,7 @@ export default {
           )
           .then((response) => {
             this.dataMyOrder = response.data.result;
-            sessionStorage.setItem(
-              "myOrder",
-              JSON.stringify(response.data.result)
-            );
+            sessionStorage.setItem("myOrder",JSON.stringify(response.data.result));
             this.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
           });
       }
@@ -550,6 +598,88 @@ export default {
           this.btnMyOrder();
         });
     },
+    tbn_editOrder(inx){
+      this.idOrder = this.dataMyOrder[inx].id;
+      // check btn update order
+      this.btnupdateOrder = true;
+      sessionStorage.setItem('btnupdateOrder',JSON.stringify(this.btnupdateOrder));
+       // clear cart
+          this.$parent.cart ={
+            totalprice: 0,
+            totalqty: 0,
+            item: [],
+          };
+
+      axios
+          .get(
+            "/api/get_edit_order/" + this.$route.query.tenancy + "/" + this.idOrder)
+          .then((response) => {
+           this.address_order = response.data.result.saleOrder.shippingAddress;
+          this.$parent.cart.item=[...this.$parent.cart.item,...response.data.result.saleOrderTransactions];
+           var data={};
+           var items=[]
+            for(let i=0;i<this.$parent.cart.item.length;i++){
+            data={...data,...this.$parent.cart.item[i],...{qty:this.$parent.cart.item[i].quantity,name:this.$parent.cart.item[i].itemName}};
+            items=[...items,...[data]];
+           }
+           this.$parent.cart.item=[];
+           this.$parent.cart.item=items;
+ 
+        //  count total qty and total price
+          var totalPrice = 0;
+          var totalQty = 0;
+          this.$parent.cart.item.forEach((element) => {
+            totalPrice += element.amount;
+            totalQty += element.qty;
+          });
+          this.$parent.cart.totalqty = totalQty;
+          this.$parent.cart.totalprice = totalPrice;
+          sessionStorage.setItem('cart',JSON.stringify(this.$parent.cart));
+         this.cart = this.$parent.cart;
+      });
+    },
+    tbn_updateOrder(){
+      const updateOrder = {
+            saleOrder: {
+              id: this.idOrder,
+              tenancyName: this.$route.query.tenancy,
+              branchId: 1,
+              customerName: this.loginame,
+              shippingAddress: this.address_order,
+              memo: "",
+            },
+            saleOrderTransactions: this.$parent.cart.item,
+          };
+      axios
+          .post(
+            "/api/get_checkout/"+this.$route.query.tenancy,updateOrder)
+          .then((response) => {
+
+          // check btn update order
+          this.btnupdateOrder = false;
+          sessionStorage.removeItem('cart'); 
+          sessionStorage.removeItem('btnupdateOrder'); 
+          this.cart = null;
+          this.$parent.cart= {
+                    totalprice: 0,
+                    totalqty: 0,
+                    item: [],
+                  },
+          
+          this.$fire({
+                title: '<span style="color:#fff">Update Order Success</span>',
+                type: "success",
+                background: "#000",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+        });
+
+    },
+    editqtycartpopup(editqtycartpopupdata){
+      this.editqtycartpopupdata = editqtycartpopupdata;
+      this.editQty = this.cart.item;
+    }
   },
 
   watch: {
@@ -559,6 +689,12 @@ export default {
     loginame(value) {
       this.loginame = value;
     },
+    editqtycartpopupdata(value){
+      if(value){
+        this.value = value;
+      }
+    }
+       
   },
 };
 </script>
@@ -570,4 +706,59 @@ export default {
 .swal2-popup {
   z-index: 999;
 }
+.imgpopup{
+ float: left;
+}
+.imgpopup img{
+  max-width: none !important;
+}
+.btnchange{
+  color:black;
+  font-size: 20px; 
+  float: left;
+  
+}
+.btnchange .qty{
+  color:white; 
+  margin-right: 10px; 
+  font-weight: 100;
+}
+.btnchange .donqty{
+  background-color: white; 
+  color:black;
+  padding: 0px 9px; 
+  font-size: 20px;
+  }
+  .btnchange .showqty{
+    background-color: white; 
+    padding: 0px 50px; 
+    font-size: 20px; 
+    margin: 0px -4px;
+  }
+  .btnchange .upqty{
+    background-color: white; 
+    color:black; 
+    padding: 0px 9px; 
+    font-size: 20px;
+  }
+  @media (max-width: 414px) { 
+    .btnchange .qty{
+      margin-right: 3px; 
+      font-weight: 100;
+      font-size: 17px;
+    }
+    .btnchange .donqty{
+      padding: 0px 8px; 
+      font-size: 18px;
+    }
+    .btnchange .showqty{
+      padding: 0px 25px; 
+      font-size: 18px; 
+      margin: 0px -4px;
+    }
+    .btnchange .upqty{
+      padding: 0px 8px; 
+      font-size: 18px;
+    }
+  }
 </style>

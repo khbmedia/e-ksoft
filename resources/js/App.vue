@@ -34,7 +34,7 @@ export default {
     };
   },
   mounted() {
-    sessionStorage.removeItem('savefrom-helper-extension'); // clear session Unidentified!
+   
     if(sessionStorage.getItem('cart')){
       this.cart=null;
       this.cart=JSON.parse(sessionStorage.getItem('cart'));
@@ -55,26 +55,48 @@ export default {
     
     itemAdd(value) {
       if (value) {
-       this.itemAdd = value;
+        var idadd = value.id;
+
+      if(JSON.parse(sessionStorage.getItem("btnupdateOrder"))){
+        var ct = false;
+       
+        this.cart.item.forEach((element) => {
+
+          console.log('true-item-'+value.id+'='+element.itemId);
+          
+          if(element.itemId == idadd && value.id != null){
+            value.id = element.id;           
+            ct = true;      
+          }
+          if(ct == false && element.id != null){     
+            value.id = null;  
+            value.itemId = idadd;
+            value.saleOrderId = this.$children[0].idOrder; 
+          }
+        });   
+       
+      }
+        this.itemAdd = value;
         var j = 0;
         if (this.cart.item.length > 0) {
           for (let i = 0; i < this.cart.item.length; i++) {
-            if (this.itemAdd.id == this.cart.item[i].id) {
+            if (this.itemAdd.name == this.cart.item[i].name) {
               this.cart.item[i].qty=this.cart.item[i].qty+value.qty;
+              this.cart.item[i].quantity=this.cart.item[i].qty;
               this.cart.item[i].amount =this.cart.item[i].qty * this.cart.item[i].price;
               j++;
             }
           }
           if (j == 0) {
             const newItem = {
-              ...this.itemAdd,...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
+              ...this.itemAdd,...{ qty: value.qty,quantity: value.qty, amount: this.itemAdd.price*value.qty },
             };
             this.cart.item = [...this.cart.item, ...[newItem]];
           }
         } else {
           const newItem = {
             ...this.itemAdd,
-            ...{ qty: value.qty, amount: this.itemAdd.price*value.qty },
+            ...{ qty: value.qty,quantity: value.qty, amount: this.itemAdd.price*value.qty },
           };
           this.cart.item = [...this.cart.item, ...[newItem]];
 
@@ -126,6 +148,7 @@ export default {
 
       this.$children[2].search = value;
     },
+
   },
 };
 </script>
