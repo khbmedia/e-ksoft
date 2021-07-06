@@ -200,10 +200,9 @@
                         id="loginform"
                         style="border-radius: 0"
                         class="form-control"
-                        name="username"
-                        ref="username"
-                        
+                        name="username" 
                       />
+                     
                     </div>
                     <div class="form-group">
                       <button
@@ -452,6 +451,7 @@ export default {
        sessionStorage.removeItem('btnupdateOrder');
       this.btnupdateOrder = false;    
       this.loginame = null;
+      this.username = '';
       
     },
     removeCart(id) {
@@ -698,10 +698,7 @@ export default {
     loginame(value) {
       if(value){
         this.loginame = value;
-      }else{
-        this.loginame = null;
-      }
-      
+      }   
     },
     editqtycartpopupdata(value){
       if(value){

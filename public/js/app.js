@@ -2708,7 +2708,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
 
 
 
@@ -2816,6 +2815,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       sessionStorage.removeItem('btnupdateOrder');
       this.btnupdateOrder = false;
       this.loginame = null;
+      this.username = '';
     },
     removeCart: function removeCart(id) {
       this.$parent.removeCart = id;
@@ -3056,8 +3056,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     loginame: function loginame(value) {
       if (value) {
         this.loginame = value;
-      } else {
-        this.loginame = null;
       }
     },
     editqtycartpopupdata: function editqtycartpopupdata(value) {
@@ -45754,7 +45752,6 @@ var render = function() {
                                 expression: "username"
                               }
                             ],
-                            ref: "username",
                             staticClass: "form-control",
                             staticStyle: { "border-radius": "0" },
                             attrs: {
