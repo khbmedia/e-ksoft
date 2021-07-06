@@ -2708,6 +2708,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -45514,20 +45520,37 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "account-link",
+                          staticClass: "account-link hidden-xs",
                           attrs: { href: "javascript:;" }
                         },
                         [
                           _c("span", { staticClass: "lnr lnr-user" }),
-                          _vm._v(_vm._s(_vm.loginame))
+                          _vm._v(_vm._s(_vm.loginame) + "\n                ")
                         ]
                       ),
+                      _vm._v(" "),
+                      _vm._m(0),
                       _vm._v(" "),
                       !_vm.isScreenPc()
                         ? _c(
                             "ul",
                             { staticClass: "list-unstyled inner-user-info" },
                             [
+                              _vm.loginame != null
+                                ? _c("li", [
+                                    _c(
+                                      "a",
+                                      { attrs: { href: "javascript:;" } },
+                                      [
+                                        _c("span", {
+                                          staticClass: "lnr lnr-user"
+                                        }),
+                                        _vm._v(" " + _vm._s(_vm.loginame))
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
                               _vm.loginame != null
                                 ? _c("li", {}, [
                                     _c(
@@ -45631,11 +45654,11 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._m(0),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c("table", { staticClass: "table" }, [
-                            _vm._m(1),
+                            _vm._m(2),
                             _vm._v(" "),
                             _c(
                               "tbody",
@@ -45728,7 +45751,7 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c(
@@ -45801,7 +45824,7 @@ var render = function() {
           _c("div", { staticClass: "hidden-lg hidden-md hidden-sm col-xs-4" }, [
             _c("div", { staticClass: "top-right" }, [
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(3),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -45856,12 +45879,13 @@ var render = function() {
                           "sup",
                           {
                             staticStyle: {
-                              "font-size": "13px",
-                              position: "absolute",
-                              right: "25px",
+                              right: "0px",
+                              top: "-25px",
+                              "font-size": "18px",
+                              "border-radius": "50%",
+                              background: "#ff0000",
                               color: "#fff",
-                              "padding-left": "10px",
-                              top: "15px"
+                              padding: "0px 7px"
                             }
                           },
                           [_vm._v("0")]
@@ -45891,12 +45915,13 @@ var render = function() {
                           "sup",
                           {
                             staticStyle: {
-                              "font-size": "13px",
-                              position: "absolute",
-                              right: "25px",
+                              right: "0px",
+                              top: "-25px",
+                              "font-size": "18px",
+                              "border-radius": "50%",
+                              background: "#ff0000",
                               color: "#fff",
-                              "padding-left": "10px",
-                              top: "15px"
+                              padding: "0px 7px"
                             }
                           },
                           [_vm._v(_vm._s(_vm.cart.totalqty))]
@@ -45928,7 +45953,7 @@ var render = function() {
     _c("div", { staticClass: "header header-home" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(4),
+          _vm._m(5),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-2 col-sm-2 hidden-xs" }, [
             _c("div", { staticClass: "home-box-extra" }, [
@@ -45976,7 +46001,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(5),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -46009,6 +46034,29 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "account-link hidden-lg hidden-md hidden-sm",
+        staticStyle: {
+          "text-align": "left",
+          "font-size": "30px",
+          "font-weight": "600"
+        },
+        attrs: { href: "javascript:;" }
+      },
+      [
+        _c("span", {
+          staticClass: "lnr lnr-menu",
+          staticStyle: { color: "#fff", "margin-top": "8px" }
+        })
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -46685,7 +46733,15 @@ var render = function() {
                 _c("div", { staticClass: "nav-tabs-border" }, [
                   _c(
                     "ul",
-                    { staticClass: "nav nav-tabs", attrs: { role: "tablist" } },
+                    {
+                      staticClass: "nav nav-tabs",
+                      staticStyle: {
+                        display: "flex",
+                        "overflow-x": "auto",
+                        "overflow-y": "hidden"
+                      },
+                      attrs: { role: "tablist" }
+                    },
                     [
                       _c(
                         "li",
@@ -46732,49 +46788,37 @@ var render = function() {
                     "div",
                     { staticClass: "row" },
                     _vm._l(4, function(item, idx) {
-                      return _c("div", { key: idx, staticClass: "col-md-3" }, [
-                        _c("div", { staticClass: "item-product" }, [
-                          _c("div", { staticClass: "item-product-thumb" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "product-thumb-link",
-                                attrs: { href: "javascript:void(0);" }
-                              },
-                              [
-                                _c("skeleton-loader-vue", {
-                                  attrs: {
-                                    width: 262,
-                                    height: 262,
-                                    animation: "fade"
-                                  }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _vm._m(0, true)
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "item-product-info" }, [
-                            _c(
-                              "h3",
-                              { staticClass: "title-product" },
-                              [
-                                _c("skeleton-loader-vue", {
-                                  attrs: {
-                                    width: 262,
-                                    height: 19,
-                                    animation: "fade"
-                                  }
-                                })
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "info-price" }, [
+                      return _c(
+                        "div",
+                        { key: idx, staticClass: "col-md-3 col-sm-6 col-xs-6" },
+                        [
+                          _c("div", { staticClass: "item-product" }, [
+                            _c("div", { staticClass: "item-product-thumb" }, [
                               _c(
-                                "span",
+                                "a",
+                                {
+                                  staticClass: "product-thumb-link",
+                                  attrs: { href: "javascript:void(0);" }
+                                },
+                                [
+                                  _c("skeleton-loader-vue", {
+                                    attrs: {
+                                      width: 262,
+                                      height: 262,
+                                      animation: "fade"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _vm._m(0, true)
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "item-product-info" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "title-product" },
                                 [
                                   _c("skeleton-loader-vue", {
                                     attrs: {
@@ -46785,11 +46829,27 @@ var render = function() {
                                   })
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "info-price" }, [
+                                _c(
+                                  "span",
+                                  [
+                                    _c("skeleton-loader-vue", {
+                                      attrs: {
+                                        width: 262,
+                                        height: 19,
+                                        animation: "fade"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
                             ])
                           ])
-                        ])
-                      ])
+                        ]
+                      )
                     }),
                     0
                   )

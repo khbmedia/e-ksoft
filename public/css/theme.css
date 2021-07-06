@@ -2889,7 +2889,7 @@ Page Product List Mr
 	display:none;
 }
 .top-right .info-user::before {
-    color: #fff;
+    /* color: #fff; */
     content: "";
     font-family: linearicons;
     left: 50%;
@@ -2916,7 +2916,9 @@ Page Product List Mr
     right: auto;
     text-align: left;
 	top:100%;
-	left:0;
+	left: -15px;
+    width: 350px;
+    height: 1000px;
 }
 .top-right .info-cart{
 	position:relative;
@@ -2925,7 +2927,7 @@ Page Product List Mr
     position: relative;
 }
 .top-right .info-user:hover .inner-user-info{
-	margin-top: 0px;
+	margin-top: 8px;
 }
 .top-right .mycart-link .number-cart-total {
     background: #fbb450 none repeat scroll 0 0;
