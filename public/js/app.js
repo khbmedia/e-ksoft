@@ -46199,7 +46199,7 @@ var staticRenderFns = [
           "font-size": "30px",
           "font-weight": "600"
         },
-        attrs: { href: "#" }
+        attrs: { type: "button", href: "#" }
       },
       [
         _c("span", {

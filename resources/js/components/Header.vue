@@ -73,7 +73,7 @@
                   <a href="javascript:;" class="account-link hidden-xs">
                     <span class="lnr lnr-user"></span>{{ loginame }}
                   </a>
-                  <a href="#" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
+                  <a type="button" href="#" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
                     <span class="lnr lnr-menu" style="color: #fff; margin-top: 8px;"></span>
                   </a>
                   <ul class="list-unstyled inner-user-info" v-if="!isScreenPc()">
