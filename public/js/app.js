@@ -45567,368 +45567,416 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-8 col-sm-8 col-xs-4" }, [
-            _c("div", { staticClass: "top-right" }, [
-              _c("ul", { staticClass: "list-inline" }, [
-                _c(
-                  "li",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.loginame == null,
-                        expression: "loginame == null"
-                      }
-                    ]
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        ref: "btnLogin",
-                        staticClass: "account-link",
-                        attrs: { href: "#myModal", "data-toggle": "modal" }
-                      },
-                      [_vm._v("Login")]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _vm.loginame != null && _vm.isScreenPc()
-                  ? _c("li", {}, [
-                      _c(
-                        "a",
+          _c(
+            "div",
+            { staticClass: "col-md-8 col-sm-8 col-xs-4" },
+            [
+              _c("div", { staticClass: "top-right" }, [
+                _c("ul", { staticClass: "list-inline" }, [
+                  _c(
+                    "li",
+                    {
+                      directives: [
                         {
-                          staticStyle: { cursor: "pointer" },
-                          attrs: {
-                            "data-toggle": "modal",
-                            "data-target": "#myOrder"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.btnMyOrder()
-                            }
-                          }
-                        },
-                        [
-                          _c("span", { staticClass: "lnr lnr-book" }),
-                          _vm._v(" My Order")
-                        ]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.loginame != null
-                  ? _c("li", { class: { "info-user": !_vm.isScreenPc() } }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "account-link hidden-xs",
-                          attrs: { href: "javascript:;" }
-                        },
-                        [
-                          _c("span", { staticClass: "lnr lnr-user" }),
-                          _vm._v(_vm._s(_vm.loginame) + "\n                ")
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(0),
-                      _vm._v(" "),
-                      !_vm.isScreenPc()
-                        ? _c(
-                            "ul",
-                            { staticClass: "list-unstyled inner-user-info" },
-                            [
-                              _vm.loginame != null
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      { attrs: { href: "javascript:;" } },
-                                      [
-                                        _c("span", {
-                                          staticClass: "lnr lnr-user"
-                                        }),
-                                        _vm._v(" " + _vm._s(_vm.loginame))
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.loginame != null
-                                ? _c("li", {}, [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticStyle: { cursor: "pointer" },
-                                        attrs: {
-                                          "data-toggle": "modal",
-                                          "data-target": "#myOrder"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.btnMyOrder()
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", {
-                                          staticClass: "lnr lnr-book"
-                                        }),
-                                        _vm._v(" My Order")
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.loginame != null
-                                ? _c("li", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "javascript:;" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.logout()
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", {
-                                          staticClass: "lnr lnr-power-switch"
-                                        }),
-                                        _vm._v(" Logout")
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e()
-                            ]
-                          )
-                        : _vm._e()
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.loginame != null && _vm.isScreenPc()
-                  ? _c("li", [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "javascript:;" },
-                          on: {
-                            click: function($event) {
-                              return _vm.logout()
-                            }
-                          }
-                        },
-                        [
-                          _c("span", { staticClass: "lnr lnr-power-switch" }),
-                          _vm._v(" Logout")
-                        ]
-                      )
-                    ])
-                  : _vm._e()
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "modal fade",
-                attrs: {
-                  id: "myOrder",
-                  tabindex: "-1",
-                  role: "dialog",
-                  "aria-labelledby": "exampleModalLabel",
-                  "aria-hidden": "true"
-                }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "modal-dialog", attrs: { role: "document" } },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "modal-content",
-                        staticStyle: {
-                          "order-radius": "0",
-                          background: "#1b1d1f none repeat scroll 0 0",
-                          "border-radius": "0"
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.loginame == null,
+                          expression: "loginame == null"
                         }
-                      },
-                      [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "modal-body" }, [
-                          _c("table", { staticClass: "table" }, [
-                            _vm._m(2),
-                            _vm._v(" "),
-                            _c(
-                              "tbody",
-                              { staticStyle: { color: "#fff" } },
-                              _vm._l(_vm.dataMyOrder, function(item, idx) {
-                                return _c("tr", { key: idx }, [
-                                  _c("th", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(idx + 1))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.reference))]),
-                                  _vm._v(" "),
-                                  _c("td", [_vm._v(_vm._s(item.amount))]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(item.date.slice(0, 10)))
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticStyle: {
-                                          color: "rgba(44, 240, 109, 0.863)",
-                                          "margin-right": "5px"
-                                        },
-                                        attrs: {
-                                          href: "javascript:;",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.tbn_editOrder(idx)
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Edit")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticStyle: {
-                                          color: "red",
-                                          "margin-left": "5px"
-                                        },
-                                        attrs: { href: "javascript:;" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.tbn_deleteCart(item.id)
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Delete")]
-                                    )
-                                  ])
-                                ])
-                              }),
-                              0
-                            )
-                          ])
-                        ])
                       ]
-                    )
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal fade", attrs: { id: "myModal" } }, [
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          ref: "btnLogin",
+                          staticClass: "account-link",
+                          attrs: { href: "#myModal", "data-toggle": "modal" }
+                        },
+                        [_vm._v("Login")]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.loginame != null && _vm.isScreenPc()
+                    ? _c("li", {}, [
+                        _c(
+                          "a",
+                          {
+                            staticStyle: { cursor: "pointer" },
+                            attrs: {
+                              "data-toggle": "modal",
+                              "data-target": "#myOrder"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.btnMyOrder()
+                              }
+                            }
+                          },
+                          [
+                            _c("span", { staticClass: "lnr lnr-book" }),
+                            _vm._v(" My Order")
+                          ]
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.loginame != null
+                    ? _c("li", { class: { "info-user": !_vm.isScreenPc() } }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "account-link hidden-xs",
+                            attrs: { href: "javascript:;" }
+                          },
+                          [
+                            _c("span", { staticClass: "lnr lnr-user" }),
+                            _vm._v(_vm._s(_vm.loginame) + "\n                ")
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        !_vm.isScreenPc()
+                          ? _c(
+                              "ul",
+                              { staticClass: "list-unstyled inner-user-info" },
+                              [
+                                _vm.loginame != null
+                                  ? _c("li", [
+                                      _c(
+                                        "a",
+                                        { attrs: { href: "javascript:;" } },
+                                        [
+                                          _c("span", {
+                                            staticClass: "lnr lnr-user"
+                                          }),
+                                          _vm._v(" " + _vm._s(_vm.loginame))
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.loginame != null
+                                  ? _c("li", {}, [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticStyle: { cursor: "pointer" },
+                                          attrs: {
+                                            "data-toggle": "modal",
+                                            "data-target": "#myOrder"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.btnMyOrder()
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("span", {
+                                            staticClass: "lnr lnr-book"
+                                          }),
+                                          _vm._v(" My Order")
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.loginame != null
+                                  ? _c("li", [
+                                      _c(
+                                        "a",
+                                        {
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.logout()
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("span", {
+                                            staticClass: "lnr lnr-power-switch"
+                                          }),
+                                          _vm._v(" Logout")
+                                        ]
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]
+                            )
+                          : _vm._e()
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.loginame != null && _vm.isScreenPc()
+                    ? _c("li", [
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: "javascript:;" },
+                            on: {
+                              click: function($event) {
+                                return _vm.logout()
+                              }
+                            }
+                          },
+                          [
+                            _c("span", { staticClass: "lnr lnr-power-switch" }),
+                            _vm._v(" Logout")
+                          ]
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 {
-                  staticClass: "modal-dialog modal-login",
-                  staticStyle: {
-                    height: "80vh",
-                    display: "flex",
-                    "align-items": "center",
-                    "justify-content": "center"
+                  staticClass: "modal fade",
+                  attrs: {
+                    id: "myOrder",
+                    tabindex: "-1",
+                    role: "dialog",
+                    "aria-labelledby": "exampleModalLabel",
+                    "aria-hidden": "true"
                   }
                 },
                 [
                   _c(
                     "div",
                     {
-                      staticClass: "modal-content",
+                      staticClass: "modal-dialog",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-content",
+                          staticStyle: {
+                            "order-radius": "0",
+                            background: "#1b1d1f none repeat scroll 0 0",
+                            "border-radius": "0"
+                          }
+                        },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _c("table", { staticClass: "table" }, [
+                              _vm._m(2),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                { staticStyle: { color: "#fff" } },
+                                _vm._l(_vm.dataMyOrder, function(item, idx) {
+                                  return _c("tr", { key: idx }, [
+                                    _c("th", { attrs: { scope: "row" } }, [
+                                      _vm._v(_vm._s(idx + 1))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.reference))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.amount))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(item.date.slice(0, 10)))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _c(
+                                        "a",
+                                        {
+                                          staticStyle: {
+                                            color: "rgba(44, 240, 109, 0.863)",
+                                            "margin-right": "5px"
+                                          },
+                                          attrs: {
+                                            href: "javascript:;",
+                                            "data-dismiss": "modal"
+                                          },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.tbn_editOrder(idx)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Edit")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "a",
+                                        {
+                                          staticStyle: {
+                                            color: "red",
+                                            "margin-left": "5px"
+                                          },
+                                          attrs: { href: "javascript:;" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.tbn_deleteCart(item.id)
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Delete")]
+                                      )
+                                    ])
+                                  ])
+                                }),
+                                0
+                              )
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "center",
+                { staticClass: "modal fade", attrs: { id: "myModal" } },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-login",
                       staticStyle: {
-                        background: "#1b1d1f",
-                        "border-radius": "0"
+                        height: "80vh",
+                        display: "flex",
+                        "align-items": "center",
+                        "justify-content": "center"
                       }
                     },
                     [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c(
-                          "p",
-                          {
-                            staticClass: "message",
-                            staticStyle: { "text-aling": "center" }
-                          },
-                          [_vm._v(_vm._s(_vm.msg))]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-content",
+                          staticStyle: {
+                            background: "#1b1d1f",
+                            "border-radius": "0"
+                          }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-header" }, [
+                            _c("div", { staticClass: "avatar" }, [
+                              _c("img", {
+                                attrs: {
+                                  src:
+                                    "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+                                  alt: "Avatar"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "h4",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.username,
-                                expression: "username"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            staticStyle: { "border-radius": "0" },
-                            attrs: {
-                              type: "text",
-                              id: "loginform",
-                              name: "username"
-                            },
-                            domProps: { value: _vm.username },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                staticClass: "modal-title",
+                                staticStyle: { color: "#fff" }
+                              },
+                              [_vm._v("Login")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "close",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal",
+                                  "aria-hidden": "true"
                                 }
-                                _vm.username = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-primary btn-lg btn-block login-btn",
-                              staticStyle: { "border-radius": "0" },
-                              attrs: { type: "submit" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.user_name()
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    ×\n                  "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _c(
+                              "p",
+                              {
+                                staticClass: "message",
+                                staticStyle: { "text-aling": "center" }
+                              },
+                              [_vm._v(_vm._s(_vm.msg))]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.username,
+                                    expression: "username"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                staticStyle: { "border-radius": "0" },
+                                attrs: {
+                                  type: "text",
+                                  id: "loginform",
+                                  name: "username"
+                                },
+                                domProps: { value: _vm.username },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.username = $event.target.value
+                                  }
                                 }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                      Login\n                    "
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-lg btn-block login-btn",
+                                  staticStyle: { "border-radius": "0" },
+                                  attrs: { type: "submit" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.user_name()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Login\n                    "
+                                  )
+                                ]
                               )
-                            ]
-                          )
-                        ])
-                      ])
+                            ])
+                          ])
+                        ]
+                      )
                     ]
                   )
                 ]
               )
-            ])
-          ]),
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "hidden-lg hidden-md hidden-sm col-xs-4" }, [
             _c("div", { staticClass: "top-right" }, [
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(4),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -46057,7 +46105,7 @@ var render = function() {
     _c("div", { staticClass: "header header-home" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(5),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-2 col-sm-2 hidden-xs" }, [
             _c("div", { staticClass: "home-box-extra" }, [
@@ -46105,7 +46153,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(6),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -46151,7 +46199,7 @@ var staticRenderFns = [
           "font-size": "30px",
           "font-weight": "600"
         },
-        attrs: { href: "javascript:;" }
+        attrs: { href: "#" }
       },
       [
         _c("span", {
@@ -46206,39 +46254,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c("div", { staticClass: "avatar" }, [
-        _c("img", {
-          attrs: {
-            src:
-              "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-            alt: "Avatar"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("h4", { staticClass: "modal-title", staticStyle: { color: "#fff" } }, [
-        _vm._v("Login")
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-hidden": "true"
-          }
-        },
-        [_vm._v("\n                    ×\n                  ")]
-      )
     ])
   },
   function() {
