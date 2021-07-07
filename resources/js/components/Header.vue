@@ -257,12 +257,12 @@
                   v-if="cart == null"
                 >
                   <span class="lnr lnr-cart" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
-                  <sup style="right: 0px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">0</sup>
+                  <sup style="right: 27px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">0</sup>
                 </a>
 
                 <a href="#" class="icon-extra-sub icon-home-cart" v-else>
                   <span class="lnr lnr-cart" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
-                  <sup style="right: 0px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">{{ cart.totalqty }}</sup>
+                  <sup style="right: 27px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">{{ cart.totalqty }}</sup>
                 </a>
                 <div class="home-extra-sub nav">
                   <a href="#" class="close-extra-sub">Close</a>

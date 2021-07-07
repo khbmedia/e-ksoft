@@ -45879,7 +45879,7 @@ var render = function() {
                           "sup",
                           {
                             staticStyle: {
-                              right: "0px",
+                              right: "27px",
                               top: "-25px",
                               "font-size": "18px",
                               "border-radius": "50%",
@@ -45915,7 +45915,7 @@ var render = function() {
                           "sup",
                           {
                             staticStyle: {
-                              right: "0px",
+                              right: "27px",
                               top: "-25px",
                               "font-size": "18px",
                               "border-radius": "50%",
