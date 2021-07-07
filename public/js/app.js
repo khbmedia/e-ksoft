@@ -2713,9 +2713,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
 
 
 
@@ -45785,10 +45782,7 @@ var render = function() {
                                     _c(
                                       "a",
                                       {
-                                        staticStyle: {
-                                          color: "rgba(44, 240, 109, 0.863)",
-                                          "margin-right": "5px"
-                                        },
+                                        staticClass: "btn btn-success",
                                         attrs: {
                                           href: "javascript:;",
                                           "data-dismiss": "modal"
@@ -45799,16 +45793,20 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [_vm._v("Edit")]
+                                      [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              "https://img.icons8.com/wired/20/000000/edit-property.png"
+                                          }
+                                        })
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c(
                                       "a",
                                       {
-                                        staticStyle: {
-                                          color: "red",
-                                          "margin-left": "5px"
-                                        },
+                                        staticClass: "btn btn-danger",
                                         attrs: { href: "javascript:;" },
                                         on: {
                                           click: function($event) {
@@ -45816,7 +45814,14 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [_vm._v("Delete")]
+                                      [
+                                        _c("img", {
+                                          attrs: {
+                                            src:
+                                              "https://img.icons8.com/wired/20/000000/delete-forever.png"
+                                          }
+                                        })
+                                      ]
                                     )
                                   ])
                                 ])

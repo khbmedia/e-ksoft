@@ -148,16 +148,13 @@
                             <a
                               href="javascript:;"  data-dismiss="modal"
                               @click="tbn_editOrder(idx)"
-                              style="color:rgba(44, 240, 109, 0.863); margin-right: 5px;"
-                              >Edit</a
-                            >
-
+                              class="btn btn-success">
+                              <img src="https://img.icons8.com/wired/20/000000/edit-property.png"/></a>
                             <a
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
-                              style="color:red;margin-left: 5px;"
-                              >Delete</a
-                            >
+                              class="btn btn-danger">
+                              <img src="https://img.icons8.com/wired/20/000000/delete-forever.png"/></a>
                           </td>
                         </tr>
                       </tbody>
