@@ -790,7 +790,10 @@ export default {
     background: white;
     padding: 0px 10px;
     color: black;
-    font-size: 16px;
+    font-size: 18px;
     border: 1px solid;
+  }
+  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align: middle;
   }
 </style>
