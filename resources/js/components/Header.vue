@@ -690,6 +690,18 @@ export default {
     editqtycartpopup(editqtycartpopupdata){
       this.editqtycartpopupdata = editqtycartpopupdata;
       this.editQty = this.cart.item;
+    },
+    canceleditoder(){
+      // check btn update order
+        this.btnupdateOrder = false;
+        sessionStorage.removeItem('btnupdateOrder'); 
+        sessionStorage.removeItem('cart');    
+        this.cart = null;
+        this.$parent.cart= {
+          totalprice: 0,
+          totalqty: 0,
+          item: [],
+        };
     }
   },
 
