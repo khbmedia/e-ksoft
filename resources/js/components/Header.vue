@@ -148,13 +148,13 @@
                             <a
                               href="javascript:;"  data-dismiss="modal"
                               @click="tbn_editOrder(idx)"
-                              class="btn btn-success">
-                              <img src="https://img.icons8.com/wired/20/000000/edit-property.png"/></a>
+                              class="btn_edit">
+                              <span class="lnr lnr-pencil"></span></a>
                             <a
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
-                              class="btn btn-danger">
-                              <img src="https://img.icons8.com/wired/20/000000/delete-forever.png"/></a>
+                              class="btn_edit">
+                              <span class="lnr lnr-trash"></span></a>
                           </td>
                         </tr>
                       </tbody>
@@ -782,5 +782,12 @@ export default {
       padding: 0px 8px; 
       font-size: 18px;
     }
+  }
+  .btn_edit{
+    background: white;
+    padding: 0px 10px;
+    color: black;
+    font-size: 16px;
+    border: 1px solid;
   }
 </style>

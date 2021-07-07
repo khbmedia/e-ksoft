@@ -8164,7 +8164,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 16px;\r\n    border: 1px solid;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45782,7 +45782,7 @@ var render = function() {
                                     _c(
                                       "a",
                                       {
-                                        staticClass: "btn btn-success",
+                                        staticClass: "btn_edit",
                                         attrs: {
                                           href: "javascript:;",
                                           "data-dismiss": "modal"
@@ -45794,11 +45794,8 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _c("img", {
-                                          attrs: {
-                                            src:
-                                              "https://img.icons8.com/wired/20/000000/edit-property.png"
-                                          }
+                                        _c("span", {
+                                          staticClass: "lnr lnr-pencil"
                                         })
                                       ]
                                     ),
@@ -45806,7 +45803,7 @@ var render = function() {
                                     _c(
                                       "a",
                                       {
-                                        staticClass: "btn btn-danger",
+                                        staticClass: "btn_edit",
                                         attrs: { href: "javascript:;" },
                                         on: {
                                           click: function($event) {
@@ -45815,11 +45812,8 @@ var render = function() {
                                         }
                                       },
                                       [
-                                        _c("img", {
-                                          attrs: {
-                                            src:
-                                              "https://img.icons8.com/wired/20/000000/delete-forever.png"
-                                          }
+                                        _c("span", {
+                                          staticClass: "lnr lnr-trash"
                                         })
                                       ]
                                     )
