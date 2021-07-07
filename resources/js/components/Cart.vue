@@ -43,6 +43,7 @@
       <!-- <a href="javascript:;" @click="$parent.btnEditCart()" class="cart-edit">edit cart</a>
       <a href="javascript:;" class="cart-checkout" @click="$parent.saveCart()" v-if="$parent.hideCheckOut">Save</a> -->
       <a href="#" @click="setActive('Checkout')" class="cart-checkout" v-if="!$parent.hideCheckOut && !$parent.btnupdateOrder">checkout</a>
+      <a href="#" @click="$parent.canceleditoder()" class="cart-edit" v-if="$parent.btnupdateOrder">Cancel Edit</a>
       <a href="#" @click="$parent.tbn_updateOrder()" class="cart-checkout" v-if="$parent.btnupdateOrder">Update Order</a>
     </div>
   </div>

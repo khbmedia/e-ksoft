@@ -7,7 +7,7 @@
 			<div class="home-featured-slider">
 				<div class="container">
                     <div class="item-product-featured">
-                        <div class="row">
+                        <div class="row cm_img">
                             <div class="col-md-4 col-sm-5 col-xs-12 col-md-offset-1 col-sm-offset-0">
                                 <div class="product-featured-thumb">
                                     <img v-bind:src="'data:image/jpeg;base64,'+data.picture" ref="images">
@@ -21,7 +21,8 @@
                                     <div class="info-price">
                                         <span>Price : {{data.price}}{{data.currency}}</span>
                                     </div>
-                                    <p class="desc">Description : {{data.description}}</p>
+                                    <h3 style="margin-top:10px;">Description :</h3>
+                                    <p class="desc" v-html="data.description"></p>
                                     <div class="bx-pager">
                                         <a data-slide-index="0" href="#"><img v-bind:src="'data:image/jpeg;base64,'+data.picture" ></a>
                                     </div>
@@ -95,3 +96,7 @@ export default {
     }
 }
 </script>
+<style>
+    .cm_img{display: flex; align-items: center;}
+    @media (max-width: 414px) {.cm_img{display: block;}}
+</style>
