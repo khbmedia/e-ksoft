@@ -146,11 +146,14 @@
                           <td>{{ item.date.slice(0, 10) }}</td>
                           <td>
                             <a
+                              title="Edit"
                               href="javascript:;"  data-dismiss="modal"
                               @click="tbn_editOrder(idx)"
                               class="btn_edit">
+                              
                               <span class="lnr lnr-pencil"></span></a>
                             <a
+                              title="Delete"
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
                               class="btn_edit">

@@ -2713,6 +2713,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 
 
 
@@ -45784,6 +45787,7 @@ var render = function() {
                                       {
                                         staticClass: "btn_edit",
                                         attrs: {
+                                          title: "Edit",
                                           href: "javascript:;",
                                           "data-dismiss": "modal"
                                         },
@@ -45804,7 +45808,10 @@ var render = function() {
                                       "a",
                                       {
                                         staticClass: "btn_edit",
-                                        attrs: { href: "javascript:;" },
+                                        attrs: {
+                                          title: "Delete",
+                                          href: "javascript:;"
+                                        },
                                         on: {
                                           click: function($event) {
                                             return _vm.tbn_deleteCart(item.id)
