@@ -4470,7 +4470,7 @@ Page Product List Mr
     font-size: 13px;
     line-height: inherit;
     margin-right: 6px;
-    padding: 10px 25px;
+    padding: 10px;
     text-transform: uppercase;
 	background:transparent;
 	transition:all 0.5s ease-out 0s;
@@ -4496,7 +4496,7 @@ Page Product List Mr
 	top:0;
 	left:0;
 	content:"";
-	background:#1B1D1F;
+	/* background:#1B1D1F; */
 	opacity:0;
 	transition:all 0.5s ease-out 0s;
 }
@@ -7076,7 +7076,7 @@ Page Product List Mr
     text-transform: uppercase;
 }
 .title-product-best-sale {
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     position: relative;
 }
 .nav-tabs-bestsale .filter-product .btn-filter {
@@ -7178,7 +7178,8 @@ Page Product List Mr
 	text-align:center;
 }
 .product-best-sale{
-	margin-bottom:50px;
+	margin-bottom:20px;
+    margin-top: 20px;
 }
 .paginav-best-seller a {
     background: #f5f5f5 none repeat scroll 0 0;
@@ -7216,7 +7217,6 @@ Page Product List Mr
 							Front Page
 ********************************************************************/
 .header.header-home {
-    background-image: url("../images/home/bg-page.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: auto 100%;

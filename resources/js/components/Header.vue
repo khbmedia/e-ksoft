@@ -131,20 +131,21 @@
                     <table class="table">
                       <thead>
                         <tr style="color: #fff;">
-                          <th scope="col">No</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Reference</th>
                           <th scope="col">Amount</th>
-                          <th scope="col">Date</th>
+                          <th scope="col">Status</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody style="color: #fff;">
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
-                          <th scope="row">{{ idx + 1 }}</th>
+                          <th scope="row">{{ item.date.slice(0, 10) }}</th>
                           <td>{{ item.reference }}</td>
                           <td>{{ item.amount }}</td>
-                          <td>{{ item.date.slice(0, 10) }}</td>
-                          <td>
+                          <td>{{ item.status }}</td>
+
+                          <td v-if="item.status == 'New'">
                             <a
                               title="Edit"
                               href="javascript:;"  data-dismiss="modal"
@@ -156,6 +157,18 @@
                               title="Delete"
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
+                              class="btn_edit">
+                              <span class="lnr lnr-trash"></span></a>
+                          </td>
+                          <td v-else>
+                            <a
+                              title="Edit"
+                              href="javascript:;" @click="tbn_ms_oder('Edit')"
+                              class="btn_edit">
+                              <span class="lnr lnr-pencil"></span></a>
+                            <a
+                              title="Delete"
+                              href="javascript:;" @click="tbn_ms_oder('Delete')"
                               class="btn_edit">
                               <span class="lnr lnr-trash"></span></a>
                           </td>
@@ -340,7 +353,6 @@
             </div>
           </div>
         </div>
-       
       </div>
     </div>
   </div>
@@ -377,6 +389,8 @@ export default {
       idOrder:null,
       address_order:null,  
       editqtycartpopupdata:null, 
+
+      BranchId:null,
    
     };
   },
@@ -401,7 +415,7 @@ export default {
       });
     } else {
       alert("Please Turn on your browser Location !");
-    }
+    };
 
     axios
      if(this.$route.query.tenancy){
@@ -413,6 +427,10 @@ export default {
     if (sessionStorage.getItem("username")) {
       this.loginame = sessionStorage.getItem("username");
       this.btnMyOrder();
+    };
+    this.autoLogin();
+    if(this.$route.query.BranchId){
+      this.BranchId = this.$route.query.BranchId;
     }
   },
   methods: {
@@ -436,17 +454,26 @@ export default {
       if (this.username) {
         axios
           .get(
-            "/api/get_customer_name/" +this.$route.query.tenancy+"/"+
-              this.username
-          )
+            "/api/get_customer_name/" +this.$route.query.tenancy+"/"+this.username)
           .then((response) => {
             sessionStorage.setItem("username", response.data.result.name);
             this.loginame = sessionStorage.getItem("username");
-            this.$refs.btnLogin.click(); // open form login
-            this.btnMyOrder();
+            this.$refs.btnLogin.click(); // close form login
+           
           });
       } else {
         this.msg = "Please input name!";
+      }
+    },
+    autoLogin(){
+      var CustomerName = this.$route.query.CustomerName;
+      if(CustomerName){
+        axios
+          .get("/api/get_customer_name/" +this.$route.query.tenancy+"/"+CustomerName)
+          .then((response) => {
+            sessionStorage.setItem("username", response.data.result.name);
+            this.loginame = sessionStorage.getItem("username");
+          });
       }
     },
     logout() {
@@ -522,7 +549,7 @@ export default {
             saleOrder: {
               id: null,
               tenancyName: this.$route.query.tenancy,
-              branchId: 1,
+              branchId: this.BranchId,
               customerName: this.loginame,
               shippingAddress: this.address,
               memo: "",
@@ -702,6 +729,16 @@ export default {
           totalqty: 0,
           item: [],
         };
+    },
+    tbn_ms_oder(value){
+      this.$fire({
+        title: '<span style="color:#fff">You can not '+value+' Order!<span>',
+        text: 'Product order is completed!',
+        type: "warning",
+        background:"#000",
+        showConfirmButton: false,
+        timer: 3000,
+      }); 
     }
   },
 
@@ -718,6 +755,12 @@ export default {
       if(value){
         this.value = value;
       }
+    },
+    address(value){
+      if(value){
+        this.address = value;
+      }
+
     }
        
   },
@@ -796,4 +839,5 @@ export default {
   .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     vertical-align: middle;
   }
+  .unpoin{cursor: no-drop;}
 </style>

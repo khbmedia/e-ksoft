@@ -53,9 +53,13 @@
   export default {
     methods: {
       setActive(Form) {
+
+        console.log(this.$parent.address);
+
         var cart_session = JSON.parse(sessionStorage.getItem("cart"));
         if (cart_session.item.length > 0) {
           this.$parent.currentTabComponent = Form;
+
         } else {
           this.$fire({
             title: '<span style="color:#fff">You are not select product. Please select product !</span>',

@@ -1901,9 +1901,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    if (sessionStorage.getItem('cart')) {
+    if (sessionStorage.getItem("cart")) {
       this.cart = null;
-      this.cart = JSON.parse(sessionStorage.getItem('cart'));
+      this.cart = JSON.parse(sessionStorage.getItem("cart"));
       this.$children[0].cart = this.cart;
     }
 
@@ -1923,8 +1923,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (JSON.parse(sessionStorage.getItem("btnupdateOrder"))) {
           var ct = false;
           this.cart.item.forEach(function (element) {
-            console.log('true-item-' + value.id + '=' + element.itemId);
-
             if (element.itemId == idadd && value.id != null) {
               value.id = element.id;
               ct = true;
@@ -1980,7 +1978,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         this.cart.totalqty = totalQty;
         this.cart.totalprice = totalPrice;
-        sessionStorage.setItem('cart', JSON.stringify(this.cart));
+        sessionStorage.setItem("cart", JSON.stringify(this.cart));
       }
 
       this.$children[0].cart = this.cart;
@@ -2000,7 +1998,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       this.cart.totalqty = totalQty;
       this.cart.totalprice = totalPrice;
-      sessionStorage.setItem('cart', JSON.stringify(this.cart));
+      sessionStorage.setItem("cart", JSON.stringify(this.cart));
     },
     currentTabComponent: function currentTabComponent(value) {
       this.$children[2].currentTabComponent = value;
@@ -2084,6 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setActive: function setActive(Form) {
+      console.log(this.$parent.address);
       var cart_session = JSON.parse(sessionStorage.getItem("cart"));
 
       if (cart_session.item.length > 0) {
@@ -2716,6 +2715,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2745,7 +2756,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       dataCheckout: null,
       idOrder: null,
       address_order: null,
-      editqtycartpopupdata: null
+      editqtycartpopupdata: null,
+      BranchId: null
     };
   },
   mounted: function mounted() {
@@ -2767,6 +2779,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       alert("Please Turn on your browser Location !");
     }
 
+    ;
     (axios__WEBPACK_IMPORTED_MODULE_0___default());
 
     if (this.$route.query.tenancy) {
@@ -2780,6 +2793,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     if (sessionStorage.getItem("username")) {
       this.loginame = sessionStorage.getItem("username");
       this.btnMyOrder();
+    }
+
+    ;
+    this.autoLogin();
+
+    if (this.$route.query.BranchId) {
+      this.BranchId = this.$route.query.BranchId;
     }
   },
   methods: {
@@ -2806,13 +2826,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           sessionStorage.setItem("username", response.data.result.name);
           _this2.loginame = sessionStorage.getItem("username");
 
-          _this2.$refs.btnLogin.click(); // open form login
+          _this2.$refs.btnLogin.click(); // close form login
 
-
-          _this2.btnMyOrder();
         });
       } else {
         this.msg = "Please input name!";
+      }
+    },
+    autoLogin: function autoLogin() {
+      var _this3 = this;
+
+      var CustomerName = this.$route.query.CustomerName;
+
+      if (CustomerName) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_customer_name/" + this.$route.query.tenancy + "/" + CustomerName).then(function (response) {
+          sessionStorage.setItem("username", response.data.result.name);
+          _this3.loginame = sessionStorage.getItem("username");
+        });
       }
     },
     logout: function logout() {
@@ -2868,7 +2898,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     },
     checkout: function checkout() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.loginame) {
         var get_cart_session = JSON.parse(sessionStorage.getItem("cart"));
@@ -2889,7 +2919,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             saleOrder: {
               id: null,
               tenancyName: this.$route.query.tenancy,
-              branchId: 1,
+              branchId: this.BranchId,
               customerName: this.loginame,
               shippingAddress: this.address,
               memo: ""
@@ -2897,17 +2927,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
             saleOrderTransactions: itemPost
           };
           axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/get_checkout/" + this.$route.query.tenancy, dataCheckout).then(function (response) {
-            _this3.order = response.saleOrder;
-            _this3.editQty = null;
-            _this3.cart = null;
-            _this3.$parent.cart = {
+            _this4.order = response.saleOrder;
+            _this4.editQty = null;
+            _this4.cart = null;
+            _this4.$parent.cart = {
               totalprice: 0,
               totalqty: 0,
               item: []
             };
 
-            if (_this3.order != "" && _this3.editQty == null && _this3.cart == null) {
-              _this3.$fire({
+            if (_this4.order != "" && _this4.editQty == null && _this4.cart == null) {
+              _this4.$fire({
                 title: '<span style="color:#fff">Checkout successfully!</span>',
                 type: "success",
                 background: "#000",
@@ -2915,8 +2945,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 timer: 3000
               });
 
-              _this3.currentTabComponent = "Cart";
-              _this3.phone = null;
+              _this4.currentTabComponent = "Cart";
+              _this4.phone = null;
               sessionStorage.removeItem('cart');
             }
           });
@@ -2938,23 +2968,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     },
     btnMyOrder: function btnMyOrder() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.loginame) {
         axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_order/" + this.$route.query.tenancy + "/" + this.loginame).then(function (response) {
-          _this4.dataMyOrder = response.data.result;
+          _this5.dataMyOrder = response.data.result;
           sessionStorage.setItem("myOrder", JSON.stringify(response.data.result));
-          _this4.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
+          _this5.dataMyOrder = JSON.parse(sessionStorage.getItem("myOrder"));
         });
       }
     },
     tbn_deleteCart: function tbn_deleteCart(id) {
-      var _this5 = this;
+      var _this6 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/api/get_delete/" + this.$route.query.tenancy + "/" + id).then(function (response) {
-        _this5.dataDelete = response.data.result;
+        _this6.dataDelete = response.data.result;
 
-        _this5.btnMyOrder();
+        _this6.btnMyOrder();
       });
 
       if (this.dataMyOrder.length == 1) {
@@ -2970,7 +3000,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     },
     tbn_editOrder: function tbn_editOrder(inx) {
-      var _this6 = this;
+      var _this7 = this;
 
       this.idOrder = this.dataMyOrder[inx].id; // check btn update order
 
@@ -2983,38 +3013,38 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         item: []
       };
       axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/get_edit_order/" + this.$route.query.tenancy + "/" + this.idOrder).then(function (response) {
-        _this6.address_order = response.data.result.saleOrder.shippingAddress;
-        _this6.$parent.cart.item = [].concat(_toConsumableArray(_this6.$parent.cart.item), _toConsumableArray(response.data.result.saleOrderTransactions));
+        _this7.address_order = response.data.result.saleOrder.shippingAddress;
+        _this7.$parent.cart.item = [].concat(_toConsumableArray(_this7.$parent.cart.item), _toConsumableArray(response.data.result.saleOrderTransactions));
         var data = {};
         var items = [];
 
-        for (var i = 0; i < _this6.$parent.cart.item.length; i++) {
-          data = _objectSpread(_objectSpread(_objectSpread({}, data), _this6.$parent.cart.item[i]), {
-            qty: _this6.$parent.cart.item[i].quantity,
-            name: _this6.$parent.cart.item[i].itemName
+        for (var i = 0; i < _this7.$parent.cart.item.length; i++) {
+          data = _objectSpread(_objectSpread(_objectSpread({}, data), _this7.$parent.cart.item[i]), {
+            qty: _this7.$parent.cart.item[i].quantity,
+            name: _this7.$parent.cart.item[i].itemName
           });
           items = [].concat(_toConsumableArray(items), [data]);
         }
 
-        _this6.$parent.cart.item = [];
-        _this6.$parent.cart.item = items; //  count total qty and total price
+        _this7.$parent.cart.item = [];
+        _this7.$parent.cart.item = items; //  count total qty and total price
 
         var totalPrice = 0;
         var totalQty = 0;
 
-        _this6.$parent.cart.item.forEach(function (element) {
+        _this7.$parent.cart.item.forEach(function (element) {
           totalPrice += element.amount;
           totalQty += element.qty;
         });
 
-        _this6.$parent.cart.totalqty = totalQty;
-        _this6.$parent.cart.totalprice = totalPrice;
-        sessionStorage.setItem('cart', JSON.stringify(_this6.$parent.cart));
-        _this6.cart = _this6.$parent.cart;
+        _this7.$parent.cart.totalqty = totalQty;
+        _this7.$parent.cart.totalprice = totalPrice;
+        sessionStorage.setItem('cart', JSON.stringify(_this7.$parent.cart));
+        _this7.cart = _this7.$parent.cart;
       });
     },
     tbn_updateOrder: function tbn_updateOrder() {
-      var _this7 = this;
+      var _this8 = this;
 
       if (this.loginame) {
         var updateOrder = {
@@ -3030,15 +3060,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         };
         axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/get_checkout/" + this.$route.query.tenancy, updateOrder).then(function (response) {
           // check btn update order
-          _this7.btnupdateOrder = false;
+          _this8.btnupdateOrder = false;
           sessionStorage.removeItem('btnupdateOrder');
           sessionStorage.removeItem('cart');
-          _this7.cart = null;
-          _this7.$parent.cart = {
+          _this8.cart = null;
+          _this8.$parent.cart = {
             totalprice: 0,
             totalqty: 0,
             item: []
-          }, _this7.$fire({
+          }, _this8.$fire({
             title: '<span style="color:#fff">Update Order Success</span>',
             type: "success",
             background: "#000",
@@ -3065,6 +3095,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         totalqty: 0,
         item: []
       };
+    },
+    tbn_ms_oder: function tbn_ms_oder(value) {
+      this.$fire({
+        title: '<span style="color:#fff">You can not ' + value + ' Order!<span>',
+        text: 'Product order is completed!',
+        type: "warning",
+        background: "#000",
+        showConfirmButton: false,
+        timer: 3000
+      });
     }
   },
   watch: {
@@ -3079,6 +3119,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     editqtycartpopupdata: function editqtycartpopupdata(value) {
       if (value) {
         this.value = value;
+      }
+    },
+    address: function address(value) {
+      if (value) {
+        this.address = value;
       }
     }
   }
@@ -3117,45 +3162,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3327,8 +3333,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this3.reRender = false;
       }); // console.log(this.display);
     },
-    searchProduct: function searchProduct(value) {
-      console.log(value); // let a = ["foo","fool","cool","god"];
+    searchProduct: function searchProduct(value) {// console.log(value);
+      // let a = ["foo","fool","cool","god"];
       // let term = 'oo';
       // let b = a.filter(item => item.toLowerCase().indexOf(term) > -1);
       // console.log(b); // ["foo","fool","cool"]
@@ -8167,7 +8173,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 18px;\r\n    border: 1px solid;\n}\n.table > thead > tr > th[data-v-1f42fb90], .table > tbody > tr > th[data-v-1f42fb90], .table > tfoot > tr > th[data-v-1f42fb90], .table > thead > tr > td[data-v-1f42fb90], .table > tbody > tr > td[data-v-1f42fb90], .table > tfoot > tr > td[data-v-1f42fb90] {\r\n    vertical-align: middle;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 18px;\r\n    border: 1px solid;\n}\n.table > thead > tr > th[data-v-1f42fb90], .table > tbody > tr > th[data-v-1f42fb90], .table > tfoot > tr > th[data-v-1f42fb90], .table > thead > tr > td[data-v-1f42fb90], .table > tbody > tr > td[data-v-1f42fb90], .table > tfoot > tr > td[data-v-1f42fb90] {\r\n    vertical-align: middle;\n}\n.unpoin[data-v-1f42fb90]{cursor: no-drop;}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -8191,7 +8197,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-tabs-border .nav-tabs > li > a[data-v-be0f3488]:hover, .nav-tabs-border .nav-tabs > li.active > a[data-v-be0f3488]{\r\n  width:175px\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-tabs-border .nav-tabs > li > a[data-v-be0f3488]:hover, .nav-tabs-border .nav-tabs > li.active > a[data-v-be0f3488]{\r\n  width: auto;\n}\n.nav[data-v-be0f3488] {\r\n    padding-left: revert !important;\n}\n@media (max-width: 767px){\n.nav-tabs-border .nav-tabs > li[data-v-be0f3488], .nav-tabs-border .nav-tabs > li>a[data-v-be0f3488] {\r\n    width: -webkit-max-content !important;\r\n    width: -moz-max-content !important;\r\n    width: max-content !important;\n}\n.nav[data-v-be0f3488] {\r\n    padding-left: 0px !important;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45770,61 +45776,105 @@ var render = function() {
                               _vm._l(_vm.dataMyOrder, function(item, idx) {
                                 return _c("tr", { key: idx }, [
                                   _c("th", { attrs: { scope: "row" } }, [
-                                    _vm._v(_vm._s(idx + 1))
+                                    _vm._v(_vm._s(item.date.slice(0, 10)))
                                   ]),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(item.reference))]),
                                   _vm._v(" "),
                                   _c("td", [_vm._v(_vm._s(item.amount))]),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _vm._v(_vm._s(item.date.slice(0, 10)))
-                                  ]),
+                                  _c("td", [_vm._v(_vm._s(item.status))]),
                                   _vm._v(" "),
-                                  _c("td", [
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "btn_edit",
-                                        attrs: {
-                                          title: "Edit",
-                                          href: "javascript:;",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.tbn_editOrder(idx)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", {
-                                          staticClass: "lnr lnr-pencil"
-                                        })
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass: "btn_edit",
-                                        attrs: {
-                                          title: "Delete",
-                                          href: "javascript:;"
-                                        },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.tbn_deleteCart(item.id)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("span", {
-                                          staticClass: "lnr lnr-trash"
-                                        })
-                                      ]
-                                    )
-                                  ])
+                                  item.status == "New"
+                                    ? _c("td", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "btn_edit",
+                                            attrs: {
+                                              title: "Edit",
+                                              href: "javascript:;",
+                                              "data-dismiss": "modal"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.tbn_editOrder(idx)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass: "lnr lnr-pencil"
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "btn_edit",
+                                            attrs: {
+                                              title: "Delete",
+                                              href: "javascript:;"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.tbn_deleteCart(
+                                                  item.id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass: "lnr lnr-trash"
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    : _c("td", [
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "btn_edit",
+                                            attrs: {
+                                              title: "Edit",
+                                              href: "javascript:;"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.tbn_ms_oder("Edit")
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass: "lnr lnr-pencil"
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "a",
+                                          {
+                                            staticClass: "btn_edit",
+                                            attrs: {
+                                              title: "Delete",
+                                              href: "javascript:;"
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.tbn_ms_oder("Delete")
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("span", {
+                                              staticClass: "lnr lnr-trash"
+                                            })
+                                          ]
+                                        )
+                                      ])
                                 ])
                               }),
                               0
@@ -46202,13 +46252,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", { staticStyle: { color: "#fff" } }, [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Reference")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Date")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Action")])
       ])
@@ -46372,7 +46422,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v(_vm._s(item.name) + "\n                    ")]
+                          [_vm._v(_vm._s(item.name) + " ")]
                         )
                       ])
                     }),
