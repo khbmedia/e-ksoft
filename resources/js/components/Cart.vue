@@ -53,9 +53,9 @@
   export default {
     methods: {
       setActive(Form) {
-
-        console.log(this.$parent.address);
-
+        if(Number(sessionStorage.getItem("username")) ){
+          this.$parent.phone = sessionStorage.getItem("username");
+        }
         var cart_session = JSON.parse(sessionStorage.getItem("cart"));
         if (cart_session.item.length > 0) {
           this.$parent.currentTabComponent = Form;
@@ -70,8 +70,6 @@
             timer: 3000,
           });
         }
-
-
       }
     }
   }

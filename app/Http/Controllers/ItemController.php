@@ -21,10 +21,12 @@ class ItemController extends Controller
     }
     // checkout and update Order
     public function get_checkout(Request $request){
-        // dd($request->all());
         $response=Http::post("http://acc.ksoft.solutions/api/services/app/SaleOrder/CreateOrUpdateSaleOrderByTenancy",$request->all());
-        // $response=Http::post("http://acc.ksoft.solutions/api/services/app/SaleOrder/CreateOrUpdateSaleOrder",$request->all());
-        return dd($response->json());
+        return $response->json();
+    }
+    public function get_printpreview($tenancy, $id){
+        $response=Http::post("(http://acc.ksoft.solutions/api/services/app/SaleOrder/GetSaleOrderInfoByTenancy?TenancyName=".$tenancy."&Id=".$id);
+        return $response->json();
     }
     public function get_order($tenancy,$loginame){
         $response=Http::get("http://acc.ksoft.solutions/api/services/app/SaleOrder/GetSaleOrdersByTenancy?TenancyName=".$tenancy."&CustomerName=".$loginame);

@@ -391,6 +391,7 @@ export default {
       editqtycartpopupdata:null, 
 
       BranchId:null,
+      
    
     };
   },
@@ -484,6 +485,14 @@ export default {
       this.btnupdateOrder = false;    
       this.loginame = null;
       this.username = '';
+      this.$parent.phone = '';
+      this.editQty = null;
+      this.cart = null;
+      this.$parent.cart = {
+        totalprice: 0,
+        totalqty: 0,
+        item: [],
+      };
       
     },
     removeCart(id) {
@@ -560,8 +569,8 @@ export default {
           axios
             .post("/api/get_checkout/"+this.$route.query.tenancy,dataCheckout)
             .then((response) => {
-              this.order = response.saleOrder;
-
+              // this.order = response.saleOrder;
+              var idPrintPreview = response.data.result;
               this.editQty = null;
               this.cart = null;
               this.$parent.cart = {
@@ -581,6 +590,11 @@ export default {
                 this.phone=null;
                 sessionStorage.removeItem('cart');
               }
+              // get print Preview
+              axios.post("/api/get_printpreview/"+this.$route.query.tenancy+idPrintPreview)
+              .then((response) => {
+
+              });
             });
         }else{
           alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
@@ -709,6 +723,7 @@ export default {
             showConfirmButton: false,
             timer: 2000,
           });
+
         });
       }else{
         this.$refs.btnLogin.click();
@@ -755,14 +770,12 @@ export default {
       if(value){
         this.value = value;
       }
-    },
-    address(value){
+    },  
+    phone(value){
       if(value){
-        this.address = value;
+        this.phone = value;
       }
-
-    }
-       
+    }   
   },
 };
 </script>
