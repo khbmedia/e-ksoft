@@ -73,7 +73,7 @@
                   <a href="javascript:;" class="account-link hidden-xs">
                     <span class="lnr lnr-user"></span>{{ loginame }}
                   </a>
-                  <a href="javascript:;" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
+                  <a type="button" href="#" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
                     <span class="lnr lnr-menu" style="color: #fff; margin-top: 8px;"></span>
                   </a>
                   <ul class="list-unstyled inner-user-info" v-if="!isScreenPc()">
@@ -182,7 +182,7 @@
             </div>
             <!--end model -->
 
-            <div id="myModal" class="modal fade">
+            <center id="myModal" class="modal fade">
               <div
                 class="modal-dialog modal-login"
                 style="
@@ -236,7 +236,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </center>
             <!-- end popup -->
           </div>
           <div class="hidden-lg hidden-md hidden-sm col-xs-4">
@@ -270,12 +270,12 @@
                   v-if="cart == null"
                 >
                   <span class="lnr lnr-cart" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
-                  <sup style="right: 0px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">0</sup>
+                  <sup style="right: 27px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">0</sup>
                 </a>
 
                 <a href="#" class="icon-extra-sub icon-home-cart" v-else>
                   <span class="lnr lnr-cart" style="text-align: center; bottom: 0px; display: block; font-size: 25px; color: white; margin-top: 10px;"></span>
-                  <sup style="right: 0px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">{{ cart.totalqty }}</sup>
+                  <sup style="right: 27px; top: -25px; font-size: 18px; border-radius: 50%; background: #ff0000; color: #fff; padding: 0px 7px;">{{ cart.totalqty }}</sup>
                 </a>
                 <div class="home-extra-sub nav">
                   <a href="#" class="close-extra-sub">Close</a>

@@ -106,7 +106,7 @@ jQuery(document).ready(function(){
 	$('.icon-extra-sub').click(function(event){
 		event.preventDefault();
 	});
-	$('.icon-extra-sub span.lnr').hover(function(event){
+	$('.icon-extra-sub span.lnr').click(function(event){
 		$('.icon-extra-sub').addClass('hide-box')
 		$(this).parent().next().addClass('show-box');
 	});
