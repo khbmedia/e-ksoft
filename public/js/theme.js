@@ -107,7 +107,7 @@ jQuery(document).ready(function(){
 		event.preventDefault();
 	});
 	$('.icon-extra-sub span.lnr').click(function(event){
-		$('.icon-extra-sub').addClass('hide-box')
+		// $('.icon-extra-sub').addClass('hide-box')
 		$(this).parent().next().addClass('show-box');
 	});
 	$('.close-extra-sub').click(function(event){
