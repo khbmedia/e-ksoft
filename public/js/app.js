@@ -2739,11 +2739,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -3144,6 +3139,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         _this9.$refs.closemyOrder.click();
       });
+    },
+    print_receipt: function print_receipt() {
+      var printContents = document.getElementById('printpreview').innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
     }
   },
   watch: {
@@ -8230,7 +8232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 18px;\r\n    border: 1px solid;\n}\n.table > thead > tr > th[data-v-1f42fb90], .table > tbody > tr > th[data-v-1f42fb90], .table > tfoot > tr > th[data-v-1f42fb90], .table > thead > tr > td[data-v-1f42fb90], .table > tbody > tr > td[data-v-1f42fb90], .table > tfoot > tr > td[data-v-1f42fb90] {\r\n    vertical-align: middle;\n}\n.unpoin[data-v-1f42fb90]{cursor: no-drop;}\n.modal-body[data-v-1f42fb90]{\r\n    color: white;\n}\n.modal-body .saleOrder[data-v-1f42fb90]{\r\n    padding: 0px 50px;\n}\n.modal-body .saleOrder_l[data-v-1f42fb90]{\r\n    float: left;\n}\n.modal-body .saleOrder_r[data-v-1f42fb90]{\r\n    float: right;\n}\n.modal-body .saleOrder_l label[data-v-1f42fb90], .modal-body .saleOrder_r label[data-v-1f42fb90]{\r\n  width: 108px;\n}\n.modal-body table th[data-v-1f42fb90], .modal-body table td[data-v-1f42fb90]{\r\n   text-align: center;\n}\n.add_cart .icon-extra-sub sup[data-v-1f42fb90]{\r\n   top: -17px;\r\n   font-size: 10px;\n}\n.add_cart .icon-extra-sub span[data-v-1f42fb90]{\r\n   font-size: 20px;\n}\n.search a span[data-v-1f42fb90]{\r\n  display: block; \r\n  font-size: 20px; \r\n  margin-top: 10px;\n}\n.search div[data-v-1f42fb90]{\r\n   left: -63px; \r\n   padding: 0px; \r\n   width: 375px;\n}\n.search div form input[data-v-1f42fb90]{\r\n    width: 373px;\r\n    height: 42px;\r\n    margin-top: 4px;\r\n    font-size: 20px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 18px;\r\n    border: 1px solid;\n}\n.table > thead > tr > th[data-v-1f42fb90], .table > tbody > tr > th[data-v-1f42fb90], .table > tfoot > tr > th[data-v-1f42fb90], .table > thead > tr > td[data-v-1f42fb90], .table > tbody > tr > td[data-v-1f42fb90], .table > tfoot > tr > td[data-v-1f42fb90] {\r\n    vertical-align: middle;\n}\n.unpoin[data-v-1f42fb90]{cursor: no-drop;}\n.modal-body[data-v-1f42fb90]{\r\n    /* color: white; */\n}\n.modal-body .saleOrder[data-v-1f42fb90]{\r\n    /* padding: 0px 50px; */\n}\n.modal-body .saleOrder_l[data-v-1f42fb90]{\r\n    float: left;\n}\n.modal-body .saleOrder_r[data-v-1f42fb90]{\r\n    float: right;\n}\n.modal-body .saleOrder_l label[data-v-1f42fb90], .modal-body .saleOrder_r label[data-v-1f42fb90]{\r\n  width: 70px;\n}\n.modal-body table th[data-v-1f42fb90], .modal-body table td[data-v-1f42fb90]{\r\n   text-align: center;\n}\n.add_cart .icon-extra-sub sup[data-v-1f42fb90]{\r\n   top: -17px;\r\n   font-size: 10px;\n}\n.add_cart .icon-extra-sub span[data-v-1f42fb90]{\r\n   font-size: 20px;\n}\n.search a span[data-v-1f42fb90]{\r\n  display: block; \r\n  font-size: 20px; \r\n  margin-top: 10px;\n}\n.search div[data-v-1f42fb90]{\r\n   left: -63px; \r\n   padding: 0px; \r\n   width: 375px;\n}\n.search div form input[data-v-1f42fb90]{\r\n    width: 373px;\r\n    height: 42px;\r\n    margin-top: 4px;\r\n    font-size: 20px;\n}\n.clear[data-v-1f42fb90]{clear: both;}\n@media print{\n@page {size: A6 landscape;}\n.modal-header span[data-v-1f42fb90]{\r\n     display: none;\n}\nhtml[data-v-1f42fb90], body[data-v-1f42fb90], #printpreview[data-v-1f42fb90]{\r\n    height:100%; \r\n    margin: 0 !important; \r\n    padding: 0 !important;\r\n    overflow: hidden;\r\n    clear: both;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45621,7 +45623,7 @@ var render = function() {
                         src: "images/logo-color.svg",
                         width: "100px",
                         height: "50px",
-                        alt: ""
+                        alt: "Logo"
                       }
                     })
                   ]
@@ -45895,111 +45897,203 @@ var render = function() {
                           staticClass: "modal-content",
                           staticStyle: {
                             "order-radius": "0",
-                            background: "#1b1d1f none repeat scroll 0 0",
                             "border-radius": "0"
                           }
                         },
                         [
-                          _vm._m(2),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "modal-header",
+                              staticStyle: { "border-bottom": "none" }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "lnr lnr-printer",
+                                staticStyle: {
+                                  float: "right",
+                                  "font-size": "25px",
+                                  padding: "5px",
+                                  cursor: "pointer"
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.print_receipt()
+                                  }
+                                }
+                              })
+                            ]
+                          ),
                           _vm._v(" "),
                           _vm.printpreview
                             ? _c("div", { staticClass: "modal-body" }, [
-                                _c("div", { staticClass: "saleOrder" }, [
-                                  _c("div", { staticClass: "saleOrder_l" }, [
-                                    _c("label", { attrs: { for: "" } }, [
-                                      _vm._v("Date")
-                                    ]),
-                                    _vm._v(" : "),
-                                    _c("span", [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.printpreview.saleOrder.date.slice(
-                                            0,
-                                            10
-                                          )
-                                        )
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("label", { attrs: { for: "" } }, [
-                                      _vm._v("Reference")
-                                    ]),
-                                    _vm._v(" : "),
-                                    _c("span", [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.printpreview.saleOrder.reference
-                                        )
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "saleOrder_r" }, [
-                                    _c("label", { attrs: { for: "" } }, [
-                                      _vm._v("Customer Name")
-                                    ]),
-                                    _vm._v(" : "),
-                                    _c("span", [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.printpreview.saleOrder
-                                            .customerName
-                                        )
-                                      )
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(" "),
-                                    _c("label", { attrs: { for: "" } }, [
-                                      _vm._v("Amount")
-                                    ]),
-                                    _vm._v(" : "),
-                                    _c("span", [
-                                      _vm._v(
-                                        "$" +
+                                _c("div", { staticClass: "row" }, [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "col-md-12 text-center",
+                                      staticStyle: { "margin-bottom": "21px" }
+                                    },
+                                    [
+                                      _c("img", {
+                                        staticStyle: {
+                                          "margin-bottom": "30px"
+                                        },
+                                        attrs: {
+                                          src: "images/logo-color.svg",
+                                          width: "100px",
+                                          height: "50px",
+                                          alt: "Logo"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c("label", { attrs: { for: "" } }, [
+                                        _vm._v("Name")
+                                      ]),
+                                      _vm._v(" : "),
+                                      _c("span", [
+                                        _vm._v(
                                           _vm._s(
                                             _vm.printpreview.saleOrder
-                                              .grandTotalAmount
+                                              .customerName
                                           )
-                                      )
-                                    ])
-                                  ])
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c("label", { attrs: { for: "" } }, [
+                                        _vm._v("Date")
+                                      ]),
+                                      _vm._v(" : "),
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.printpreview.saleOrder.date.slice(
+                                              0,
+                                              10
+                                            )
+                                          )
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("br"),
+                                      _vm._v(" "),
+                                      _c("label", { attrs: { for: "" } }, [
+                                        _vm._v("Reference")
+                                      ]),
+                                      _vm._v(" : "),
+                                      _c("span", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.printpreview.saleOrder.reference
+                                          )
+                                        )
+                                      ])
+                                    ]
+                                  )
                                 ]),
                                 _vm._v(" "),
-                                _c("table", { staticClass: "table" }, [
-                                  _vm._m(3),
-                                  _vm._v(" "),
-                                  _c(
-                                    "tbody",
-                                    _vm._l(
-                                      _vm.printpreview.saleOrderTransactions,
-                                      function(item, idx) {
-                                        return _c("tr", { key: idx }, [
+                                _vm._m(2),
+                                _vm._v(" "),
+                                _c(
+                                  "table",
+                                  {
+                                    staticClass: "table",
+                                    staticStyle: { "margin-top": "10px" }
+                                  },
+                                  [
+                                    _vm._m(3),
+                                    _vm._v(" "),
+                                    _c(
+                                      "tbody",
+                                      [
+                                        _vm._l(
+                                          _vm.printpreview
+                                            .saleOrderTransactions,
+                                          function(item, idx) {
+                                            return _c("tr", { key: idx }, [
+                                              _c(
+                                                "td",
+                                                { attrs: { scope: "row" } },
+                                                [_vm._v(_vm._s(idx + 1) + " ")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(_vm._s(item.itemName))
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v("$" + _vm._s(item.price))
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(_vm._s(item.quantity))
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("td", [
+                                                _vm._v(
+                                                  "$" + _vm._s(item.amount)
+                                                )
+                                              ])
+                                            ])
+                                          }
+                                        ),
+                                        _vm._v(" "),
+                                        _c("tr", [
                                           _c(
                                             "th",
-                                            { attrs: { scope: "row" } },
-                                            [_vm._v(_vm._s(item.itemName))]
+                                            {
+                                              staticStyle: {
+                                                "text-align": "right"
+                                              },
+                                              attrs: { colspan: "4" }
+                                            },
+                                            [_vm._v("Sutotal")]
                                           ),
                                           _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v("$" + _vm._s(item.price))
-                                          ]),
+                                          _c("th", [
+                                            _vm._v(
+                                              "$" +
+                                                _vm._s(
+                                                  _vm.printpreview.saleOrder
+                                                    .grandTotalAmount
+                                                )
+                                            )
+                                          ])
+                                        ]),
+                                        _vm._v(" "),
+                                        _vm._m(4),
+                                        _vm._v(" "),
+                                        _c("tr", [
+                                          _c(
+                                            "th",
+                                            {
+                                              staticStyle: {
+                                                "text-align": "right"
+                                              },
+                                              attrs: { colspan: "4" }
+                                            },
+                                            [_vm._v("TOTAL")]
+                                          ),
                                           _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v(_vm._s(item.quantity))
-                                          ]),
-                                          _vm._v(" "),
-                                          _c("td", [
-                                            _vm._v("$" + _vm._s(item.amount))
+                                          _c("th", [
+                                            _vm._v(
+                                              "$" +
+                                                _vm._s(
+                                                  _vm.printpreview.saleOrder
+                                                    .grandTotalAmount
+                                                )
+                                            )
                                           ])
                                         ])
-                                      }
-                                    ),
-                                    0
-                                  )
-                                ])
+                                      ],
+                                      2
+                                    )
+                                  ]
+                                )
                               ])
                             : _vm._e()
                         ]
@@ -46078,7 +46172,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "modal-body" }, [
                             _c("table", { staticClass: "table" }, [
-                              _vm._m(4),
+                              _vm._m(5),
                               _vm._v(" "),
                               _c(
                                 "tbody",
@@ -46095,7 +46189,7 @@ var render = function() {
                                     _vm._v(" "),
                                     _c("td", [_vm._v(_vm._s(item.status))]),
                                     _vm._v(" "),
-                                    item.status == "New"
+                                    item.status == "New1"
                                       ? _c("td", [
                                           _c(
                                             "a",
@@ -46317,7 +46411,7 @@ var render = function() {
           _c("div", { staticClass: "hidden-lg hidden-md hidden-sm col-xs-4" }, [
             _c("div", { staticClass: "top-right" }, [
               _c("div", { staticClass: "home-search-box" }, [
-                _vm._m(5),
+                _vm._m(6),
                 _vm._v(" "),
                 _c("div", { staticClass: "home-extra-sub" }, [
                   _c(
@@ -46487,29 +46581,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        {
-          staticClass: "modal-title",
-          staticStyle: { color: "#fff", "text-align": "center" },
-          attrs: { id: "exampleModalLabel" }
-        },
-        [_vm._v("Print Preview")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
+    return _c("div", { staticClass: "saleOrder" }, [
+      _c("div", { staticClass: "saleOrder_l" }, [
+        _c("div", { staticClass: "clear" })
+      ])
     ])
   },
   function() {
@@ -46518,6 +46593,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("No")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")]),
@@ -46526,6 +46603,20 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Amount")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c(
+        "th",
+        { staticStyle: { "text-align": "right" }, attrs: { colspan: "4" } },
+        [_vm._v("Sale Tax 0%")]
+      ),
+      _vm._v(" "),
+      _c("th", [_vm._v("$0.00")])
     ])
   },
   function() {

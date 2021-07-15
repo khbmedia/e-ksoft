@@ -33,18 +33,14 @@
             </div>
           </div>
         </div>
-      <!--end model -->
+        <!--end model -->
         <div class="row">
           <div class="col-md-4 col-sm-4 hidden-xs">
             <div class="top-left">
               <div class="logo-header7">
-                <a href="javascript:;" @click="changeComponent('ListItem')"
-                  ><img
-                    src="images/logo-color.svg"
-                    width="100px"
-                    height="50px"
-                    alt=""
-                /></a>
+                <a href="javascript:;" @click="changeComponent('ListItem')">
+                  <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" />
+                </a>
               </div>
             </div>
           </div>
@@ -55,12 +51,9 @@
                     <a href="javascript:;" class="icon-extra-sub icon-home-search">
                       <span class="lnr lnr-magnifier"></span>
                     </a>
-
                     <div class="home-extra-sub">
-                      <!-- <a href="javascript:void(0);" class="close-extra-sub">Close</a> -->
                       <form >
-                        <input @keyup="searchProduct" type="text" />
-                        <!-- <input type="submit" value="Search" class="btn-link-default"/> -->
+                        <input @keyup="searchProduct" type="text" />    
                       </form>
                     </div>
                 </li>
@@ -134,44 +127,34 @@
 
              <!-- Modal Print Preview -->
              <a href="#printpreview" data-toggle="modal"  class="account-link" ref="printpreview"></a>
-            <div
-              class="modal fade"
-              id="printpreview"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
+            <div class="modal fade" id="printpreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
-                <div class="modal-content" style="order-radius: 0; background: #1b1d1f none repeat scroll 0 0;border-radius: 0;">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="color: #fff; text-align: center">Print Preview</h5>
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-content" style="order-radius: 0;border-radius: 0;">
+                  <div class="modal-header" style="border-bottom: none;">
+                    <span class="lnr lnr-printer" @click="print_receipt()" style="float: right;font-size: 25px;padding: 5px;cursor: pointer;"></span>
                   </div>
                   <div class="modal-body" v-if="printpreview">
-                    <div class="saleOrder">
-                      <div class="saleOrder_l">
+                    <div class="row">
+                      <div class="col-md-12 text-center" style="margin-bottom: 21px">
+                        <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" style="margin-bottom: 30px;"/>
+                        <br>
+                         <label for="">Name</label> : <span>{{ printpreview.saleOrder.customerName }}</span>
+                        <br>
                         <label for="">Date</label> : <span>{{ printpreview.saleOrder.date.slice(0, 10) }}</span>
                         <br>
                         <label for="">Reference</label> : <span>{{ printpreview.saleOrder.reference }}</span>
                       </div>
-                      <div class="saleOrder_r">
-                        <label for="">Customer Name</label> : <span>{{ printpreview.saleOrder.customerName }}</span>
-                        <br>
-                        <label for="">Amount</label> : <span>${{ printpreview.saleOrder.grandTotalAmount }}</span>
+                    </div>
+                    <div class="saleOrder">
+                      <div class="saleOrder_l">  
+                        <div class="clear"></div>
+                      </div>  
                     </div>
 
-                    </div>
-                    <table class="table">
+                    <table class="table" style="margin-top: 10px">
                       <thead>
                         <tr>
+                          <th scope="col">No</th>
                           <th scope="col">Name</th>
                           <th scope="col">Price</th>
                           <th scope="col">Quantity</th>
@@ -180,13 +163,25 @@
                       </thead>
                       <tbody>
                         <tr v-for="(item, idx) in printpreview.saleOrderTransactions" :key="idx">
-                          <th scope="row">{{ item.itemName }}</th>
+                          <td scope="row">{{ idx + 1 }} </td>
+                          <td >{{ item.itemName }}</td>
                           <td>${{ item.price }}</td>
                           <td>{{ item.quantity }}</td>
                           <td>${{ item.amount }}</td>
                         </tr>
-                      </tbody>
-                      
+                        <tr>
+                          <th colspan="4" style="text-align: right;">Sutotal</th>
+                          <th>${{printpreview.saleOrder.grandTotalAmount}}</th>
+                        </tr>
+                        <tr>
+                          <th colspan="4" style="text-align: right;">Sale Tax 0%</th>
+                          <th>$0.00</th>
+                        </tr>
+                        <tr>
+                          <th colspan="4" style="text-align: right;">TOTAL</th>
+                          <th>${{printpreview.saleOrder.grandTotalAmount}}</th>
+                        </tr>
+                      </tbody>       
                     </table>
                   </div>
                 </div>
@@ -235,7 +230,7 @@
                           <td>{{ item.amount }}</td>
                           <td>{{ item.status }}</td>
 
-                          <td v-if="item.status == 'New'">
+                          <td v-if="item.status == 'New1'">
                             <a
                               title="Edit"
                               href="javascript:;"  data-dismiss="modal"
@@ -771,6 +766,14 @@ export default {
         this.$refs.closemyOrder.click();
       });
     },
+    print_receipt(){
+      var printContents = document.getElementById('printpreview').innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+
+    }
   },
 
   watch: {
@@ -871,10 +874,10 @@ export default {
   .unpoin{cursor: no-drop;}
 
   .modal-body{
-    color: white;
+    /* color: white; */
   }
   .modal-body .saleOrder{
-    padding: 0px 50px;
+    /* padding: 0px 50px; */
   }
   .modal-body .saleOrder_l{
     float: left;
@@ -883,7 +886,7 @@ export default {
     float: right;
   }
  .modal-body .saleOrder_l label, .modal-body .saleOrder_r label{
-  width: 108px;
+  width: 70px;
  }
  .modal-body table th, .modal-body table td{
    text-align: center;
@@ -911,4 +914,20 @@ export default {
     margin-top: 4px;
     font-size: 20px;
  }
+ .clear{clear: both;}
+
+  @media print{
+    @page {size: A6 landscape;}
+   .modal-header span{
+     display: none;
+   }
+   html, body, #printpreview{
+    height:100%; 
+    margin: 0 !important; 
+    padding: 0 !important;
+    overflow: hidden;
+    clear: both;
+  }
+ 
+  }
 </style>
