@@ -45844,7 +45844,11 @@ var render = function() {
                           "div",
                           {
                             staticClass: "home-extra-sub nav",
-                            staticStyle: { left: "591px", top: "51px" }
+                            staticStyle: {
+                              position: "absolute",
+                              right: "0px",
+                              top: "51px"
+                            }
                           },
                           [
                             _c(

@@ -115,7 +115,7 @@
                     <sup>{{ cart.totalqty }}</sup>
                   </a>
 
-                  <div class="home-extra-sub nav" style="left: 591px; top: 51px;">
+                  <div class="home-extra-sub nav" style="position: absolute; right: 0px; top: 51px;">
                     <a href="#" ref="closecheckuot" class="close-extra-sub">Close</a>
                     <component v-bind:is="currentTabComponent"></component>
                   </div>
