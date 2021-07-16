@@ -898,21 +898,20 @@ export default {
  .add_cart .icon-extra-sub span{
    font-size: 20px;
  }
-.search a span{
-  display: block; 
-  font-size: 20px; 
-  margin-top: 10px;
-}
+  .search a span{
+    display: block; 
+    font-size: 20px; 
+    margin-top: 10px;
+  }
  .search div{
-   left: -2%;
-   padding: 0px; 
-   /* width: 375px; */
+  left: 0%;
+  padding: 0px;
+  width: 44%;
  }
  .search div form input{
-    width: 373px;
     height: 42px;
     margin-top: 4px;
-    font-size: 20px;
+    font-size: 17px;
  }
  .clear{clear: both;}
 
@@ -930,9 +929,9 @@ export default {
     }
  
   }
-   .list-inline > li {
-    padding-right: 0px;
-    padding-left: 0px;
+  .list-inline > li {
+  padding-right: 0px;
+  padding-left: 0px;
 }
 .home-extra-sub {
   width: auto;
