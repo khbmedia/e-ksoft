@@ -46,6 +46,7 @@ export default {
         });
     }
   },
+ 
   watch: {
     itemAdd(value) {
       if (value) {
@@ -146,6 +147,7 @@ export default {
 
       this.$children[2].search = value;
     },
+   
   },
 };
 </script>

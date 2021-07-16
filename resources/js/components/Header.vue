@@ -136,7 +136,7 @@
                   <div class="modal-body" v-if="printpreview">
                     <div class="row">
                       <div class="col-md-12 text-center" style="margin-bottom: 21px">
-                        <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" style="margin-bottom: 30px;"/>
+                        <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" style="margin-bottom: 20px;"/>
                         <br>
                          <label for="">Name</label> : <span>{{ printpreview.saleOrder.customerName }}</span>
                         <br>
@@ -227,10 +227,10 @@
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
                           <th scope="row">{{ item.date.slice(0, 10) }}</th>
                           <td>{{ item.reference }}</td>
-                          <td>{{ item.amount }}</td>
+                          <td>${{ item.amount }}</td>
                           <td>{{ item.status }}</td>
 
-                          <td v-if="item.status == 'New1'">
+                          <td v-if="item.status == 'New'">
                             <a
                               title="Edit"
                               href="javascript:;"  data-dismiss="modal"
@@ -761,7 +761,7 @@ export default {
       // get print Preview
       axios.get("/api/get_printpreview/"+this.$route.query.tenancy+"/"+id)
       .then((response) => {
-        this.printpreview = response.data.result;               
+        this.printpreview = response.data.result;   
         this.$refs.printpreview.click();
         this.$refs.closemyOrder.click();
       });
@@ -772,7 +772,7 @@ export default {
       document.body.innerHTML = printContents;
       window.print();
       document.body.innerHTML = originalContents;
-
+      location.reload();
     }
   },
 
@@ -874,7 +874,7 @@ export default {
   .unpoin{cursor: no-drop;}
 
   .modal-body{
-    /* color: white; */
+    top: 14px;
   }
   .modal-body .saleOrder{
     /* padding: 0px 50px; */
