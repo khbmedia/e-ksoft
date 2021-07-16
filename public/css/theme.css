@@ -7333,7 +7333,7 @@ Page Product List Mr
 }
 .home-extra-sub {
     background: #1b1d1f none repeat scroll 0 0;
-    left: 100px;
+    /* left: 100px; */
     opacity: 0;
     position: absolute;
     text-align: left;
@@ -7344,7 +7344,7 @@ Page Product List Mr
 	transition:all 0.5s ease-out 0s;
 }
 .home-extra-sub.show-box{
-	left:-300px;
+	/* left:-300px; */
 	opacity: 1;
 	visibility: visible;
 }
