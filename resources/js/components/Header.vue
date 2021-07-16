@@ -33,24 +33,31 @@
             </div>
           </div>
         </div>
-      <!--end model -->
+        <!--end model -->
         <div class="row">
           <div class="col-md-4 col-sm-4 hidden-xs">
             <div class="top-left">
               <div class="logo-header7">
-                <a href="javascript:;" @click="changeComponent('ListItem')"
-                  ><img
-                    src="images/logo-color.svg"
-                    width="100px"
-                    height="50px"
-                    alt=""
-                /></a>
+                <a href="javascript:;" @click="changeComponent('ListItem')">
+                  <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" />
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-4">
             <div class="top-right">
               <ul class="list-inline">
+                <li class="search" v-if="isScreenPc()">
+                    <a href="javascript:;" class="icon-extra-sub icon-home-search">
+                      <span class="lnr lnr-magnifier"></span>
+                    </a>
+                    <div class="home-extra-sub">
+                      <form >
+                        <input @keyup="searchProduct" type="text" />    
+                      </form>
+                    </div>
+                </li>
+
                 <li class="" v-show="loginame == null">
                   <a
                     href="#myModal"
@@ -60,18 +67,14 @@
                     >Login</a
                   >
                 </li>
-                <li class="" v-if="loginame != null &&isScreenPc()" >
-                  <a
-                    @click="btnMyOrder()"
-                    data-toggle="modal"
-                    data-target="#myOrder"
-                    style="cursor: pointer"
-                    ><span class="lnr lnr-book"></span> My Order</a
-                  >
+                <li class="" v-if="loginame != null && isScreenPc()" >
+                  <a  @click="btnMyOrder()"  data-toggle="modal" data-target="#myOrder" style="cursor: pointer">
+                    <span class="lnr lnr-book"></span> My Order
+                  </a>
                 </li>
                 <li v-bind:class="{'info-user':!isScreenPc()}" v-if="loginame != null">
                   <a href="javascript:;" class="account-link hidden-xs">
-                    <span class="lnr lnr-user"></span>{{ loginame }}
+                    <span class="lnr lnr-user"></span>{{loginame }}
                   </a>
                   <a type="button" href="#" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
                     <span class="lnr lnr-menu" style="color: #fff; margin-top: 8px;"></span>
@@ -94,18 +97,99 @@
                         ><span class="lnr lnr-power-switch"></span> Logout</a
                       >
                     </li>
+                               
                   </ul>
                 </li>
                 <li v-if="loginame != null&&isScreenPc()">
                   <a href="javascript:;" @click="logout()"
-                    ><span class="lnr lnr-power-switch"></span> Logout</a
-                  >
+                    ><span class="lnr lnr-power-switch"></span> Logout</a>
                 </li>
+                <li class="add_cart" v-if="isScreenPc()">
+                  <a href="javascript:;" class="icon-extra-sub icon-home-cart" v-if="cart == null">
+                    <span class="lnr lnr-cart"></span>
+                    <sup>0</sup>
+                  </a>
+
+                  <a href="javascript:;" class="icon-extra-sub icon-home-cart" v-else>
+                    <span class="lnr lnr-cart"></span>
+                    <sup>{{ cart.totalqty }}</sup>
+                  </a>
+
+                  <div class="home-extra-sub nav" style="left: 591px; top: 51px;">
+                    <a href="#" ref="closecheckuot" class="close-extra-sub">Close</a>
+                    <component v-bind:is="currentTabComponent"></component>
+                  </div>
+                </li>
+
               </ul>
             </div>
             <!-- popup -->
 
-            <!-- Modal -->
+             <!-- Modal Print Preview -->
+             <a href="#printpreview" data-toggle="modal"  class="account-link" ref="printpreview"></a>
+            <div class="modal fade" id="printpreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content" style="order-radius: 0;border-radius: 0;">
+                  <div class="modal-header" style="border-bottom: none;">
+                    <span class="lnr lnr-printer" @click="print_receipt()" style="float: right;font-size: 25px;padding: 5px;cursor: pointer;"></span>
+                  </div>
+                  <div class="modal-body" v-if="printpreview">
+                    <div class="row">
+                      <div class="col-md-12 text-center" style="margin-bottom: 21px">
+                        <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" style="margin-bottom: 20px;"/>
+                        <br>
+                         <label for="">Name</label> : <span>{{ printpreview.saleOrder.customerName }}</span>
+                        <br>
+                        <label for="">Date</label> : <span>{{ printpreview.saleOrder.date.slice(0, 10) }}</span>
+                        <br>
+                        <label for="">Reference</label> : <span>{{ printpreview.saleOrder.reference }}</span>
+                      </div>
+                    </div>
+                    <div class="saleOrder">
+                      <div class="saleOrder_l">  
+                        <div class="clear"></div>
+                      </div>  
+                    </div>
+
+                    <table class="table" style="margin-top: 10px">
+                      <thead>
+                        <tr>
+                          <th scope="col">No</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, idx) in printpreview.saleOrderTransactions" :key="idx">
+                          <td scope="row">{{ idx + 1 }} </td>
+                          <td >{{ item.itemName }}</td>
+                          <td>${{ item.price }}</td>
+                          <td>{{ item.quantity }}</td>
+                          <td>${{ item.amount }}</td>
+                        </tr>
+                        <tr>
+                          <th colspan="4" style="text-align: right;">Sutotal</th>
+                          <th>${{printpreview.saleOrder.grandTotalAmount}}</th>
+                        </tr>
+                        <tr>
+                          <th colspan="4" style="text-align: right;">Sale Tax 0%</th>
+                          <th>$0.00</th>
+                        </tr>
+                        <tr>
+                          <th colspan="4" style="text-align: right;">TOTAL</th>
+                          <th>${{printpreview.saleOrder.grandTotalAmount}}</th>
+                        </tr>
+                      </tbody>       
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end model Print Preview -->
+
+            <!-- Modal My Order -->
             <div
               class="modal fade"
               id="myOrder"
@@ -118,46 +202,54 @@
                 <div class="modal-content" style="order-radius: 0; background: #1b1d1f none repeat scroll 0 0;border-radius: 0;">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel" style="color: #fff; text-align: center">My Order</h5>
-                    <button
+                    <a href="#myOrder"
                       type="button"
                       class="close"
                       data-dismiss="modal"
                       aria-label="Close"
+                      ref="closemyOrder"
                     >
                       <span aria-hidden="true">&times;</span>
-                    </button>
+                    </a>
                   </div>
                   <div class="modal-body">
                     <table class="table">
                       <thead>
                         <tr style="color: #fff;">
-                          <th scope="col">No</th>
+                          <th scope="col">Date</th>
                           <th scope="col">Reference</th>
                           <th scope="col">Amount</th>
-                          <th scope="col">Date</th>
+                          <th scope="col">Status</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody style="color: #fff;">
                         <tr v-for="(item, idx) in dataMyOrder" :key="idx">
-                          <th scope="row">{{ idx + 1 }}</th>
+                          <th scope="row">{{ item.date.slice(0, 10) }}</th>
                           <td>{{ item.reference }}</td>
-                          <td>{{ item.amount }}</td>
-                          <td>{{ item.date.slice(0, 10) }}</td>
-                          <td>
+                          <td>${{ item.amount }}</td>
+                          <td>{{ item.status }}</td>
+
+                          <td v-if="item.status == 'New'">
                             <a
+                              title="Edit"
                               href="javascript:;"  data-dismiss="modal"
                               @click="tbn_editOrder(idx)"
-                              style="color:rgba(44, 240, 109, 0.863); margin-right: 5px;"
-                              >Edit</a
-                            >
-
+                              class="btn_edit"> 
+                              <span class="lnr lnr-pencil"></span></a>
                             <a
+                              title="Delete"
                               href="javascript:;"
                               @click="tbn_deleteCart(item.id)"
-                              style="color:red;margin-left: 5px;"
-                              >Delete</a
-                            >
+                              class="btn_edit">
+                              <span class="lnr lnr-trash"></span></a>
+                          </td>
+                          <td v-else>
+                            <a
+                              title="view"
+                              href="javascript:;" @click="tbn_view_order(item.id)"
+                              class="btn_edit">
+                              <span class="lnr lnr-eye"></span></a>
                           </td>
                         </tr>
                       </tbody>
@@ -167,7 +259,7 @@
                 </div>
               </div>
             </div>
-            <!--end model -->
+            <!--end model My Order-->
 
             <center id="myModal" class="modal fade">
               <div
@@ -238,11 +330,7 @@
                   >
                   <form class="home-search-form">
                     <input @keyup="searchProduct" type="text" />
-                    <input
-                      type="submit"
-                      value="Search"
-                      class="btn-link-default"
-                    />
+                    <input type="submit" value="Search" class="btn-link-default" />
                   </form>
                 </div>
               </div>
@@ -274,75 +362,8 @@
         </div>
       </div>
     </div>
-    <div class="header header-home">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-10 col-sm-10 col-xs-12">
-            <div class="header-slider default-paginav">
-              <div class="wrap-item">
-                <div class="item">
-                  <div class="item-home-slider">
-                    <a href="#"><img src="images/home/slide1.png" alt=""/></a>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item-home-slider">
-                    <a href="#"><img src="images/home/slide2.png" alt=""/></a>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item-home-slider">
-                    <a href="#"><img src="images/home/slide3.png" alt=""/></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-2 hidden-xs">
-            <div class="home-box-extra"><!-- checkout -->
-              <div class="home-cart-box">
-                <a
-                  href="#"
-                  class="icon-extra-sub icon-home-cart"
-                  v-if="cart == null"
-                >
-                  <span class="lnr lnr-cart"></span>
-                  <sup>0</sup>
-                </a>
 
-                <a href="#" class="icon-extra-sub icon-home-cart" v-else>
-                  <span class="lnr lnr-cart"></span>
-                  <sup>{{ cart.totalqty }}</sup>
-                </a>
-                <div class="home-extra-sub nav">
-                  <a href="#" class="close-extra-sub">Close</a>
-                  <component v-bind:is="currentTabComponent"></component>
-                </div>
-              </div>
-              <div class="home-search-box">
-                <a href="#" class="icon-extra-sub icon-home-search">
-                  <span class="lnr lnr-magnifier"></span>
-                </a>
-                <div class="home-extra-sub">
-                  <a href="javascript:void(0);" class="close-extra-sub"
-                    >Close</a
-                  >
-                  <form class="home-search-form">
-                    <input @keyup="searchProduct" type="text" />
-                    <input
-                      type="submit"
-                      value="Search"
-                      class="btn-link-default"
-                    />
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-       
-      </div>
-    </div>
+    <div class="header header-home"></div>
   </div>
 </template>
 
@@ -377,6 +398,10 @@ export default {
       idOrder:null,
       address_order:null,  
       editqtycartpopupdata:null, 
+
+      BranchId:null,
+      printpreview:null,
+      
    
     };
   },
@@ -401,7 +426,7 @@ export default {
       });
     } else {
       alert("Please Turn on your browser Location !");
-    }
+    };
 
     axios
      if(this.$route.query.tenancy){
@@ -413,6 +438,10 @@ export default {
     if (sessionStorage.getItem("username")) {
       this.loginame = sessionStorage.getItem("username");
       this.btnMyOrder();
+    };
+    this.autoLogin();
+    if(this.$route.query.BranchId){
+      this.BranchId = this.$route.query.BranchId;
     }
   },
   methods: {
@@ -436,17 +465,26 @@ export default {
       if (this.username) {
         axios
           .get(
-            "/api/get_customer_name/" +this.$route.query.tenancy+"/"+
-              this.username
-          )
+            "/api/get_customer_name/" +this.$route.query.tenancy+"/"+this.username)
           .then((response) => {
             sessionStorage.setItem("username", response.data.result.name);
             this.loginame = sessionStorage.getItem("username");
-            this.$refs.btnLogin.click(); // open form login
-            this.btnMyOrder();
+            this.$refs.btnLogin.click(); // close form login
+           
           });
       } else {
         this.msg = "Please input name!";
+      }
+    },
+    autoLogin(){
+      var CustomerName = this.$route.query.CustomerName;
+      if(CustomerName){
+        axios
+          .get("/api/get_customer_name/" +this.$route.query.tenancy+"/"+CustomerName)
+          .then((response) => {
+            sessionStorage.setItem("username", response.data.result.name);
+            this.loginame = sessionStorage.getItem("username");
+          });
       }
     },
     logout() {
@@ -457,7 +495,15 @@ export default {
       this.btnupdateOrder = false;    
       this.loginame = null;
       this.username = '';
-      
+      this.$parent.phone = '';
+      this.editQty = null;
+      this.cart = null;
+      this.$parent.cart = {
+        totalprice: 0,
+        totalqty: 0,
+        item: [],
+      };
+      window.location.replace('/');
     },
     removeCart(id) {
       this.$parent.removeCart = id;
@@ -522,7 +568,7 @@ export default {
             saleOrder: {
               id: null,
               tenancyName: this.$route.query.tenancy,
-              branchId: 1,
+              branchId: this.BranchId,
               customerName: this.loginame,
               shippingAddress: this.address,
               memo: "",
@@ -533,8 +579,8 @@ export default {
           axios
             .post("/api/get_checkout/"+this.$route.query.tenancy,dataCheckout)
             .then((response) => {
-              this.order = response.saleOrder;
-
+              // this.order = response.saleOrder;
+              var idPrintPreview = response.data.result;
               this.editQty = null;
               this.cart = null;
               this.$parent.cart = {
@@ -548,12 +594,19 @@ export default {
                   type: "success",
                   background:"#000",
                   showConfirmButton: false,
-                  timer: 3000,
+                  timer: 1000,
                 }); 
                 this.currentTabComponent="Cart";
                 this.phone=null;
                 sessionStorage.removeItem('cart');
               }
+              // get print Preview
+              axios.get("/api/get_printpreview/"+this.$route.query.tenancy+"/"+idPrintPreview)
+              .then((response) => {
+                this.printpreview = response.data.result;               
+                this.$refs.printpreview.click();
+                this.$refs.closecheckuot.click();
+              });
             });
         }else{
           alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
@@ -682,6 +735,7 @@ export default {
             showConfirmButton: false,
             timer: 2000,
           });
+
         });
       }else{
         this.$refs.btnLogin.click();
@@ -702,6 +756,23 @@ export default {
           totalqty: 0,
           item: [],
         };
+    },
+    tbn_view_order(id){
+      // get print Preview
+      axios.get("/api/get_printpreview/"+this.$route.query.tenancy+"/"+id)
+      .then((response) => {
+        this.printpreview = response.data.result;   
+        this.$refs.printpreview.click();
+        this.$refs.closemyOrder.click();
+      });
+    },
+    print_receipt(){
+      var printContents = document.getElementById('printpreview').innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      location.reload();
     }
   },
 
@@ -718,8 +789,12 @@ export default {
       if(value){
         this.value = value;
       }
-    }
-       
+    },  
+    phone(value){
+      if(value){
+        this.phone = value;
+      }
+    }   
   },
 };
 </script>
@@ -785,5 +860,74 @@ export default {
       padding: 0px 8px; 
       font-size: 18px;
     }
+  }
+  .btn_edit{
+    background: white;
+    padding: 0px 10px;
+    color: black;
+    font-size: 18px;
+    border: 1px solid;
+  }
+  .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    vertical-align: middle;
+  }
+  .unpoin{cursor: no-drop;}
+
+  .modal-body{
+    top: 14px;
+  }
+  .modal-body .saleOrder{
+    /* padding: 0px 50px; */
+  }
+  .modal-body .saleOrder_l{
+    float: left;
+  }
+  .modal-body .saleOrder_r{
+    float: right;
+  }
+ .modal-body .saleOrder_l label, .modal-body .saleOrder_r label{
+  width: 70px;
+ }
+ .modal-body table th, .modal-body table td{
+   text-align: center;
+ }
+ .add_cart .icon-extra-sub sup{
+   top: -17px;
+   font-size: 10px;
+ } 
+ .add_cart .icon-extra-sub span{
+   font-size: 20px;
+ }
+.search a span{
+  display: block; 
+  font-size: 20px; 
+  margin-top: 10px;
+}
+ .search div{
+   left: -63px; 
+   padding: 0px; 
+   width: 375px;
+ }
+ .search div form input{
+    width: 373px;
+    height: 42px;
+    margin-top: 4px;
+    font-size: 20px;
+ }
+ .clear{clear: both;}
+
+  @media print{
+    @page {size: A6 landscape;}
+   .modal-header span{
+     display: none;
+   }
+   html, body, #printpreview{
+    height:100%; 
+    margin: 0 !important; 
+    padding: 0 !important;
+    overflow: hidden;
+    clear: both;
+  }
+ 
   }
 </style>

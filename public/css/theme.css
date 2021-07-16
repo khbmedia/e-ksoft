@@ -781,7 +781,8 @@ blockquote {
     text-transform: uppercase;
 }
 .btn-link-default {
-    background: #1b1d1f none repeat scroll 0 0;
+    /* background: #1b1d1f none repeat scroll 0 0; */
+    background: #FBB450;
     border: medium none;
     color: #fff;
     display: inline-block;
@@ -929,18 +930,18 @@ blockquote {
 }
 .product-extra-link a:hover{
 	color:#fff;
-	background:#1b1d1f;
+	background:#FBB450;
 }
 .product-extra-link a span {
     line-height: 40px;
 }
 .product-extra-link .product-add-cart {
     bottom: 0;
-    height: 60px;
+    height: 100px;
     left: 0;
     right: 0;
     top: 0;
-    width: 60px;
+    width: 100px;
 }
 .product-extra-link .product-compare {
     left: 50%;
@@ -964,7 +965,7 @@ blockquote {
     width: 80px;
 }
 .product-extra-link .product-add-cart span {
-    line-height: 60px;
+    line-height: 100px;
 }
 .item-product.item-product-leading {
     position: relative;
@@ -2903,8 +2904,8 @@ Page Product List Mr
 	opacity:1;
 }
 .top-right>ul>li>a>span.lnr {
-    color: #999;
-    margin-right: 12px;
+    /* color: #999;
+    margin-right: 12px; */
 }
 .top-right>ul>li:hover>a {
     color: #999;
@@ -4470,7 +4471,7 @@ Page Product List Mr
     font-size: 13px;
     line-height: inherit;
     margin-right: 6px;
-    padding: 10px 25px;
+    padding: 10px;
     text-transform: uppercase;
 	background:transparent;
 	transition:all 0.5s ease-out 0s;
@@ -4496,7 +4497,7 @@ Page Product List Mr
 	top:0;
 	left:0;
 	content:"";
-	background:#1B1D1F;
+	/* background:#1B1D1F; */
 	opacity:0;
 	transition:all 0.5s ease-out 0s;
 }
@@ -7076,7 +7077,7 @@ Page Product List Mr
     text-transform: uppercase;
 }
 .title-product-best-sale {
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     position: relative;
 }
 .nav-tabs-bestsale .filter-product .btn-filter {
@@ -7178,7 +7179,8 @@ Page Product List Mr
 	text-align:center;
 }
 .product-best-sale{
-	margin-bottom:50px;
+	margin-bottom:20px;
+    margin-top: 20px;
 }
 .paginav-best-seller a {
     background: #f5f5f5 none repeat scroll 0 0;
@@ -7216,7 +7218,6 @@ Page Product List Mr
 							Front Page
 ********************************************************************/
 .header.header-home {
-    background-image: url("../images/home/bg-page.jpg");
     background-position: center top;
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -7363,7 +7364,7 @@ Page Product List Mr
     background: #252627 none repeat scroll 0 0;
 }
 .icon-home-search {
-    background: #333 none repeat scroll 0 0;
+    background: #1b1d1f none repeat scroll 0 0;
 }
 .home-box-extra > div > a > .lnr {
     bottom: 0;

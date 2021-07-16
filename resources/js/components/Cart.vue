@@ -53,9 +53,13 @@
   export default {
     methods: {
       setActive(Form) {
+        if(Number(sessionStorage.getItem("username")) ){
+          this.$parent.phone = sessionStorage.getItem("username");
+        }
         var cart_session = JSON.parse(sessionStorage.getItem("cart"));
         if (cart_session.item.length > 0) {
           this.$parent.currentTabComponent = Form;
+
         } else {
           this.$fire({
             title: '<span style="color:#fff">You are not select product. Please select product !</span>',
@@ -66,8 +70,6 @@
             timer: 3000,
           });
         }
-
-
       }
     }
   }
