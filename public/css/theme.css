@@ -966,6 +966,7 @@ blockquote {
 }
 .product-extra-link .product-add-cart span {
     line-height: 100px;
+    font-size: 30px;
 }
 .item-product.item-product-leading {
     position: relative;

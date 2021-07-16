@@ -53,7 +53,7 @@
                     </a>
                     <div class="home-extra-sub">
                       <form >
-                        <input @keyup="searchProduct" type="text" />    
+                        <input @keyup="searchProduct" type="text" class="form-control" placeholder="Search....." />    
                       </form>
                     </div>
                 </li>
@@ -74,7 +74,7 @@
                 </li>
                 <li v-bind:class="{'info-user':!isScreenPc()}" v-if="loginame != null">
                   <a href="javascript:;" class="account-link hidden-xs">
-                    <span class="lnr lnr-user"></span>{{loginame }}
+                    <span class="lnr lnr-user"></span> {{loginame }}
                   </a>
                   <a type="button" href="#" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
                     <span class="lnr lnr-menu" style="color: #fff; margin-top: 8px;"></span>
@@ -898,21 +898,20 @@ export default {
  .add_cart .icon-extra-sub span{
    font-size: 20px;
  }
-.search a span{
-  display: block; 
-  font-size: 20px; 
-  margin-top: 10px;
-}
+  .search a span{
+    display: block; 
+    font-size: 20px; 
+    margin-top: 10px;
+  }
  .search div{
-   left: -63px; 
-   padding: 0px; 
-   width: 375px;
+  left: 0%;
+  padding: 0px;
+  width: 44%;
  }
  .search div form input{
-    width: 373px;
     height: 42px;
     margin-top: 4px;
-    font-size: 20px;
+    font-size: 17px;
  }
  .clear{clear: both;}
 
@@ -927,7 +926,14 @@ export default {
     padding: 0 !important;
     overflow: hidden;
     clear: both;
-  }
+    }
  
   }
+  .list-inline > li {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.home-extra-sub {
+  width: auto;
+}
 </style>
