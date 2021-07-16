@@ -53,7 +53,7 @@
                     </a>
                     <div class="home-extra-sub">
                       <form >
-                        <input @keyup="searchProduct" type="text" />    
+                        <input @keyup="searchProduct" type="text" class="form-control" placeholder="Search....." />    
                       </form>
                     </div>
                 </li>
@@ -74,7 +74,7 @@
                 </li>
                 <li v-bind:class="{'info-user':!isScreenPc()}" v-if="loginame != null">
                   <a href="javascript:;" class="account-link hidden-xs">
-                    <span class="lnr lnr-user"></span>{{loginame }}
+                    <span class="lnr lnr-user"></span> {{loginame }}
                   </a>
                   <a type="button" href="#" class="account-link hidden-lg hidden-md hidden-sm" style="text-align: left; font-size: 30px; font-weight: 600;">
                     <span class="lnr lnr-menu" style="color: #fff; margin-top: 8px;"></span>
@@ -904,9 +904,9 @@ export default {
   margin-top: 10px;
 }
  .search div{
-   left: -63px; 
+   left: -2%;
    padding: 0px; 
-   width: 375px;
+   /* width: 375px; */
  }
  .search div form input{
     width: 373px;
@@ -927,7 +927,14 @@ export default {
     padding: 0 !important;
     overflow: hidden;
     clear: both;
-  }
+    }
  
   }
+   .list-inline > li {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.home-extra-sub {
+  width: auto;
+}
 </style>

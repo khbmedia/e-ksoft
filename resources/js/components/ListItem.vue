@@ -23,7 +23,7 @@
         <div class="item-product">
           <div class="item-product-thumb">
             <a class="product-thumb-link" href="javascript:void(0);">
-              <img v-bind:src=" 'data:image/jpeg;base64,' + item.picture" class="img-responsive">
+              <img v-bind:src=" 'data:image/jpeg;base64,' + item.picture" class="img-responsive" style="border-top-left-radius: 6px;border-top-right-radius: 6px;">
             </a>
             <div class="product-extra-mask">
               <div class="product-extra-link">
@@ -210,8 +210,9 @@ export default {
     }
   }
   .item-product{
-    border: 1px solid;
+    border-radius: 10px;
     padding: 10px;
-    box-shadow: 0px 0 3px 2px #888888;
+    box-shadow: 0 0 7px 1px #888888a6;
   }
+ 
 </style>
