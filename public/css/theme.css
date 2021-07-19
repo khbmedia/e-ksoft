@@ -4489,7 +4489,7 @@ Page Product List Mr
 .nav-tabs-border .nav-tabs > li {
     display: inline-block;
     float: none;
-    margin-right: 2px;
+    margin-right: 4px;
 }
 .nav-tabs-border .nav-tabs > li > a::before{
 	position:absolute;
