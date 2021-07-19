@@ -31,11 +31,9 @@
               </p>
             </div>
           </div>
-          <div class="link-cart" :style="{'text-align':'center','display':$parent.isScreenPc()?'flex':'block'}">
+          <div class="link-cart" :style="{'text-align':'center'}">
               <a href="javascript:;" class="cart-edit" @click="setActive('Cart')">Cancel</a>
-              <a href="javascript:;" class="cart-edit" @click="$parent.checkout()"
-                >Confirm Address</a
-              >
+              <a href="javascript:;" class="cart-edit" @click="$parent.checkout()">Confirm</a>
           </div>
         </form>
       </div>
