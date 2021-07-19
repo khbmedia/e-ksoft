@@ -907,7 +907,7 @@ export default {
     margin-top: 10px;
   }
  .search div{
-  right: 228px;
+  right: 446px;
   padding: 0px;
   width: 44%;
  }
