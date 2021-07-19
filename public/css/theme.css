@@ -4490,6 +4490,7 @@ Page Product List Mr
     display: inline-block;
     float: none;
     margin-right: 4px;
+    margin-bottom: 14px;
 }
 .nav-tabs-border .nav-tabs > li > a::before{
 	position:absolute;

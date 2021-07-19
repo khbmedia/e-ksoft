@@ -46728,7 +46728,7 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticStyle: { margin: "0" },
+                            staticStyle: { margin: "0", height: "47px" },
                             attrs: { href: "javascript:void(0);" },
                             on: {
                               click: function($event) {
