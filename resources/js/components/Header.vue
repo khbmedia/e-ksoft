@@ -623,7 +623,6 @@ export default {
       }else{
         alert("You are not select product. Please select product !"); // alert when delete product on cart (SH) 
       }
-      
     },
     btnMyOrder() {
       if (this.loginame) {
