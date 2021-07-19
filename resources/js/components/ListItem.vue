@@ -8,8 +8,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="nav-tabs-border">
                 <ul role="tablist" class="nav nav-tabs" style="display: flex; overflow-x: auto; overflow-y: hidden;}">
-                  <li v-for="(item, idx) in categories" :key="idx" class="active">
-                    <a href="javascript:void(0);" @click="filterCategory(item.id)" >{{ item.name }} </a>
+                  <li v-for="(item, idx) in categories" :key="idx" class="active" style="border-radius: 10px; box-shadow: 0 0 2px 1px #88888861;">
+                    <a href="javascript:void(0);" @click="filterCategory(item.id)" style="margin: 0;">{{ item.name }} </a>
                   </li>
                 </ul>
               </div>

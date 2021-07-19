@@ -8233,7 +8233,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.home-extra-sub[data-v-1f42fb90] {\r\n    width: 100%;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 18px;\r\n    border: 1px solid;\n}\n.table > thead > tr > th[data-v-1f42fb90], .table > tbody > tr > th[data-v-1f42fb90], .table > tfoot > tr > th[data-v-1f42fb90], .table > thead > tr > td[data-v-1f42fb90], .table > tbody > tr > td[data-v-1f42fb90], .table > tfoot > tr > td[data-v-1f42fb90] {\r\n    vertical-align: middle;\n}\n.unpoin[data-v-1f42fb90]{cursor: no-drop;}\n.modal-body[data-v-1f42fb90]{\r\n    top: 14px;\n}\n.modal-body .saleOrder[data-v-1f42fb90]{\r\n    /* padding: 0px 50px; */\n}\n.modal-body .saleOrder_l[data-v-1f42fb90]{\r\n    float: left;\n}\n.modal-body .saleOrder_r[data-v-1f42fb90]{\r\n    float: right;\n}\n.modal-body .saleOrder_l label[data-v-1f42fb90], .modal-body .saleOrder_r label[data-v-1f42fb90]{\r\n  width: 70px;\n}\n.modal-body table th[data-v-1f42fb90], .modal-body table td[data-v-1f42fb90]{\r\n   text-align: center;\n}\n.add_cart .icon-extra-sub sup[data-v-1f42fb90]{\r\n   top: -17px;\r\n   font-size: 10px;\n}\n.add_cart .icon-extra-sub span[data-v-1f42fb90]{\r\n   font-size: 20px;\n}\n.search a span[data-v-1f42fb90]{\r\n    display: block; \r\n    font-size: 20px; \r\n    margin-top: 10px;\n}\n.search div[data-v-1f42fb90]{\r\n  right: 228px;\r\n  padding: 0px;\r\n  width: 44%;\n}\n.search div form input[data-v-1f42fb90]{\r\n    height: 42px;\r\n    margin-top: 4px;\r\n    font-size: 17px;\n}\n.clear[data-v-1f42fb90]{clear: both;}\n@media print{\n@page {size: A6 landscape;}\n.modal-header span[data-v-1f42fb90]{\r\n     display: none;\n}\nhtml[data-v-1f42fb90], body[data-v-1f42fb90], #printpreview[data-v-1f42fb90]{\r\n      height:100%; \r\n      margin: 0 !important; \r\n      padding: 0 !important;\r\n      overflow: hidden;\r\n      clear: both;\n}\n}\n.list-inline > li[data-v-1f42fb90] {\r\n    padding-right: 0px;\r\n    padding-left: 0px;\n}\n.home-extra-sub[data-v-1f42fb90] {\r\n  width: auto;\n}\n@media (max-width: 767px){\n.home-extra-sub[data-v-1f42fb90] {\r\n    width: 100%;\n}\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.message[data-v-1f42fb90] {\r\n  color: red;\r\n  text-align: center;\n}\n.swal2-popup[data-v-1f42fb90] {\r\n  z-index: 999;\n}\n.imgpopup[data-v-1f42fb90]{\r\n float: left;\n}\n.imgpopup img[data-v-1f42fb90]{\r\n  max-width: none !important;\n}\n.btnchange[data-v-1f42fb90]{\r\n  color:black;\r\n  font-size: 20px; \r\n  float: left;\n}\n.btnchange .qty[data-v-1f42fb90]{\r\n  color:white; \r\n  margin-right: 10px; \r\n  font-weight: 100;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n  background-color: white; \r\n  color:black;\r\n  padding: 0px 9px; \r\n  font-size: 20px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    padding: 0px 50px; \r\n    font-size: 20px; \r\n    margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n    background-color: white; \r\n    color:black; \r\n    padding: 0px 9px; \r\n    font-size: 20px;\n}\n@media (max-width: 414px) {\n.btnchange .qty[data-v-1f42fb90]{\r\n      margin-right: 3px; \r\n      font-weight: 100;\r\n      font-size: 17px;\n}\n.btnchange .donqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.btnchange .showqty[data-v-1f42fb90]{\r\n      padding: 0px 25px; \r\n      font-size: 18px; \r\n      margin: 0px -4px;\n}\n.btnchange .upqty[data-v-1f42fb90]{\r\n      padding: 0px 8px; \r\n      font-size: 18px;\n}\n.home-extra-sub[data-v-1f42fb90] {\r\n    width: 100%;\n}\n}\n.btn_edit[data-v-1f42fb90]{\r\n    background: white;\r\n    padding: 0px 10px;\r\n    color: black;\r\n    font-size: 18px;\r\n    border: 1px solid;\n}\n.table > thead > tr > th[data-v-1f42fb90], .table > tbody > tr > th[data-v-1f42fb90], .table > tfoot > tr > th[data-v-1f42fb90], .table > thead > tr > td[data-v-1f42fb90], .table > tbody > tr > td[data-v-1f42fb90], .table > tfoot > tr > td[data-v-1f42fb90] {\r\n    vertical-align: middle;\n}\n.unpoin[data-v-1f42fb90]{cursor: no-drop;}\n.modal-body[data-v-1f42fb90]{\r\n    top: 14px;\n}\n.modal-body .saleOrder[data-v-1f42fb90]{\r\n    /* padding: 0px 50px; */\n}\n.modal-body .saleOrder_l[data-v-1f42fb90]{\r\n    float: left;\n}\n.modal-body .saleOrder_r[data-v-1f42fb90]{\r\n    float: right;\n}\n.modal-body .saleOrder_l label[data-v-1f42fb90], .modal-body .saleOrder_r label[data-v-1f42fb90]{\r\n  width: 70px;\n}\n.modal-body table th[data-v-1f42fb90], .modal-body table td[data-v-1f42fb90]{\r\n   text-align: center;\n}\n.add_cart .icon-extra-sub sup[data-v-1f42fb90]{\r\n   top: -17px;\r\n   font-size: 10px;\n}\n.add_cart .icon-extra-sub span[data-v-1f42fb90]{\r\n   font-size: 20px;\n}\n.search a span[data-v-1f42fb90]{\r\n    display: block; \r\n    font-size: 20px; \r\n    margin-top: 10px;\n}\n.search div[data-v-1f42fb90]{\r\n  right: 228px;\r\n  padding: 0px;\r\n  width: 44%;\n}\n.search div form input[data-v-1f42fb90]{\r\n    height: 42px;\r\n    margin-top: 4px;\r\n    font-size: 17px;\n}\n.clear[data-v-1f42fb90]{clear: both;}\n@media print{\n@page {size: A6 landscape;}\n.modal-header span[data-v-1f42fb90]{\r\n     display: none;\n}\nhtml[data-v-1f42fb90], body[data-v-1f42fb90], #printpreview[data-v-1f42fb90]{\r\n      height:100%; \r\n      margin: 0 !important; \r\n      padding: 0 !important;\r\n      overflow: hidden;\r\n      clear: both;\n}\n}\n.list-inline > li[data-v-1f42fb90] {\r\n    padding-right: 0px;\r\n    padding-left: 0px;\n}\n.home-extra-sub[data-v-1f42fb90] {\r\n  width: auto;\n}\n@media (max-width: 768px){\n.home-extra-sub[data-v-1f42fb90] {\r\n    width: 100%;\n}\n.search div[data-v-1f42fb90]{\r\n      right: 425px;\n}\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -46714,20 +46714,32 @@ var render = function() {
                     attrs: { role: "tablist" }
                   },
                   _vm._l(_vm.categories, function(item, idx) {
-                    return _c("li", { key: idx, staticClass: "active" }, [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "javascript:void(0);" },
-                          on: {
-                            click: function($event) {
-                              return _vm.filterCategory(item.id)
+                    return _c(
+                      "li",
+                      {
+                        key: idx,
+                        staticClass: "active",
+                        staticStyle: {
+                          "border-radius": "10px",
+                          "box-shadow": "0 0 2px 1px #88888861"
+                        }
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticStyle: { margin: "0" },
+                            attrs: { href: "javascript:void(0);" },
+                            on: {
+                              click: function($event) {
+                                return _vm.filterCategory(item.id)
+                              }
                             }
-                          }
-                        },
-                        [_vm._v(_vm._s(item.name) + " ")]
-                      )
-                    ])
+                          },
+                          [_vm._v(_vm._s(item.name) + " ")]
+                        )
+                      ]
+                    )
                   }),
                   0
                 )

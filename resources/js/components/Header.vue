@@ -939,10 +939,13 @@ export default {
 .home-extra-sub {
   width: auto;
 }
-@media (max-width: 767px){
-.home-extra-sub {
+@media (max-width: 768px){
+  .home-extra-sub {
     width: 100%;
   }
+  .search div{
+      right: 425px;
+    }
 }
 
 
