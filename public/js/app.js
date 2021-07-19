@@ -2158,8 +2158,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     setActive: function setActive(Form) {
@@ -44958,14 +44956,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          {
-            staticClass: "link-cart",
-            style: {
-              "text-align": "center",
-              display: _vm.$parent.isScreenPc() ? "flex" : "block",
-              "justify-content": "center"
-            }
-          },
+          { staticClass: "link-cart", style: { "text-align": "center" } },
           [
             !_vm.$parent.hideCheckOut && !_vm.$parent.btnupdateOrder
               ? _c(
@@ -45124,13 +45115,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              {
-                staticClass: "link-cart",
-                style: {
-                  "text-align": "center",
-                  display: _vm.$parent.isScreenPc() ? "flex" : "block"
-                }
-              },
+              { staticClass: "link-cart", style: { "text-align": "center" } },
               [
                 _c(
                   "a",
@@ -45157,7 +45142,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Confirm Address")]
+                  [_vm._v("Confirm")]
                 )
               ]
             )

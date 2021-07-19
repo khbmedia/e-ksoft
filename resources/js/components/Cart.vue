@@ -39,7 +39,7 @@
       <label>Subtotal</label>
       <span>${{ $parent.cart.totalprice }}</span>
     </div>
-    <div class="link-cart" :style="{'text-align':'center','display':$parent.isScreenPc()?'flex':'block','justify-content': 'center'}">
+    <div class="link-cart" :style="{'text-align':'center'}">
       <!-- <a href="javascript:;" @click="$parent.btnEditCart()" class="cart-edit">edit cart</a>
       <a href="javascript:;" class="cart-checkout" @click="$parent.saveCart()" v-if="$parent.hideCheckOut">Save</a> -->
       <a href="#" @click="setActive('Checkout')" class="cart-checkout" v-if="!$parent.hideCheckOut && !$parent.btnupdateOrder">checkout</a>
