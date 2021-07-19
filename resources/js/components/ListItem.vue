@@ -197,6 +197,9 @@ export default {
 <style scoped>
   .nav-tabs-border .nav-tabs > li > a:hover, .nav-tabs-border .nav-tabs > li.active > a{
     width: auto;
+    width: -webkit-max-content !important;
+    width: -moz-max-content !important;
+    width: max-content !important;
   }
   .nav {
       padding-left: revert !important;

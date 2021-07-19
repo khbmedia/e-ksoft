@@ -860,6 +860,9 @@ export default {
       padding: 0px 8px; 
       font-size: 18px;
     }
+    .home-extra-sub {
+    width: 100%;
+  }
   }
   .btn_edit{
     background: white;
@@ -904,7 +907,7 @@ export default {
     margin-top: 10px;
   }
  .search div{
-  left: 0%;
+  right: 228px;
   padding: 0px;
   width: 44%;
  }
@@ -921,19 +924,26 @@ export default {
      display: none;
    }
    html, body, #printpreview{
-    height:100%; 
-    margin: 0 !important; 
-    padding: 0 !important;
-    overflow: hidden;
-    clear: both;
+      height:100%; 
+      margin: 0 !important; 
+      padding: 0 !important;
+      overflow: hidden;
+      clear: both;
     }
  
   }
   .list-inline > li {
-  padding-right: 0px;
-  padding-left: 0px;
-}
+    padding-right: 0px;
+    padding-left: 0px;
+  }
 .home-extra-sub {
   width: auto;
 }
+@media (max-width: 767px){
+.home-extra-sub {
+    width: 100%;
+  }
+}
+
+
 </style>
