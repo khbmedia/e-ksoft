@@ -10,7 +10,7 @@ body {
 .wrap{
 	overflow:hidden;
 }
-*{	
+*{
 	box-sizing:border-box;
 	outline:none;
 }
@@ -263,10 +263,10 @@ blockquote {
 }
 .main-nav > ul > li > a > sup.title-hot{
 	color:#fbb450;
-} 
+}
 .main-nav > ul > li > a > sup.title-new{
 	color:#2caae1;
-} 
+}
 
 .info-search .search-form {
     background: #fff none repeat scroll 0 0;
@@ -864,6 +864,11 @@ blockquote {
 .title-product {
     font-size: 17px;
     margin: 0 0 7px;
+    height: 36px;
+    overflow-y: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 .item-product-info {
     margin-top: 27px;
@@ -2090,7 +2095,7 @@ Page Detail Mr
 }
 .widget.widget-category li:last-child{
 	border-bottom: 1px solid transparent;
-} 
+}
 .widget.widget-compare li{
 	position:relative;
 }
@@ -2309,10 +2314,10 @@ Page Grid Mr
 }
 .widget.widget-default li:last-child{
 	border-bottom: 1px solid transparent;
-} 
+}
 .widget.widget-default li:first-child{
 	padding-top:0;
-} 
+}
 .widget.widget-attribute a span {
     color: #999;
 }
@@ -2778,7 +2783,7 @@ Page Product List Mr
 	opacity:0;
 }
 .language-box:hover::after,.currency-box:hover::after{
-	opacity:1;	
+	opacity:1;
 }
 .currency-box:hover .currency-inner-box{
 	opacity:1;
@@ -4330,7 +4335,7 @@ Page Product List Mr
   z-index:9000;
   background-color:#000;
   display:none;
-}  
+}
 #boxes .window {
   position:absolute;
   left:0;
@@ -4339,7 +4344,7 @@ Page Product List Mr
   z-index:9999;
 }
 /***********************************************************************
-						Arrow Style Slider						
+						Arrow Style Slider
 ************************************************************************/
 .arrow-style .owl-theme .owl-controls .owl-buttons div {
     background: transparent none repeat scroll 0 0;
@@ -4385,12 +4390,12 @@ Page Product List Mr
 	margin-right:-5px;
 }
 /***********************************************************************
-						Tabs&Toggles						
+						Tabs&Toggles
 ************************************************************************/
 /*Tabs Icon*/
 .product-slider.arrow-style .owl-theme .owl-controls .owl-buttons div {
 	margin-top: -55px;
-}	
+}
 .relate-product .nav-tabs-icon {
     margin-top: 50px;
 }
@@ -4524,7 +4529,7 @@ Page Product List Mr
     padding: 20px 25px 15px;
 }
 /***********************************************************************
-						Message Boxes						
+						Message Boxes
 ************************************************************************/
 .list-message-box {
     margin: 80px 0 20px;
@@ -4559,7 +4564,7 @@ Page Product List Mr
     color: #fec64d;
 }
 /***********************************************************************
-						Feature Boxes						
+						Feature Boxes
 ************************************************************************/
 .list-feature-boxes .item-feature-box{
 	margin:40px 0;
@@ -4750,7 +4755,7 @@ Page Product List Mr
 	color:#1997d4;
 }
 /***********************************************************************
-						Charts & Progress Bars						
+						Charts & Progress Bars
 ************************************************************************/
 /*Circle Chart*/
 .circle1 .circles-text {
@@ -4958,7 +4963,7 @@ Page Product List Mr
     fill: #1b1d1f;
 }
 /***********************************************************************
-						Buttons						
+						Buttons
 ************************************************************************/
 .bt-link {
     border: medium none;
@@ -6052,7 +6057,7 @@ Page Product List Mr
 	box-shadow: 0 0 0 1px rgba(255,255,255,0.2) inset;
 }
 /***********************************************************************
-						Accordions						
+						Accordions
 ************************************************************************/
 .accordion-box {
     margin-bottom: 30px;
@@ -6154,7 +6159,7 @@ Page Product List Mr
     background: #1b1d1f url("../images/sub1.png") no-repeat scroll center center;
 }
 /***********************************************************************
-						Banner Slider						
+						Banner Slider
 ************************************************************************/
 .list-banner-slider>div{
 	margin-bottom:50px;
@@ -6315,7 +6320,7 @@ Page Product List Mr
     opacity: 1;
 }
 /***********************************************************************
-						Banners					
+						Banners
 ************************************************************************/
 .item-product-leading .item-product-thumb:hover .product-thumb-link img{
 	transform:scale(1.15);
@@ -6557,7 +6562,7 @@ Page Product List Mr
     left: -2px;
 }
 /***********************************************************************
-						Home 2					
+						Home 2
 ************************************************************************/
 .item-popular-info {
     text-align: center;
@@ -6753,7 +6758,7 @@ Page Product List Mr
     margin-bottom: 0;
 }
 /***********************************************************************
-								Home 3					
+								Home 3
 ************************************************************************/
 .banner-top-home3 {
     margin-top: 50px;
@@ -7398,19 +7403,12 @@ Page Product List Mr
     visibility: visible;
     width: 100px;
 }
-/* @media ((max-width: 767px){
-    .home-box-extra > div > a {
-        color: #fff;
-        display: block;
-        height: 100px;
-        opacity: 1;
-        position: relative;
-        text-align: right;
-        transition: all 0.5s ease-out 0s;
-        visibility: visible;
-        width: 100px;
+@media (max-width: 582px){
+    .title-product{
+        height: 54px;
+        overflow-y: hidden;
     }
-} */
+}
 .home-box-extra .icon-home-cart sup {
     font-size: 13px;
     position: absolute;
@@ -7922,7 +7920,7 @@ Page Product List Mr
     background: rgba(255, 255, 255, 1) none repeat scroll 0 0;
     margin-top: 55px;
     transform: translate(0px, -200%);
-} 
+}
 .item-home-latest-news{
 	background-position:right 30px top 30px;
 }
@@ -8102,7 +8100,7 @@ span.click-button{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.right-open span.click-button::before{    
+.right-open span.click-button::before{
     content: "\e87a";
     font-family: 'Linearicons';
     speak: none;
@@ -8124,7 +8122,7 @@ span.click-button{
     transition: all 0.5s ease-in-out;
 }
 .testimonial-page{
-    position: absolute;    
+    position: absolute;
     width: 50%;
     z-index: 1;
     transition: transform 0.5s ease-in-out;
@@ -8133,7 +8131,7 @@ span.click-button{
 .testimonial-page-left{
     color: #fff;
     left: -250%;
-    padding-right: 50px;    
+    padding-right: 50px;
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 	transition: transform 0.5s ease-in-out;
@@ -8147,7 +8145,7 @@ span.click-button{
 }
 .side-right{
     position: relative;
-    right: 0;    
+    right: 0;
 }
 .side-left {
     position: relative;
@@ -8207,14 +8205,14 @@ span.click-button{
 }
 /*End Testimonial*/
 /***********************************************************************
-								Lightbox						
+								Lightbox
 ************************************************************************/
 .product-popup-content{
 	max-width:870px;
 	width:100%;
 }
 /***********************************************************************
-								Home 5						
+								Home 5
 ************************************************************************/
 .inner-cart-info5.inner-cart-info .link-cart a{
 	background:#1997d4;
@@ -8438,7 +8436,7 @@ span.click-button{
     width: 300px;
 }
 /***********************************************************************
-								Home 7					
+								Home 7
 ************************************************************************/
 .product-best-sale.style2 .filter-product .btn-filter.style-border-left {
     margin-top: 0px;
@@ -8717,7 +8715,7 @@ span.click-button{
     padding-bottom: 30px;
 }
 /***********************************************************************
-						Headings&Separators				
+						Headings&Separators
 ************************************************************************/
 
 .box-intro-border {
@@ -8786,7 +8784,7 @@ span.click-button{
 	margin-bottom:80px;
 }
 /***********************************************************************
-						Teams				
+						Teams
 ************************************************************************/
 .team-gallery-thumb {
     display: block;
@@ -9171,7 +9169,7 @@ span.click-button{
 .item-new-product8:hover .item-product-info{
 	opacity:0;
 	visibility:hidden;
-} 
+}
 .item-new-product8 .item-product {
     margin-bottom: 0;
 }
@@ -9437,7 +9435,7 @@ span.click-button{
 	padding-bottom:20px;
 }
 /*************************************************************************************************************
-											Home 9					
+											Home 9
 *************************************************************************************************************/
 .header-nav9 {
     background: #fff none repeat scroll 0 0;
@@ -10432,7 +10430,7 @@ div.table > div {
 	background:#fbfbfb;
 	color:#555;
 }
-.home-bestsale-slider.style2 .nav-tabs-icon .nav-tabs > li > a:hover, 
+.home-bestsale-slider.style2 .nav-tabs-icon .nav-tabs > li > a:hover,
 .home-bestsale-slider.style2 .nav-tabs-icon .nav-tabs > li.active > a {
     color: #1997d4;
 }
@@ -10479,7 +10477,7 @@ div.table > div {
     position: relative;
 }
 .banner-category11 {
-    background: #fff none repeat scroll 0 0;    
+    background: #fff none repeat scroll 0 0;
     width: 270px;
 	padding:20px;
 }
@@ -10570,7 +10568,7 @@ body,html{
     border-radius: 50%;
     text-decoration:none;
     }
-    .modal-login {		
+    .modal-login {
         color: #636363;
         width: 350px;
     }
@@ -10580,7 +10578,7 @@ body,html{
         border: none;
     }
     .modal-login .modal-header {
-        border-bottom: none;   
+        border-bottom: none;
         position: relative;
         justify-content: center;
     }
@@ -10594,13 +10592,13 @@ body,html{
     }
     .modal-login .form-control, .modal-login .btn {
         min-height: 40px;
-        border-radius: 3px; 
+        border-radius: 3px;
     }
     .modal-login .close {
         position: absolute;
         top: -5px;
         right: -5px;
-    }	
+    }
     .modal-login .modal-footer {
         background: #ecf0f1;
         border-color: #dee4e7;
@@ -10612,7 +10610,7 @@ body,html{
     }
     .modal-login .modal-footer a {
         color: #999;
-    }		
+    }
     .modal-login .avatar {
         position: absolute;
         margin: 0 auto;
@@ -10650,4 +10648,3 @@ body,html{
         display: inline-block;
         margin: 100px auto;
     }
-    
