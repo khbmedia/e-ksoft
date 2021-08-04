@@ -862,7 +862,7 @@ blockquote {
 	transition:all 0.5s ease-out 0s;
 }
 .title-product {
-    font-size: 17px;
+    font-size: 12px;
     margin: 0 0 7px;
     height: 36px;
     overflow-y: hidden;
@@ -878,12 +878,12 @@ blockquote {
     color: #666;
 }
 .title-product a {
-    color: red;
+    color: #000;
     text-transform: uppercase;
     font-family: system-ui;
 }
 .title-product a:hover {
-    color:#000000;
+    color:red;
 }
 .info-price del {
 	color:#999;

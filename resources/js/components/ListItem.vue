@@ -36,7 +36,7 @@
               <a href="javascript:void(0);" @click="DetailItem(item)">{{ item.name }}</a>
             </h3>
             <div class="info-price">
-              <span>{{ item.price }} {{ item.currency }}</span>
+              <b style="font-size: 24px">{{ item.price }} {{ item.currency }}</b>
             </div>
           </div>
         </div>
