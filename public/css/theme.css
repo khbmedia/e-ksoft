@@ -883,7 +883,7 @@ blockquote {
     font-family: system-ui;
 }
 .title-product a:hover {
-    color:red;
+    color:orange;
 }
 .info-price del {
 	color:#999;
