@@ -23,7 +23,7 @@
         <div class="item-product">
           <div class="item-product-thumb">
             <a class="product-thumb-link" href="javascript:void(0);">
-              <img v-bind:src=" 'data:image/jpeg;base64,' + item.picture" class="img-responsive" style="border-top-left-radius: 6px;border-top-right-radius: 6px;">
+              <img v-bind:src="'data:image/jpeg;base64,' + item.picture" class="img-responsive" style="border-top-left-radius: 6px;border-top-right-radius: 6px;">
             </a>
             <div class="product-extra-mask">
               <div class="product-extra-link">
@@ -33,7 +33,7 @@
           </div>
           <div class="item-product-info">
             <h3 class="title-product">
-              <a href="javascript:void(0);" @click="DetailItem(item)">{{ item.name }}</a>
+              <router-link :to="'/productDetail/'+item.id+'?tenancy='+$route.query.tenancy" >{{ item.name }}</router-link>
             </h3>
             <div class="info-price">
               <b style="font-size: 24px">{{ item.price }} {{ item.currency }}</b>

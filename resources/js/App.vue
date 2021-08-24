@@ -144,7 +144,7 @@ export default {
       } else if (!value && this.$children[2].oldTabComponent == "DetailItem") {
         this.$children[2].currentTabComponent = "DetailItem";
       }
-
+       
       this.$children[2].search = value;
     },
    

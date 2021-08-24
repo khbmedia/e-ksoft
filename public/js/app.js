@@ -2241,7 +2241,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    this.data = this.$parent.dataDetail;
+    var dateFilter = this.$parent.items.filter(function (elment) {
+      return elment.id == _this.$route.params.id;
+    });
+    this.data = dateFilter[0];
     this.display = this.items;
     setTimeout(function () {
       _this.$refs.images.style.width = "100%";
@@ -2828,6 +2831,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     searchProduct: function searchProduct(event) {
       this.$parent.search = event.target.value;
+      this.$router.push('/?tenancy=momo');
     },
     user_name: function user_name() {
       var _this2 = this;
@@ -3501,7 +3505,6 @@ __webpack_require__.r(__webpack_exports__);
 
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551").then(function (response) {
       _this.items = response.data.result;
-      console.log(_this.items);
     });
   },
   watch: {
@@ -3682,13 +3685,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _pages_Index_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pages/Index.vue */ "./resources/js/pages/Index.vue");
 /* harmony import */ var _pages_CheckOut_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/CheckOut.vue */ "./resources/js/pages/CheckOut.vue");
 /* harmony import */ var _pages_Order_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Order.vue */ "./resources/js/pages/Order.vue");
 /* harmony import */ var _pages_Category_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Category.vue */ "./resources/js/pages/Category.vue");
 /* harmony import */ var _components_ProductCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/ProductCard */ "./resources/js/components/ProductCard.vue");
+/* harmony import */ var _components_DetailItem_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/DetailItem.vue */ "./resources/js/components/DetailItem.vue");
 
 
 
@@ -3696,8 +3700,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_6__.default({
+
+vue__WEBPACK_IMPORTED_MODULE_6__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_7__.default);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vue_router__WEBPACK_IMPORTED_MODULE_7__.default({
   routes: [{
     path: "/",
     component: _pages_Index_vue__WEBPACK_IMPORTED_MODULE_0__.default
@@ -3713,6 +3718,9 @@ vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vue_router__WEBPACK_IMPORTED_MODULE
   }, {
     path: "/ProductCard",
     component: _components_ProductCard__WEBPACK_IMPORTED_MODULE_4__.default
+  }, {
+    path: "/productDetail/:id",
+    component: _components_DetailItem_vue__WEBPACK_IMPORTED_MODULE_5__.default
   }],
   mode: 'history',
   scrollBehavior: function scrollBehavior() {
@@ -46781,20 +46789,26 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "item-product-info" }, [
-                  _c("h3", { staticClass: "title-product" }, [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "javascript:void(0);" },
-                        on: {
-                          click: function($event) {
-                            return _vm.DetailItem(item)
+                  _c(
+                    "h3",
+                    { staticClass: "title-product" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to:
+                              "/productDetail/" +
+                              item.id +
+                              "?tenancy=" +
+                              _vm.$route.query.tenancy
                           }
-                        }
-                      },
-                      [_vm._v(_vm._s(item.name))]
-                    )
-                  ]),
+                        },
+                        [_vm._v(_vm._s(item.name))]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "info-price" }, [
                     _c("b", { staticStyle: { "font-size": "24px" } }, [

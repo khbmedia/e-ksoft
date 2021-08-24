@@ -460,6 +460,7 @@ export default {
     },
     searchProduct(event) {
       this.$parent.search = event.target.value;
+      this.$router.push('/?tenancy=momo');
     },
     user_name() {
       if (this.username) {

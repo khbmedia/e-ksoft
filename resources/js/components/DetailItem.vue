@@ -55,12 +55,12 @@ export default {
         }
     },
     mounted(){
-        this.data=this.$parent.dataDetail;
+        var dateFilter = this.$parent.items.filter(elment=>elment.id == this.$route.params.id);
+        this.data = dateFilter[0];
         this.display=this.items;
         setTimeout(()=>{
             this.$refs.images.style.width="100%";
-        }, 100);
-        
+        }, 100);      
     },
     methods:{
         back(){

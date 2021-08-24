@@ -46,7 +46,6 @@ export default {
     mounted(){
         axios.get("/api/services/app/Item/GetItemByTenancy?TenancyName=KCCL&BranchId=1&CustomerName=093565551").then(response=>{
             this.items=response.data.result;
-            console.log(this.items);
         });
     },
     watch:{
