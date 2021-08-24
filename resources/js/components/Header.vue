@@ -39,7 +39,7 @@
             <div class="top-left">
               <div class="logo-header7">
                 <a href="javascript:;" @click="changeComponent('ListItem')">
-                  <img src="images/logo-color.svg" width="100px" height="50px" alt="Logo" />
+                  <img src="/images/logo-color.svg" width="100px" height="50px" alt="Logo" />
                 </a>
               </div>
             </div>
@@ -446,8 +446,7 @@ export default {
   },
   methods: {
     changeComponent(component){
-      this.$parent.currentTabComponent=component;
-      
+     this.$router.push('/?tenancy=momo'); 
     },
     setActiveList(component) {
       this.currentTabComponent=component;

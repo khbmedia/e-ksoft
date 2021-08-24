@@ -2251,8 +2251,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }, 100);
   },
   methods: {
-    back: function back() {
-      this.$parent.currentTabComponent = "ListItem";
+    backUrl: function backUrl() {
+      this.$router.push('/?tenancy=momo');
     },
     AddToCart: function AddToCart(item) {
       var dataItem = _objectSpread(_objectSpread({}, item), {
@@ -2331,7 +2331,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
     changeComponent: function changeComponent(component) {
-      this.$parent.currentTabComponent = component;
+      this.$router.push('/?tenancy=momo');
     }
   }
 });
@@ -2818,7 +2818,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     changeComponent: function changeComponent(component) {
-      this.$parent.currentTabComponent = component;
+      this.$router.push('/?tenancy=momo');
     },
     setActiveList: function setActiveList(component) {
       this.currentTabComponent = component;
@@ -44971,7 +44971,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "cart-checkout",
-                    attrs: { href: "#" },
+                    attrs: { href: "javascript:;" },
                     on: {
                       click: function($event) {
                         return _vm.setActive("Checkout")
@@ -44987,7 +44987,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "cart-edit",
-                    attrs: { href: "#" },
+                    attrs: { href: "javascript:;" },
                     on: {
                       click: function($event) {
                         return _vm.$parent.canceleditoder()
@@ -45003,7 +45003,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "cart-checkout",
-                    attrs: { href: "#" },
+                    attrs: { href: "javascript:;" },
                     on: {
                       click: function($event) {
                         return _vm.$parent.tbn_updateOrder()
@@ -45192,7 +45192,7 @@ var render = function() {
                 staticStyle: { cursor: "pointer" },
                 on: {
                   click: function($event) {
-                    return _vm.back()
+                    return _vm.backUrl()
                   }
                 }
               }),
@@ -45377,7 +45377,7 @@ var render = function() {
                         [
                           _c("img", {
                             attrs: {
-                              src: "images/logo-color.svg",
+                              src: "/images/logo-color.svg",
                               width: "100px",
                               height: "50px",
                               alt: ""
@@ -45614,7 +45614,7 @@ var render = function() {
                   [
                     _c("img", {
                       attrs: {
-                        src: "images/logo-color.svg",
+                        src: "/images/logo-color.svg",
                         width: "100px",
                         height: "50px",
                         alt: "Logo"

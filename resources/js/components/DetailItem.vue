@@ -2,7 +2,7 @@
     <div id="content">
 		<div class="home-featured-product" v-if="data!=null">
 			<div class="container">
-				<h2 class="title title-home"><span style="cursor:pointer;" class="lnr lnr-arrow-left" @click="back()"></span> Featured Products</h2>
+				<h2 class="title title-home"><span style="cursor:pointer;" class="lnr lnr-arrow-left" @click="backUrl()"></span> Featured Products</h2>
 			</div>
 			<div class="home-featured-slider">
 				<div class="container">
@@ -63,8 +63,8 @@ export default {
         }, 100);      
     },
     methods:{
-        back(){
-            this.$parent.currentTabComponent="ListItem";
+        backUrl(){
+            this.$router.push('/?tenancy=momo');
         },
         AddToCart(item){
             const dataItem={...item,...{qty:this.CartQty}};
